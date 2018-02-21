@@ -186,6 +186,10 @@ function detailBaseCommodity(){
  * 查询按钮
  */
 function searchButton(){
+	if (!$('#comcatetree').tree("getSelected")) {
+		$.messager.alert('提示', '请选择商品门类', 'info');
+		return;
+	}
 	var selectNode = $('#comcatetree').tree("getData",
 	  		 $('#comcatetree').tree("getSelected").target
 	  		);
@@ -200,19 +204,19 @@ function searchButton(){
 			ft.put("cateCode@=",selectNode.data.code);
 			var code =$('#q_code').textbox("getValue");
 			if(code){
-				ft.put("code@=", code);
+				ft.put("code@like", code+"%");
 			}
 			var name =$('#q_name').textbox("getValue");
 			if(name){
-				ft.put("name@=", name);
+				ft.put("name@like", name+"%");
 			}
 			var spec =$('#q_spec').textbox("getValue");
 			if(spec){
-				ft.put("spec@=", spec);
+				ft.put("spec@like", spec+"%");
 			}
 			var barCode =$('#q_barCode').textbox("getValue");
 			if(barCode){
-				ft.put("barCode@=", barCode);
+				ft.put("barCode@like", barCode+"%");
 			}
 			return ft.getJSON();
 		}
