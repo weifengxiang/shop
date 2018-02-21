@@ -14,7 +14,7 @@ public interface GeneratorConsts {
 	String DB_USER = "root"; // 用户名
 	String DB_PASS = "root"; // 密码
 	String DB_TABLE_PREFIX = ""; // 表前缀
-	String TABLE_NAME = "base_commodity"; // 表名
+	String TABLE_NAME = "base_com_cate"; // 表名
 	String TARGET_DIR = "jsp/base/commodity/"; // 生成代码存放目录
 	String URL_PREFIX="sys";//请求前缀
 	String BASE_FOLDER="src/main/java/";//maven目录

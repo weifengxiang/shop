@@ -25,7 +25,6 @@
 		
 
 		<table tableName="BASE_COM_CATE"></table>
-		<table tableName="BASE_COMMODITY"></table>
 	
 	</context>
 </generatorConfiguration>
