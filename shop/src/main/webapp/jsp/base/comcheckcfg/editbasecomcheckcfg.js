@@ -56,5 +56,26 @@ function submitAddEditBaseComcheckCfgForm() {
  * @returns
  */
 function openUserHelp(){
-	
+	var opts={
+			id:'editBaseComcheckCfg',
+			title:'修改商品盘点设置',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'sys/common/help/userchoose'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initUserHelp){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.close=function(){
+	                	dialog.close();
+	                };
+	                paramOpts.ok=function(list){
+	                	alert(JSON.stringify(list));
+	                };
+	            	this.content.initUserHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
 }
