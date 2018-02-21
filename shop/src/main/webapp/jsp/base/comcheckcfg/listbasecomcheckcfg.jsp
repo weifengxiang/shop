@@ -17,13 +17,13 @@ $(function() {
 	<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
 <div id="mmTree" class="easyui-menu"">
-	<div onclick="addComCate()" data-options="iconCls:'icon-add'">添加盘查人员</div>
+	<div onclick="addBaseComcheckCfg()" data-options="iconCls:'icon-add'">添加盘查人员</div>
 	<div class="menu-sep"></div>
-	<div onclick="editComCate()" data-options="iconCls:'icon-edit'">修改盘查人员</div>
+	<div onclick="editBaseComcheckCfg()" data-options="iconCls:'icon-edit'">修改盘查人员</div>
 	<div class="menu-sep"></div>
-	<div onclick="delComCate()" data-options="iconCls:'icon-20130408025545236_easyicon_net_30'">删除盘查人员</div>
+	<div onclick="delBaseComcheckCfg()" data-options="iconCls:'icon-20130408025545236_easyicon_net_30'">删除盘查人员</div>
 	<div class="menu-sep"></div>
-	<div onclick="detailComCate()" data-options="iconCls:'icon-detail'">查看盘查人员</div>
+	<div onclick="detailBaseComcheckCfg()" data-options="iconCls:'icon-detail'">查看盘查人员</div>
 </div>
 </body>
 </html>

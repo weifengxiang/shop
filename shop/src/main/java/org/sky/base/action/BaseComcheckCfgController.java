@@ -16,6 +16,7 @@ import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,22 @@ public class BaseComcheckCfgController extends BaseController{
 	public String initBaseComcheckCfgListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/base/comcheckcfg/listbasecomcheckcfg";
+	}
+	/**
+	 * 商品盘点设置树
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/base/BaseComcheckCfg/getBaseComcheckCfg", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<TreeStru> getBaseComcheckCfg(HttpServletRequest request, 
+			HttpServletResponse response){
+		String data= request.getParameter("data");
+		Map dataMap=null;
+		if(!StringUtils.isNull(data)){
+			dataMap = JsonUtils.json2map(data);
+		}
+		return basecomcheckcfgService.getBaseComcheckCfg(dataMap);
 	}
 	/**
 	 * 商品盘点设置分页查询

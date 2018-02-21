@@ -18,16 +18,19 @@ $(function() {
 		<form id="addeditbasecomcheckcfgform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='comCate' id='comCate'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>盘点类别:</label></th>
-					<td><input class="easyui-textbox" name="comCate"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-textbox" name="comCateName" id="comCateName"
+						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>员工编号:</label></th>
 					<td><input class="easyui-textbox" name="empCode"
-						data-options="required:true"></input></td>
+						data-options="required:true"></input>
+						<a href="javascript:openUserHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>

@@ -15,7 +15,7 @@ function initComCateTree() {
 					    }
 					}
 	              ];
-	var url = basepath + 'base/BaseCommodity/getComCateTree';
+	var url = basepath + 'base/BaseComcheckCfg/getBaseComcheckCfg';
 	url=SKY.urlCSRF(url);
 	$('#comcatetree').tree(
 			{
@@ -29,16 +29,22 @@ function initComCateTree() {
 				onClick : function(node) {
 					var data=node.data;
 					if(data.id&&data.isLeaf=='1'){
-						searchButton();
+						
 					}
 				},
 				onContextMenu : function(e, node) {
 					e.preventDefault();
-					$(this).tree('select', node.target);
-					$('#mmTree').menu('show', {
-						left : e.pageX,
-						top : e.pageY
-					});
+					var data=node.data;
+					if(data.id&&data.isLeaf=='1'){
+						$(this).tree('select', node.target);
+						$('#mmTree').menu('show', {
+							left : e.pageX,
+							top : e.pageY
+						});
+					}else{
+						$.messager.alert('提示','只能为小类设置盘查人员','info');
+						return;
+					}
 				}
 			});
 }
@@ -46,6 +52,10 @@ function initComCateTree() {
  *添加商品盘点设置
  **/
 function addBaseComcheckCfg(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	var comCate = selectNode.data;
 	var opts={
 				id:'addBaseComcheckCfg',
 				title:'添加商品盘点设置',
@@ -57,9 +67,9 @@ function addBaseComcheckCfg(){
 		            if(this.content && this.content.initAddBaseComcheckCfgPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
+		                paramOpts.comCate=comCate;
 		                paramOpts.callBack=function(){
 		                	dialog.close();
-		                	searchButton();
 		                };
 		            	this.content.initAddBaseComcheckCfgPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
@@ -128,7 +138,6 @@ function editBaseComcheckCfg(){
 		                paramOpts.data=checkeds[0];
 		                paramOpts.callBack=function(){
 		                	dialog.close();
-		                	searchButton();
 		                };
 		            	this.content.initEditBaseComcheckCfgPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
@@ -165,32 +174,4 @@ function detailBaseComcheckCfg(){
 		        }
 			  };
 	SKY_EASYUI.open(opts);
-}
-/**
- * 查询按钮
- */
-function searchButton(){
-	$('#listbasecomcheckcfgdg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseComcheckCfg/getBaseComcheckCfgByPage');
-	$('#listbasecomcheckcfgdg').datagrid('load', {
-		filter : function(){
-			var ft = new HashMap();
-			var comCate =$('#q_comCate').textbox("getValue");
-			if(comCate){
-				ft.put("comCate@=", comCate);
-			}
-			var empCode =$('#q_empCode').textbox("getValue");
-			if(empCode){
-				ft.put("empCode@=", empCode);
-			}
-			var status =$('#q_status').textbox("getValue");
-			if(status){
-				ft.put("status@=", status);
-			}
-			var note =$('#q_note').textbox("getValue");
-			if(note){
-				ft.put("note@=", note);
-			}
-			return ft.getJSON();
-		}
-	});
 }

@@ -6,6 +6,9 @@ function initAddBaseComcheckCfgPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	var comCate = paramOpts.comCate;
+	$('#comCate').val(comCate.code);
+	$('#comCateName').textbox('setValue',comCate.name);
 }
 /**
  * 初始化编辑商品盘点设置页面
@@ -47,5 +50,11 @@ function submitAddEditBaseComcheckCfgForm() {
        timeout:-1    
 	};  
 	$('#addeditbasecomcheckcfgform').ajaxSubmit(options);
+}
+/**
+ * 用户选择帮助
+ * @returns
+ */
+function openUserHelp(){
 	
 }
