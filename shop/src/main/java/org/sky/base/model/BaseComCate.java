@@ -9,6 +9,8 @@ public class BaseComCate {
 
     private String name;
 
+    private String parCode;
+
     private String isLeaf;
 
     private String note;
@@ -43,6 +45,14 @@ public class BaseComCate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getParCode() {
+        return parCode;
+    }
+
+    public void setParCode(String parCode) {
+        this.parCode = parCode;
     }
 
     public String getIsLeaf() {

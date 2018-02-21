@@ -351,6 +351,76 @@ public class BaseComCateExample {
             return (Criteria) this;
         }
 
+        public Criteria andParCodeIsNull() {
+            addCriterion("PAR_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeIsNotNull() {
+            addCriterion("PAR_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeEqualTo(String value) {
+            addCriterion("PAR_CODE =", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeNotEqualTo(String value) {
+            addCriterion("PAR_CODE <>", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeGreaterThan(String value) {
+            addCriterion("PAR_CODE >", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("PAR_CODE >=", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeLessThan(String value) {
+            addCriterion("PAR_CODE <", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeLessThanOrEqualTo(String value) {
+            addCriterion("PAR_CODE <=", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeLike(String value) {
+            addCriterion("PAR_CODE like", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeNotLike(String value) {
+            addCriterion("PAR_CODE not like", value, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeIn(List<String> values) {
+            addCriterion("PAR_CODE in", values, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeNotIn(List<String> values) {
+            addCriterion("PAR_CODE not in", values, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeBetween(String value1, String value2) {
+            addCriterion("PAR_CODE between", value1, value2, "parCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParCodeNotBetween(String value1, String value2) {
+            addCriterion("PAR_CODE not between", value1, value2, "parCode");
+            return (Criteria) this;
+        }
+
         public Criteria andIsLeafIsNull() {
             addCriterion("IS_LEAF is null");
             return (Criteria) this;
