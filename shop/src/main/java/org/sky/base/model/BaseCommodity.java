@@ -14,6 +14,8 @@ public class BaseCommodity {
     private String barCode;
 
     private String cateCode;
+    
+    private String cateName;
 
     private String note;
 
@@ -112,4 +114,12 @@ public class BaseCommodity {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
 }

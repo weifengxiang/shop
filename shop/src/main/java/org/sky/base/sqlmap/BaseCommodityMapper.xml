@@ -8,6 +8,7 @@
     <result column="SPEC" jdbcType="VARCHAR" property="spec" />
     <result column="BAR_CODE" jdbcType="CHAR" property="barCode" />
     <result column="CATE_CODE" jdbcType="VARCHAR" property="cateCode" />
+    <result column="CATE_NAME" jdbcType="VARCHAR" property="cateName" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
@@ -73,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CODE, NAME, SPEC, BAR_CODE, CATE_CODE, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, CODE, NAME, SPEC, BAR_CODE, CATE_CODE, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM BASE_COM_CATE BCC WHERE BCC.CODE = BASE_COMMODITY.CATE_CODE) AS CATE_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCommodityExample" resultMap="BaseResultMap">
     select
