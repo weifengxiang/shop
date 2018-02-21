@@ -8,7 +8,7 @@ function initAddBaseCommodityPage(paramOpts){
 	});
 	var comCate = paramOpts.comCate;
 	$("#cateCode").val(comCate.code);
-	$('#cateCodeName').textbox('setValue',comCate.name);
+	$('#cateName').textbox('setValue',comCate.name);
 }
 /**
  * 初始化编辑商品管理页面

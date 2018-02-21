@@ -40,7 +40,7 @@ $(function() {
 				  </tr>
 				  <tr>
 					<th><label>类别:</label></th>
-					<td colspan='3'><input class="easyui-textbox" name="cateCodeName" id="cateCodeName"
+					<td colspan='3'><input class="easyui-textbox" name="cateName" id="cateName"
 						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>

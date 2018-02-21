@@ -22,11 +22,11 @@ $(function() {
 			<table style="width:100%">
 				  <tr>
 					<th><label>编号:</label></th>
-					<td><input class="easyui-textbox" name="code"
+					<td><input class="easyui-textbox" name="code" id='code'
 						data-options="required:true"></input></td>
 				  
 					<th><label>名称:</label></th>
-					<td><input class="easyui-textbox" name="name"
+					<td><input class="easyui-textbox" name="name" id='name'
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>

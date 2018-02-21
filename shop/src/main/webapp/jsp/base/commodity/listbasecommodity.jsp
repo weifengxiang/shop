@@ -81,7 +81,7 @@ $(function() {
 						options:{
 							required:true
 						}}">条码</th>
-				<th data-options="field:'cateCode',width:180,
+				<th data-options="field:'cateName',width:180,
 				editor:{
 						type:'textbox',
 						options:{

@@ -18,13 +18,13 @@ $(function() {
 		<form id="detailbasecommodityform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='cateCode' id='cateCode'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>编号:</label></th>
 					<td><input class="easyui-textbox" name="code"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+				 
 					<th><label>名称:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
@@ -33,21 +33,21 @@ $(function() {
 					<th><label>规格:</label></th>
 					<td><input class="easyui-textbox" name="spec"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+				 
 					<th><label>条码:</label></th>
 					<td><input class="easyui-textbox" name="barCode"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>类别:</label></th>
-					<td><input class="easyui-textbox" name="cateCode"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="cateName" id="cateName"
+						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="note"
+						style="width:400px;height: 100px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

@@ -6,6 +6,6 @@ function initDetailBaseCommodityPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"sys/BaseCommodity/getBaseCommodityById?id="+paramOpts.data.id;
+	var url=basepath+"base/BaseCommodity/getBaseCommodityById?id="+paramOpts.data.id;
 	$('#detailbasecommodityform').form('load',SKY.urlCSRF(url));
 }
