@@ -14,8 +14,9 @@ $(function() {
 });
 </script> 
 </head>
-<body class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#editPageButtonsFt'">
+<body>
+<div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
+	 data-options="border:false,fit:true,footer:'#editPageButtonsFt'">
 <div class="easyui-layout" style="width: 100%; height: 100%; padding: 0; border: 0"
 	  data-options="border:false,fit:true">
 <div data-options="region:'west',split:true,title:'组织机构'" style="width:200px;padding:0px;">
@@ -119,6 +120,7 @@ $(function() {
 		</tr>
 	</thead>
 </table>
+</div>
 </div>
 </div>
 <div id='editPageButtonsFt' style="text-align:center; padding:0px; top:0px">

@@ -16,9 +16,10 @@ $(function() {
 <div data-options=" region:'center',iconCls: 'icon-table'" title="商品盘点设置">
 	<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
-<div id="mmTree" class="easyui-menu"">
+<div id="mmTree1" class="easyui-menu"">
 	<div onclick="addBaseComcheckCfg()" data-options="iconCls:'icon-add'">添加盘查人员</div>
-	<div class="menu-sep"></div>
+</div>
+<div id="mmTree2" class="easyui-menu"">
 	<div onclick="editBaseComcheckCfg()" data-options="iconCls:'icon-edit'">修改盘查人员</div>
 	<div class="menu-sep"></div>
 	<div onclick="delBaseComcheckCfg()" data-options="iconCls:'icon-20130408025545236_easyicon_net_30'">删除盘查人员</div>

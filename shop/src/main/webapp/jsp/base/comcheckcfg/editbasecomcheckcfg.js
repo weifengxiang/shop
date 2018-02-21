@@ -71,7 +71,14 @@ function openUserHelp(){
 	                	dialog.close();
 	                };
 	                paramOpts.ok=function(list){
-	                	alert(JSON.stringify(list));
+	                	if(list.length==1){
+	                		$('#empCode').val(list[0].code);
+	                		$('#empName').textbox('setValue',list[0].name);
+	                		dialog.close();
+	                	}else{
+	                		//$.messager.alert('提示','请选择一个员工','info');
+	                	}
+	                	
 	                };
 	            	this.content.initUserHelp(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 	            } 
