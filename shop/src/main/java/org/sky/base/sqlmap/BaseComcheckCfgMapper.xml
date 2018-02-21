@@ -4,7 +4,9 @@
   <resultMap id="BaseResultMap" type="org.sky.base.model.BaseComcheckCfg">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="COM_CATE" jdbcType="VARCHAR" property="comCate" />
+    <result column="COM_CATE_NAME" jdbcType="VARCHAR" property="comCateName" />
     <result column="EMP_CODE" jdbcType="VARCHAR" property="empCode" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
     <result column="STATUS" jdbcType="CHAR" property="status" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -71,7 +73,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, COM_CATE, EMP_CODE, STATUS, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, COM_CATE, EMP_CODE, STATUS, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM BASE_COM_CATE BCC WHERE BCC.CODE=COM_CATE) AS COM_CATE_NAME,
+    (SELECT NAME FROM SYS_USER SU WHERE SU.CODE=EMP_CODE) AS EMP_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseComcheckCfgExample" resultMap="BaseResultMap">
     select

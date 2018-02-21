@@ -44,23 +44,35 @@ public class BaseComcheckCfgService {
 	public List<TreeStru> getBaseComcheckCfg(Map m){
 		List<TreeStru> tslist = new ArrayList();
 		String code = (String)m.get("code");
-		BaseComCateExample pcce = new BaseComCateExample();
-		pcce.createCriteria().andParCodeEqualTo(code);
-		pcce.setOrderByClause("seq asc");
-		List<BaseComCate> list=basecomcatemapper.selectByExample(pcce);
-		for(BaseComCate bcc:list){
-			TreeStru ts = new TreeStru();
-			ts.setId(bcc.getCode());
-			ts.setText(bcc.getName()+"["+bcc.getCode()+"]");
-			ts.setSeq(bcc.getSeq());
-			ts.setIconCls("icon-box_world");
-			if(bcc.getChildCount()>0){
+		String isLeaf = (String)m.get("isLeaf");
+		if(!"1".equals(isLeaf)) {
+			BaseComCateExample pcce = new BaseComCateExample();
+			pcce.createCriteria().andParCodeEqualTo(code);
+			pcce.setOrderByClause("seq asc");
+			List<BaseComCate> list=basecomcatemapper.selectByExample(pcce);
+			for(BaseComCate bcc:list){
+				TreeStru ts = new TreeStru();
+				ts.setId(bcc.getCode());
+				ts.setText(bcc.getName()+"["+bcc.getCode()+"]");
+				ts.setSeq(bcc.getSeq());
+				ts.setIconCls("icon-box_world");
 				ts.setState("closed");
-			}else{
-				ts.setState("open");
+				ts.setData(bcc);
+				tslist.add(ts); 
 			}
-			ts.setData(bcc);
-			tslist.add(ts); 
+		}else {
+			BaseComcheckCfgExample bcce = new BaseComcheckCfgExample();
+			bcce.createCriteria().andComCateEqualTo(code);
+			List<BaseComcheckCfg> list = basecomcheckcfgmapper.selectByExample(bcce);
+			for(BaseComcheckCfg bcc:list){
+				TreeStru ts = new TreeStru();
+				ts.setId(bcc.getId());
+				ts.setText(bcc.getEmpCode()+"["+bcc.getEmpCode()+"]");
+				ts.setIconCls("icon-user_female");
+				ts.setState("open");
+				ts.setData(bcc);
+				tslist.add(ts); 
+			}
 		}
 		return tslist;
 	}

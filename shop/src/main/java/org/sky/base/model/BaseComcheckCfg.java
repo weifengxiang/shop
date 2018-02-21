@@ -6,8 +6,12 @@ public class BaseComcheckCfg {
     private String id;
 
     private String comCate;
+    
+    private String comCateName;
 
     private String empCode;
+    
+    private String empName;
 
     private String status;
 
@@ -92,4 +96,20 @@ public class BaseComcheckCfg {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getComCateName() {
+		return comCateName;
+	}
+
+	public void setComCateName(String comCateName) {
+		this.comCateName = comCateName;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 }
