@@ -31,7 +31,7 @@ public class BaseCommodityController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示鍟嗗搧绠＄悊列表页面
+	*显示商品管理列表页面
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/initBaseCommodityListPage", method = { RequestMethod.GET })
 	public String initBaseCommodityListPage(
@@ -39,7 +39,7 @@ public class BaseCommodityController extends BaseController{
 		return "jsp/base/commodity/listbasecommodity";
 	}
 	/**
-	 * 鍟嗗搧绠＄悊分页查询
+	 * 商品管理分页查询
 	 * @param request
 	 * @param response
 	 * @return
@@ -65,7 +65,7 @@ public class BaseCommodityController extends BaseController{
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
-	*显示鍟嗗搧绠＄悊新增页面
+	*显示商品管理新增页面
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/initAddBaseCommodityPage", method = { RequestMethod.GET })
 	public String initAddBaseCommodityPage(
@@ -73,7 +73,7 @@ public class BaseCommodityController extends BaseController{
 		return "jsp/base/commodity/editbasecommodity";
 	}
 	/**
-	*显示鍟嗗搧绠＄悊修改页面
+	*显示商品管理修改页面
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/initEditBaseCommodityPage", method = { RequestMethod.GET })
 	public String initEditBaseCommodityPage(
@@ -81,7 +81,7 @@ public class BaseCommodityController extends BaseController{
 		return "jsp/base/commodity/editbasecommodity";
 	}
 	/**
-	*显示鍟嗗搧绠＄悊详细页面
+	*显示商品管理详细页面
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/initDetailBaseCommodityPage", method = { RequestMethod.GET })
 	public String initDetailBaseCommodityPage(
@@ -89,7 +89,7 @@ public class BaseCommodityController extends BaseController{
 		return "jsp/base/commodity/detailbasecommodity";
 	}
 	/**
-	*保存新增/修改鍟嗗搧绠＄悊
+	*保存新增/修改商品管理
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/saveAddEditBaseCommodity", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditBaseCommodity(
@@ -110,7 +110,7 @@ public class BaseCommodityController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*删除鍟嗗搧绠＄悊
+	*删除商品管理
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/delBaseCommodity", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delBaseCommodity(
@@ -132,7 +132,7 @@ public class BaseCommodityController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*根据主键查询鍟嗗搧绠＄悊
+	*根据主键查询商品管理
 	**/
 	@RequestMapping(value = "/sys/BaseCommodity/getBaseCommodityById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getBaseCommodityById(

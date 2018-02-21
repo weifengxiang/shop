@@ -31,7 +31,7 @@ public class BaseComCateController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示鍟嗗搧闂ㄧ被绠＄悊列表页面
+	*显示商品门类管理列表页面
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/initBaseComCateListPage", method = { RequestMethod.GET })
 	public String initBaseComCateListPage(
@@ -39,7 +39,7 @@ public class BaseComCateController extends BaseController{
 		return "jsp/base/commodity/listbasecomcate";
 	}
 	/**
-	 * 鍟嗗搧闂ㄧ被绠＄悊分页查询
+	 * 商品门类管理分页查询
 	 * @param request
 	 * @param response
 	 * @return
@@ -65,7 +65,7 @@ public class BaseComCateController extends BaseController{
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
-	*显示鍟嗗搧闂ㄧ被绠＄悊新增页面
+	*显示商品门类管理新增页面
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/initAddBaseComCatePage", method = { RequestMethod.GET })
 	public String initAddBaseComCatePage(
@@ -73,7 +73,7 @@ public class BaseComCateController extends BaseController{
 		return "jsp/base/commodity/editbasecomcate";
 	}
 	/**
-	*显示鍟嗗搧闂ㄧ被绠＄悊修改页面
+	*显示商品门类管理修改页面
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/initEditBaseComCatePage", method = { RequestMethod.GET })
 	public String initEditBaseComCatePage(
@@ -81,7 +81,7 @@ public class BaseComCateController extends BaseController{
 		return "jsp/base/commodity/editbasecomcate";
 	}
 	/**
-	*显示鍟嗗搧闂ㄧ被绠＄悊详细页面
+	*显示商品门类管理详细页面
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/initDetailBaseComCatePage", method = { RequestMethod.GET })
 	public String initDetailBaseComCatePage(
@@ -89,7 +89,7 @@ public class BaseComCateController extends BaseController{
 		return "jsp/base/commodity/detailbasecomcate";
 	}
 	/**
-	*保存新增/修改鍟嗗搧闂ㄧ被绠＄悊
+	*保存新增/修改商品门类管理
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/saveAddEditBaseComCate", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditBaseComCate(
@@ -110,7 +110,7 @@ public class BaseComCateController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*删除鍟嗗搧闂ㄧ被绠＄悊
+	*删除商品门类管理
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/delBaseComCate", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delBaseComCate(
@@ -132,7 +132,7 @@ public class BaseComCateController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*根据主键查询鍟嗗搧闂ㄧ被绠＄悊
+	*根据主键查询商品门类管理
 	**/
 	@RequestMapping(value = "/sys/BaseComCate/getBaseComCateById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getBaseComCateById(
