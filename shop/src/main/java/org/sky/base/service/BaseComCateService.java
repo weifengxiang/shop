@@ -103,10 +103,8 @@ public class BaseComCateService {
 	*根据主键批量删除对象
 	**/
 	@Transactional
-	public void delBaseComCateById(List<BaseComCate> delList){
-		for(BaseComCate del:delList){
-			basecomcatemapper.deleteByPrimaryKey(del.getId());
-		}
+	public void delBaseComCateById(BaseComCate del){
+		basecomcatemapper.deleteByPrimaryKey(del.getId());
 	}
 	/**
 	*根据主键查询对象

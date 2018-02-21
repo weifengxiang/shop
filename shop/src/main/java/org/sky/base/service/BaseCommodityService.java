@@ -1,10 +1,16 @@
 package org.sky.base.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.base.client.BaseComCateMapper;
 import org.sky.base.client.BaseCommodityMapper;
 import org.sky.sys.exception.ServiceException;
+import org.sky.base.model.BaseComCate;
+import org.sky.base.model.BaseComCateExample;
 import org.sky.base.model.BaseCommodity;
 import org.sky.base.model.BaseCommodityExample;
 import org.sky.sys.utils.PageListData;
@@ -14,11 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 @Service
 public class BaseCommodityService {
 	private final Logger logger=Logger.getLogger(BaseCommodityService.class);
 	@Autowired
 	private BaseCommodityMapper basecommoditymapper;
+	@Autowired
+	private BaseComCateMapper basecomcatemapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
@@ -31,6 +40,34 @@ public class BaseCommodityService {
 		pld.setTotal(totalCount);
 		pld.setRows(list);
 		return pld;
+	}
+	/**
+	 * 查询商品类别树
+	 * @param m
+	 * @return
+	 */
+	public List<TreeStru> getComCateTreeData(Map m){
+		List<TreeStru> tslist = new ArrayList();
+		String code = (String)m.get("code");
+		BaseComCateExample pcce = new BaseComCateExample();
+		pcce.createCriteria().andParCodeEqualTo(code);
+		pcce.setOrderByClause("seq asc");
+		List<BaseComCate> list=basecomcatemapper.selectByExample(pcce);
+		for(BaseComCate bcc:list){
+			TreeStru ts = new TreeStru();
+			ts.setId(bcc.getCode());
+			ts.setText(bcc.getName()+"["+bcc.getCode()+"]");
+			ts.setSeq(bcc.getSeq());
+			ts.setIconCls("icon-box_world");
+			if(bcc.getChildCount()>0){
+				ts.setState("closed");
+			}else{
+				ts.setState("open");
+			}
+			ts.setData(bcc);
+			tslist.add(ts); 
+		}
+		return tslist;
 	}
 	/**
 	*保存列表新增及修改

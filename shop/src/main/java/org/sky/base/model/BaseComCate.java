@@ -13,6 +13,8 @@ public class BaseComCate {
 
     private String isLeaf;
 
+    private Integer seq;
+
     private String note;
 
     private String creater;
@@ -22,6 +24,8 @@ public class BaseComCate {
     private String updater;
 
     private Date updateTime;
+    
+    private Integer childCount;
 
     public String getId() {
         return id;
@@ -63,6 +67,14 @@ public class BaseComCate {
         this.isLeaf = isLeaf;
     }
 
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
+
     public String getNote() {
         return note;
     }
@@ -102,4 +114,14 @@ public class BaseComCate {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public Integer getChildCount() {
+		return childCount;
+	}
+
+	public void setChildCount(Integer childCount) {
+		this.childCount = childCount;
+	}
+
+	
 }

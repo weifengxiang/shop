@@ -7,11 +7,13 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PAR_CODE" jdbcType="VARCHAR" property="parCode" />
     <result column="IS_LEAF" jdbcType="CHAR" property="isLeaf" />
+    <result column="SEQ" jdbcType="INTEGER" property="seq" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CHILD_COUNT" jdbcType="INTEGER" property="childCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CODE, NAME, PAR_CODE, IS_LEAF, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, CODE, NAME, PAR_CODE, IS_LEAF, SEQ, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT COUNT(1) FROM BASE_COM_CATE BCC WHERE BCC.PAR_CODE=BASE_COM_CATE.CODE) AS CHILD_COUNT
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseComCateExample" resultMap="BaseResultMap">
     select
@@ -107,13 +110,13 @@
   </delete>
   <insert id="insert" parameterType="org.sky.base.model.BaseComCate">
     insert into base_com_cate (ID, CODE, NAME, 
-      PAR_CODE, IS_LEAF, NOTE, 
-      CREATER, CREATE_TIME, UPDATER, 
-      UPDATE_TIME)
+      PAR_CODE, IS_LEAF, SEQ, 
+      NOTE, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{parCode,jdbcType=VARCHAR}, #{isLeaf,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{parCode,jdbcType=VARCHAR}, #{isLeaf,jdbcType=CHAR}, #{seq,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseComCate">
     insert into base_com_cate
@@ -132,6 +135,9 @@
       </if>
       <if test="isLeaf != null">
         IS_LEAF,
+      </if>
+      <if test="seq != null">
+        SEQ,
       </if>
       <if test="note != null">
         NOTE,
@@ -164,6 +170,9 @@
       </if>
       <if test="isLeaf != null">
         #{isLeaf,jdbcType=CHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
@@ -206,6 +215,9 @@
       <if test="record.isLeaf != null">
         IS_LEAF = #{record.isLeaf,jdbcType=CHAR},
       </if>
+      <if test="record.seq != null">
+        SEQ = #{record.seq,jdbcType=INTEGER},
+      </if>
       <if test="record.note != null">
         NOTE = #{record.note,jdbcType=VARCHAR},
       </if>
@@ -233,6 +245,7 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       PAR_CODE = #{record.parCode,jdbcType=VARCHAR},
       IS_LEAF = #{record.isLeaf,jdbcType=CHAR},
+      SEQ = #{record.seq,jdbcType=INTEGER},
       NOTE = #{record.note,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -256,6 +269,9 @@
       </if>
       <if test="isLeaf != null">
         IS_LEAF = #{isLeaf,jdbcType=CHAR},
+      </if>
+      <if test="seq != null">
+        SEQ = #{seq,jdbcType=INTEGER},
       </if>
       <if test="note != null">
         NOTE = #{note,jdbcType=VARCHAR},
@@ -281,6 +297,7 @@
       NAME = #{name,jdbcType=VARCHAR},
       PAR_CODE = #{parCode,jdbcType=VARCHAR},
       IS_LEAF = #{isLeaf,jdbcType=CHAR},
+      SEQ = #{seq,jdbcType=INTEGER},
       NOTE = #{note,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
