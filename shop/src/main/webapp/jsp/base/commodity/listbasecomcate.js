@@ -9,12 +9,12 @@ function init(){
 	});
 }
  /**
- *添加鍟嗗搧闂ㄧ被绠＄悊
+ *添加商品门类管理
  **/
 function addBaseComCate(){
 	var opts={
 				id:'addBaseComCate',
-				title:'添加鍟嗗搧闂ㄧ被绠＄悊',
+				title:'添加商品门类管理',
 				width:600,
 				height:450,
 				modal:true,
@@ -34,7 +34,7 @@ function addBaseComCate(){
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除鍟嗗搧闂ㄧ被绠＄悊
+ *删除商品门类管理
  **/
 function delBaseComCate(){
 	var checkeds=$('#listbasecomcatedg').datagrid('getChecked');
@@ -72,7 +72,7 @@ function delBaseComCate(){
 	}
 }
 /**
-*修改鍟嗗搧闂ㄧ被绠＄悊
+*修改商品门类管理
 **/
 function editBaseComCate(){
 	var checkeds=$('#listbasecomcatedg').datagrid('getChecked');
@@ -82,7 +82,7 @@ function editBaseComCate(){
 	}
 	var opts={
 				id:'editBaseComCate',
-				title:'修改鍟嗗搧闂ㄧ被绠＄悊',
+				title:'修改商品门类管理',
 				width:600,
 				height:450,
 				modal:true,
@@ -113,7 +113,7 @@ function detailBaseComCate(){
 	}
 	var opts={
 				id:'detailBaseComCate',
-				title:'鍟嗗搧闂ㄧ被绠＄悊明细',
+				title:'商品门类管理明细',
 				width:600,
 				height:450,
 				modal:true,

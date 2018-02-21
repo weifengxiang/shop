@@ -17,23 +17,23 @@ $(function() {
 	   style="width:100%; height:63px; padding:0px;" cellpadding="0">
 <table class='noborder'>
 	<tr style="height: 34px">
-		<th><label>缂栧彿:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入缂栧彿'" name="q_code"  id="q_code" ></input></td>				
-		<th><label>鍚嶇О:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入鍚嶇О'" name="q_name"  id="q_name" ></input></td>				
-		<th><label>瑙勬牸:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入瑙勬牸'" name="q_spec"  id="q_spec" ></input></td>				
-		<th><label>鏉＄爜:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入鏉＄爜'" name="q_barCode"  id="q_barCode" ></input></td>				
-		<th><label>绫诲埆:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入绫诲埆'" name="q_cateCode"  id="q_cateCode" ></input></td>				
-		<th><label>澶囨敞:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入澶囨敞'" name="q_note"  id="q_note" ></input></td>				
+		<th><label>编号:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入编号'" name="q_code"  id="q_code" ></input></td>				
+		<th><label>名称:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入名称'" name="q_name"  id="q_name" ></input></td>				
+		<th><label>规格:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入规格'" name="q_spec"  id="q_spec" ></input></td>				
+		<th><label>条码:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入条码'" name="q_barCode"  id="q_barCode" ></input></td>				
+		<th><label>类别:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入类别'" name="q_cateCode"  id="q_cateCode" ></input></td>				
+		<th><label>备注:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_note"  id="q_note" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="鍟嗗搧绠＄悊管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="商品管理管理">
 <table  id="listbasecommoditydg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -63,37 +63,37 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">缂栧彿</th>
+						}}">编号</th>
 				<th data-options="field:'name',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">鍚嶇О</th>
+						}}">名称</th>
 				<th data-options="field:'spec',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">瑙勬牸</th>
+						}}">规格</th>
 				<th data-options="field:'barCode',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">鏉＄爜</th>
+						}}">条码</th>
 				<th data-options="field:'cateCode',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">绫诲埆</th>
+						}}">类别</th>
 				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">澶囨敞</th>
+						}}">备注</th>
 		</tr>
 	</thead>
 </table>

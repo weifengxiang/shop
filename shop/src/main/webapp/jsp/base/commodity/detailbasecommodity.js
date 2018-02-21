@@ -1,5 +1,5 @@
 /**
- * 初始化鍟嗗搧绠＄悊详细页面
+ * 初始化商品管理详细页面
  */
 function initDetailBaseCommodityPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);

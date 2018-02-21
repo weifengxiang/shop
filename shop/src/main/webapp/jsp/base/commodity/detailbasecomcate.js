@@ -1,5 +1,5 @@
 /**
- * 初始化鍟嗗搧闂ㄧ被绠＄悊详细页面
+ * 初始化商品门类管理详细页面
  */
 function initDetailBaseComCatePage(paramOpts){
 	_callbacks.add(paramOpts.callBack);

@@ -1,5 +1,5 @@
 /**
- * 初始化添加鍟嗗搧绠＄悊页面
+ * 初始化添加商品管理页面
  */
 function initAddBaseCommodityPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -8,7 +8,7 @@ function initAddBaseCommodityPage(paramOpts){
 	});
 }
 /**
- * 初始化编辑鍟嗗搧绠＄悊页面
+ * 初始化编辑商品管理页面
  */
 function initEditBaseCommodityPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -19,7 +19,7 @@ function initEditBaseCommodityPage(paramOpts){
 	$('#addeditbasecommodityform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑鍟嗗搧绠＄悊
+ * 保存添加/编辑商品管理
  */
 function submitAddEditBaseCommodityForm() {
 	var options = { 

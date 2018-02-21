@@ -17,19 +17,19 @@ $(function() {
 	   style="width:100%; height:63px; padding:0px;" cellpadding="0">
 <table class='noborder'>
 	<tr style="height: 34px">
-		<th><label>缂栧彿:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入缂栧彿'" name="q_code"  id="q_code" ></input></td>				
-		<th><label>鍚嶇О:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入鍚嶇О'" name="q_name"  id="q_name" ></input></td>				
-		<th><label>鏄惁灏忕被:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入鏄惁灏忕被'" name="q_isLeaf"  id="q_isLeaf" ></input></td>				
-		<th><label>澶囨敞:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入澶囨敞'" name="q_note"  id="q_note" ></input></td>				
+		<th><label>编号:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入编号'" name="q_code"  id="q_code" ></input></td>				
+		<th><label>名称:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入名称'" name="q_name"  id="q_name" ></input></td>				
+		<th><label>是否小类:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入是否小类'" name="q_isLeaf"  id="q_isLeaf" ></input></td>				
+		<th><label>备注:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_note"  id="q_note" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="鍟嗗搧闂ㄧ被绠＄悊管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="商品门类管理管理">
 <table  id="listbasecomcatedg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -59,25 +59,25 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">缂栧彿</th>
+						}}">编号</th>
 				<th data-options="field:'name',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">鍚嶇О</th>
+						}}">名称</th>
 				<th data-options="field:'isLeaf',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">鏄惁灏忕被</th>
+						}}">是否小类</th>
 				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">澶囨敞</th>
+						}}">备注</th>
 		</tr>
 	</thead>
 </table>

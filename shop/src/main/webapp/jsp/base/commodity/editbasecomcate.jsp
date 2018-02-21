@@ -20,22 +20,22 @@ $(function() {
 			<input type='hidden' name='id' id='id'/>
 			<table style="width:100%">
 				  <tr>
-					<th><label>缂栧彿:</label></th>
+					<th><label>编号:</label></th>
 					<td><input class="easyui-textbox" name="code"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>鍚嶇О:</label></th>
+					<th><label>名称:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>鏄惁灏忕被:</label></th>
+					<th><label>是否小类:</label></th>
 					<td><input class="easyui-textbox" name="isLeaf"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>澶囨敞:</label></th>
+					<th><label>备注:</label></th>
 					<td><input class="easyui-textbox" name="note"
 						data-options="required:true"></input></td>
 				  </tr>

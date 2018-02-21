@@ -1,5 +1,5 @@
 /**
- * 初始化添加鍟嗗搧闂ㄧ被绠＄悊页面
+ * 初始化添加商品门类管理页面
  */
 function initAddBaseComCatePage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -8,7 +8,7 @@ function initAddBaseComCatePage(paramOpts){
 	});
 }
 /**
- * 初始化编辑鍟嗗搧闂ㄧ被绠＄悊页面
+ * 初始化编辑商品门类管理页面
  */
 function initEditBaseComCatePage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -19,7 +19,7 @@ function initEditBaseComCatePage(paramOpts){
 	$('#addeditbasecomcateform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑鍟嗗搧闂ㄧ被绠＄悊
+ * 保存添加/编辑商品门类管理
  */
 function submitAddEditBaseComCateForm() {
 	var options = { 

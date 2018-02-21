@@ -9,12 +9,12 @@ function init(){
 	});
 }
  /**
- *添加鍟嗗搧绠＄悊
+ *添加商品管理
  **/
 function addBaseCommodity(){
 	var opts={
 				id:'addBaseCommodity',
-				title:'添加鍟嗗搧绠＄悊',
+				title:'添加商品管理',
 				width:600,
 				height:450,
 				modal:true,
@@ -34,7 +34,7 @@ function addBaseCommodity(){
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除鍟嗗搧绠＄悊
+ *删除商品管理
  **/
 function delBaseCommodity(){
 	var checkeds=$('#listbasecommoditydg').datagrid('getChecked');
@@ -72,7 +72,7 @@ function delBaseCommodity(){
 	}
 }
 /**
-*修改鍟嗗搧绠＄悊
+*修改商品管理
 **/
 function editBaseCommodity(){
 	var checkeds=$('#listbasecommoditydg').datagrid('getChecked');
@@ -82,7 +82,7 @@ function editBaseCommodity(){
 	}
 	var opts={
 				id:'editBaseCommodity',
-				title:'修改鍟嗗搧绠＄悊',
+				title:'修改商品管理',
 				width:600,
 				height:450,
 				modal:true,
@@ -113,7 +113,7 @@ function detailBaseCommodity(){
 	}
 	var opts={
 				id:'detailBaseCommodity',
-				title:'鍟嗗搧绠＄悊明细',
+				title:'商品管理明细',
 				width:600,
 				height:450,
 				modal:true,
