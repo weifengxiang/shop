@@ -24,7 +24,7 @@
 		<javaClientGenerator targetPackage="org.sky.base.client"	targetProject="src\main\java" type="XMLMAPPER" />
 		
 
-		<table tableName="BASE_COM_CATE"></table>
+		<table tableName="BASE_COMCHECK_CFG"></table>
 	
 	</context>
 </generatorConfiguration>
