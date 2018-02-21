@@ -6,6 +6,9 @@ function initAddBaseComCatePage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	if(paramOpts.data){
+		$('#parCode').val(paramOpts.data.code);
+	}
 }
 /**
  * 初始化编辑商品门类管理页面
@@ -15,7 +18,7 @@ function initEditBaseComCatePage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"sys/BaseComCate/getBaseComCateById?id="+paramOpts.data.id;
+	var url=basepath+"base/BaseCommodity/getBaseComCateById?id="+paramOpts.data.id;
 	$('#addeditbasecomcateform').form('load',SKY.urlCSRF(url));
 }
 /**
@@ -41,7 +44,7 @@ function submitAddEditBaseComCateForm() {
        error:function(e){
     	   $.messager.alert('提示',JSON.stringify(e),'info');
        },
-       url:SKY.urlCSRF(basepath+'sys/BaseComCate/saveAddEditBaseComCate'), 
+       url:SKY.urlCSRF(basepath+'base/BaseCommodity/saveAddEditBaseComCate'), 
        type:'post',   
        dataType:'json',   
        timeout:-1    

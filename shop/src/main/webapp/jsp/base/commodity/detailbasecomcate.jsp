@@ -18,26 +18,33 @@ $(function() {
 		<form id="detailbasecomcateform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='parCode' id='parCode'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>编号:</label></th>
 					<td><input class="easyui-textbox" name="code"
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
+				  
 					<th><label>名称:</label></th>
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>是否小类:</label></th>
-					<td><input class="easyui-textbox" name="isLeaf"
+					<td>
+						<input type='radio' name="isLeaf" value='0' checked>否</input>
+						<input type='radio' name="isLeaf" value='1'>是</input>
+					</td>
+				  
+					<th><label>序号:</label></th>
+					<td><input class="easyui-numberbox" name="seq"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="note"
+						style="width:400px;height: 100px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

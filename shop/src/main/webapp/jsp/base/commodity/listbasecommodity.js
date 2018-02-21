@@ -1,12 +1,50 @@
 //初始化
 function init(){
-	$('#listbasecommoditydg').datagrid('options').url=SKY.urlCSRF(basepath+'sys/BaseCommodity/getBaseCommodityByPage');
-	$('#listbasecommoditydg').datagrid('load', {
-		filter : function(){
-			var ft = new HashMap();
-			return ft.getJSON();
-		}
-	});
+	initComCateTree();
+}
+/**
+ * 初始化商品类别
+ * @returns
+ */
+function initComCateTree() {
+	var rootData=[
+					{    
+					    "id":"root",    
+					    "text":"商品类别树[root]",    
+					    "iconCls":"icon-2012080111634",
+					    "state":"closed",
+					    "data":{
+					    	"code":"root",
+					    	"name":"商品类别树",
+					    }
+					}
+	              ];
+	var url = basepath + 'base/BaseCommodity/getComCateTree';
+	url=SKY.urlCSRF(url);
+	$('#comcatetree').tree(
+			{
+				data : rootData,
+				lines:true,
+				method : 'POST',
+				onBeforeExpand : function(node, param) {
+					$('#comcatetree').tree('options').url = url + "&data="
+							+ JSON.stringify(node.data);
+				},
+				onClick : function(node) {
+					var data=node.data;
+					if(data.id&&data.isLeaf=='1'){
+						searchButton();
+					}
+				},
+				onContextMenu : function(e, node) {
+					e.preventDefault();
+					$(this).tree('select', node.target);
+					$('#mmTree').menu('show', {
+						left : e.pageX,
+						top : e.pageY
+					});
+				}
+			});
 }
  /**
  *添加商品管理
@@ -18,7 +56,7 @@ function addBaseCommodity(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'sys/BaseCommodity/initAddBaseCommodityPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initAddBaseCommodityPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initAddBaseCommodityPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -47,7 +85,7 @@ function delBaseCommodity(){
 		function (r){
 			if(r){
 				SKY_EASYUI.mask('正在进行删除，请稍等...');
-				var url = SKY.urlCSRF(basepath+'sys/BaseCommodity/delBaseCommodity');
+				var url = SKY.urlCSRF(basepath+'base/BaseCommodity/delBaseCommodity');
 				var params = {
 							"delRows":JSON.stringify(checkeds)
 						};
@@ -86,7 +124,7 @@ function editBaseCommodity(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'sys/BaseCommodity/initEditBaseCommodityPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initEditBaseCommodityPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initEditBaseCommodityPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -117,7 +155,7 @@ function detailBaseCommodity(){
 				width:600,
 				height:450,
 				modal:true,
-				content:'url:'+SKY.urlCSRF(basepath+'sys/BaseCommodity/initDetailBaseCommodityPage'),
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initDetailBaseCommodityPage'),
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initDetailBaseCommodityPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
@@ -136,10 +174,18 @@ function detailBaseCommodity(){
  * 查询按钮
  */
 function searchButton(){
-	$('#listbasecommoditydg').datagrid('options').url=SKY.urlCSRF(basepath+'sys/BaseCommodity/getBaseCommodityByPage');
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	if (null == selectNode.data) {
+		$.messager.alert('提示', '请选择商品门类', 'info');
+		return;
+	}
+	$('#listbasecommoditydg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseCommodity/getBaseCommodityByPage');
 	$('#listbasecommoditydg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
+			ft.put("cateCode@=",selectNode.data.code);
 			var code =$('#q_code').textbox("getValue");
 			if(code){
 				ft.put("code@=", code);
@@ -156,15 +202,139 @@ function searchButton(){
 			if(barCode){
 				ft.put("barCode@=", barCode);
 			}
-			var cateCode =$('#q_cateCode').textbox("getValue");
-			if(cateCode){
-				ft.put("cateCode@=", cateCode);
-			}
-			var note =$('#q_note').textbox("getValue");
-			if(note){
-				ft.put("note@=", note);
-			}
 			return ft.getJSON();
 		}
 	});
+}
+/**
+ * 新增商品类别
+ * @returns
+ */
+function addComCate(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	if (null == selectNode.data) {
+		$.messager.alert('提示', '请选择上级门类', 'info');
+		return;
+	}
+	var opts={
+			id:'addBaseComCate',
+			title:'添加商品门类',
+			width:600,
+			height:450,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initAddBaseComCatePage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initAddBaseComCatePage){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.data=selectNode.data;
+	                paramOpts.callBack=function(){
+	                	dialog.close();
+	                	SKY_EASYUI.refreshSelectTreeNode('comcatetree');
+	                };
+	            	this.content.initAddBaseComCatePage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);
+}
+/**
+ * 修改商品类别
+ * @returns
+ */
+function editComCate(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	if (null == selectNode.data) {
+		$.messager.alert('提示', '请选择上级门类', 'info');
+		return;
+	}
+	var opts={
+				title:'修改商品类别',
+				width:600,
+				height:450,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initEditBaseComCatePage'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initEditBaseComCatePage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data=selectNode.data;
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                	SKY_EASYUI.refreshSelectTreeParentNode('comcatetree');
+		                };
+		            	this.content.initEditBaseComCatePage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
+}
+/**
+ * 删除商品类别
+ * @returns
+ */
+function delComCate(){
+	$.messager.confirm('确认对话框', '您确定要删除该商品类别吗？', function(r) {
+		if (r) {
+			var selectNode = $('#comcatetree').tree("getData",
+			  		 $('#comcatetree').tree("getSelected").target
+			  		);
+			if (null == selectNode.data) {
+				$.messager.alert('提示', '请选择要删除的组织机构', 'info');
+				return;
+			}
+			var url = SKY.urlCSRF(basepath+'base/BaseCommodity/delBaseComCate');
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : {
+					data : JSON.stringify(selectNode.data)
+				},
+				dataType : "json",
+				success : function(data) {
+					$.messager.alert('提示', data.name, 'info');
+					if (data.code == '1') {
+						SKY_EASYUI.refreshSelectTreeParentNode('comcatetree');
+					}
+				}
+			});
+		}
+	});
+}
+/**
+ * 商品类别详情
+ * @returns
+ */
+function detailComCate(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	if (null == selectNode.data) {
+		$.messager.alert('提示', '请选择商品门类', 'info');
+		return;
+	}
+	var opts={
+				title:'商品类别详情',
+				width:600,
+				height:450,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initDetailBaseComCatePage'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initDetailBaseComCatePage){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.data=selectNode.data;
+		                paramOpts.callBack=function(){
+		                	dialog.close();
+		                	SKY_EASYUI.refreshSelectTreeParentNode('comcatetree');
+		                };
+		            	this.content.initDetailBaseComCatePage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
 }
