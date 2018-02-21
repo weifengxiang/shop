@@ -50,9 +50,20 @@ function initComCateTree() {
  *添加商品管理
  **/
 function addBaseCommodity(){
+	if(!$('#comcatetree').tree("getSelected")){
+		$.messager.alert('提示', '请选择商品小类', 'info');
+		return;
+	}
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	if (null == selectNode.data || selectNode.data.isLeaf!='1') {
+		$.messager.alert('提示', '请选择商品小类', 'info');
+		return;
+	}
 	var opts={
 				id:'addBaseCommodity',
-				title:'添加商品管理',
+				title:'添加商品',
 				width:600,
 				height:450,
 				modal:true,
@@ -60,6 +71,7 @@ function addBaseCommodity(){
 				onLoad: function(dialog){ 
 		            if(this.content && this.content.initAddBaseCommodityPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
+		                paramOpts.comCate=selectNode.data;
 		                paramOpts.dialog=dialog;
 		                paramOpts.callBack=function(){
 		                	dialog.close();

@@ -6,6 +6,6 @@ function initDetailBaseComCatePage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
-	var url=basepath+"sys/BaseComCate/getBaseComCateById?id="+paramOpts.data.id;
+	var url=basepath+"base/BaseCommodity/getBaseComCateById?id="+paramOpts.data.id;
 	$('#detailbasecomcateform').form('load',SKY.urlCSRF(url));
 }
