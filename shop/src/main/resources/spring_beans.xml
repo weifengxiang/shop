@@ -78,6 +78,7 @@
         <property name="mapperLocations">
         	<array>
 	        	<value>classpath*:org/sky/sys/**/sqlmap/*.xml</value>
+	        	<value>classpath*:org/sky/base/**/sqlmap/*.xml</value>
 	        </array>
         </property>
     </bean>
