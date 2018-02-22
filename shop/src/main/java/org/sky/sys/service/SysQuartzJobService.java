@@ -11,6 +11,7 @@ import org.sky.sys.model.SysQuartzJobExample;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.schedule.QuartzManager;
+import org.apache.log4j.Logger;
 import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class SysQuartzJobService {
+	private final Logger logger=Logger.getLogger(SysQuartzJobService.class);
 	@Autowired
 	private SysCommonMapper commonMapper;
 	@Autowired
@@ -56,6 +58,7 @@ public class SysQuartzJobService {
 				for(SysQuartzJob add:addlist){
 					boolean isvaild = CronExpression.isValidExpression(add.getCronExpression());
 					if(!isvaild){
+						logger.error("调度时间格式不正确");
 						throw new ServiceException("调度时间格式不正确");
 					}
 					Class.forName(add.getJobClass());
@@ -70,11 +73,13 @@ public class SysQuartzJobService {
 				for(SysQuartzJob update:updatelist){
 					boolean isvaild = CronExpression.isValidExpression(update.getCronExpression());
 					if(!isvaild){
+						logger.error("调度时间格式不正确");
 						throw new ServiceException("调度时间格式不正确");
 					}
 					String status = QuartzManager.getTriggerState(update);
 					Class.forName(update.getJobClass());
 					if(!"NONE".equals(status)){
+						logger.error("请先将任务停止后在进行修改");
 						throw new ServiceException("请先将任务停止后在进行修改");
 					}
 					update.setUpdater(BspUtils.getLoginUser().getCode());
@@ -83,6 +88,7 @@ public class SysQuartzJobService {
 				}
 			}
 		}catch(Exception e){
+			logger.error(e.getMessage());
 			if(e.getMessage().contains("的值太大")){
 				throw new ServiceException("输入的字段值过长！");
 			}
@@ -97,6 +103,7 @@ public class SysQuartzJobService {
 		try{
 			sysquartzjobmapper.insertSelective(add);
 		}catch(Exception e){
+			logger.error(e.getMessage());
 			if(e.getMessage().contains("违反唯一约束条件")){
 				throw new ServiceException("违反唯一约束条件");
 			}else{
@@ -123,6 +130,7 @@ public class SysQuartzJobService {
 		for(SysQuartzJob del:delList){
 			String status = QuartzManager.getTriggerState(del);
 			if(!"NONE".equals(status)){
+				logger.error("请先将任务停止后在进行删除");
 				throw new ServiceException("请先将任务停止后在进行删除");
 			}
 			sysquartzjobmapper.deleteByPrimaryKey(del.getId());
