@@ -16,8 +16,7 @@ $(function() {
 <div data-options="region:'west',split:true,title:'商品类别管理'" style="width:300px;padding:0px;">
 		<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="商品管理">
-<div class="easyui-panel" title="查询条件"
+<div data-options=" region:'north',iconCls: 'icon-table'" class="easyui-panel" title="查询条件"
 	 style="width:100%; height:63px; padding:0px;" cellpadding="0">
 	<table class='noborder'>
 		<tr style="height: 34px">
@@ -33,9 +32,9 @@ $(function() {
 		</tr>
 	</table>
 </div>
-<table  id="listbasecommoditydg" class="easyui-datagrid" style="width: 100%; height: 100%"
+<div data-options=" region:'center',iconCls: 'icon-table'" title="商品管理">
+<table  id="listbasecommoditydg" class="easyui-datagrid"  style="width:100%; height:63px; padding:0px;" cellpadding="0"
 	data-options="
-			region:'center',
 			fit:true,
 			border:false,
 			remoteSort : false,
@@ -57,25 +56,37 @@ $(function() {
 	<thead>
 		<tr>
 			<th data-options="field: 'checked', checkbox:true"></th>
-				<th data-options="field:'code',width:180,
+				<th data-options="field:'code',width:120,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">编号</th>
-				<th data-options="field:'name',width:180,
+				<th data-options="field:'name',width:150,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">名称</th>
-				<th data-options="field:'spec',width:180,
+				<th data-options="field:'unit',width:80,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">单位</th>
+				<th data-options="field:'spec',width:80,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
 						}}">规格</th>
-				<th data-options="field:'barCode',width:180,
+				<th data-options="field:'priceMethod',width:80,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">计价方式</th>
+				<th data-options="field:'barCode',width:150,
 				editor:{
 						type:'textbox',
 						options:{
@@ -87,7 +98,7 @@ $(function() {
 						options:{
 							required:true
 						}}">类别</th>
-				<th data-options="field:'note',width:180,
+				<th data-options="field:'note',width:80,
 				editor:{
 						type:'textbox',
 						options:{
@@ -96,6 +107,7 @@ $(function() {
 		</tr>
 	</thead>
 </table>
+</div>
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"

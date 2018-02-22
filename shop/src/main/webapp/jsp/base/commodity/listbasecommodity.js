@@ -32,7 +32,7 @@ function initComCateTree() {
 				},
 				onClick : function(node) {
 					var data=node.data;
-					if(data.id&&data.isLeaf=='1'){
+					if(data.id){
 						searchButton();
 					}
 				},

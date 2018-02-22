@@ -30,8 +30,17 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>规格:</label></th>
+					<th><label>单位:</label></th>
+					<td><input class="easyui-textbox" name="unit"
+						data-options="required:true"></input></td>
+				 
+				 	<th><label>规格:</label></th>
 					<td><input class="easyui-textbox" name="spec"
+						data-options="required:true"></input></td>
+				  </tr>
+				  <tr>
+					<th><label>计价方式:</label></th>
+					<td><input class="easyui-textbox" name="priceMethod"
 						data-options="required:true"></input></td>
 				 
 					<th><label>条码:</label></th>

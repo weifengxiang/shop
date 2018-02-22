@@ -351,6 +351,76 @@ public class BaseCommodityExample {
             return (Criteria) this;
         }
 
+        public Criteria andUnitIsNull() {
+            addCriterion("UNIT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitIsNotNull() {
+            addCriterion("UNIT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitEqualTo(String value) {
+            addCriterion("UNIT =", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotEqualTo(String value) {
+            addCriterion("UNIT <>", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitGreaterThan(String value) {
+            addCriterion("UNIT >", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitGreaterThanOrEqualTo(String value) {
+            addCriterion("UNIT >=", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLessThan(String value) {
+            addCriterion("UNIT <", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLessThanOrEqualTo(String value) {
+            addCriterion("UNIT <=", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLike(String value) {
+            addCriterion("UNIT like", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotLike(String value) {
+            addCriterion("UNIT not like", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitIn(List<String> values) {
+            addCriterion("UNIT in", values, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotIn(List<String> values) {
+            addCriterion("UNIT not in", values, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitBetween(String value1, String value2) {
+            addCriterion("UNIT between", value1, value2, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotBetween(String value1, String value2) {
+            addCriterion("UNIT not between", value1, value2, "unit");
+            return (Criteria) this;
+        }
+
         public Criteria andSpecIsNull() {
             addCriterion("SPEC is null");
             return (Criteria) this;
@@ -418,6 +488,76 @@ public class BaseCommodityExample {
 
         public Criteria andSpecNotBetween(String value1, String value2) {
             addCriterion("SPEC not between", value1, value2, "spec");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodIsNull() {
+            addCriterion("PRICE_METHOD is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodIsNotNull() {
+            addCriterion("PRICE_METHOD is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodEqualTo(String value) {
+            addCriterion("PRICE_METHOD =", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodNotEqualTo(String value) {
+            addCriterion("PRICE_METHOD <>", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodGreaterThan(String value) {
+            addCriterion("PRICE_METHOD >", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodGreaterThanOrEqualTo(String value) {
+            addCriterion("PRICE_METHOD >=", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodLessThan(String value) {
+            addCriterion("PRICE_METHOD <", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodLessThanOrEqualTo(String value) {
+            addCriterion("PRICE_METHOD <=", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodLike(String value) {
+            addCriterion("PRICE_METHOD like", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodNotLike(String value) {
+            addCriterion("PRICE_METHOD not like", value, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodIn(List<String> values) {
+            addCriterion("PRICE_METHOD in", values, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodNotIn(List<String> values) {
+            addCriterion("PRICE_METHOD not in", values, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodBetween(String value1, String value2) {
+            addCriterion("PRICE_METHOD between", value1, value2, "priceMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceMethodNotBetween(String value1, String value2) {
+            addCriterion("PRICE_METHOD not between", value1, value2, "priceMethod");
             return (Criteria) this;
         }
 

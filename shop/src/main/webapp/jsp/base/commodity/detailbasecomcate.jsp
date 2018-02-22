@@ -29,13 +29,17 @@ $(function() {
 					<td><input class="easyui-textbox" name="name"
 						data-options="required:true"></input></td>
 				  </tr>
-				  <tr>
-					<th><label>是否小类:</label></th>
+				 <tr>
+				  	<th><label>是否小类:</label></th>
 					<td>
 						<input type='radio' name="isLeaf" value='0' checked>否</input>
 						<input type='radio' name="isLeaf" value='1'>是</input>
 					</td>
-				  
+					<th><label>毛利率/加价率:</label></th>
+					<td><input class="easyui-numberbox" name="rate"
+						data-options="required:true,precision:2"></input></td>
+				  </tr>
+				  <tr colspan='3'>
 					<th><label>序号:</label></th>
 					<td><input class="easyui-numberbox" name="seq"
 						data-options="required:true"></input></td>

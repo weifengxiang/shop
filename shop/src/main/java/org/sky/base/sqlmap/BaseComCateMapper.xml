@@ -14,6 +14,7 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CHILD_COUNT" jdbcType="INTEGER" property="childCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, CODE, NAME, RATE, PAR_CODE, IS_LEAF, SEQ, NOTE, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    UPDATE_TIME,
+    (SELECT COUNT(1) FROM BASE_COM_CATE BCC WHERE BCC.PAR_CODE=BASE_COM_CATE.CODE) AS CHILD_COUNT
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseComCateExample" resultMap="BaseResultMap">
     select

@@ -5,8 +5,10 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
     <result column="SPEC" jdbcType="VARCHAR" property="spec" />
-    <result column="BAR_CODE" jdbcType="CHAR" property="barCode" />
+    <result column="PRICE_METHOD" jdbcType="VARCHAR" property="priceMethod" />
+    <result column="BAR_CODE" jdbcType="VARCHAR" property="barCode" />
     <result column="CATE_CODE" jdbcType="VARCHAR" property="cateCode" />
     <result column="CATE_NAME" jdbcType="VARCHAR" property="cateName" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
@@ -74,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CODE, NAME, SPEC, BAR_CODE, CATE_CODE, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    ID, CODE, NAME, UNIT, SPEC, PRICE_METHOD, BAR_CODE, CATE_CODE, NOTE, CREATER, CREATE_TIME, 
+    UPDATER, UPDATE_TIME,
     (SELECT NAME FROM BASE_COM_CATE BCC WHERE BCC.CODE = BASE_COMMODITY.CATE_CODE) AS CATE_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseCommodityExample" resultMap="BaseResultMap">
@@ -110,13 +113,15 @@
   </delete>
   <insert id="insert" parameterType="org.sky.base.model.BaseCommodity">
     insert into base_commodity (ID, CODE, NAME, 
-      SPEC, BAR_CODE, CATE_CODE, 
-      NOTE, CREATER, CREATE_TIME, 
-      UPDATER, UPDATE_TIME)
+      UNIT, SPEC, PRICE_METHOD, 
+      BAR_CODE, CATE_CODE, NOTE, 
+      CREATER, CREATE_TIME, UPDATER, 
+      UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{spec,jdbcType=VARCHAR}, #{barCode,jdbcType=CHAR}, #{cateCode,jdbcType=VARCHAR}, 
-      #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+      #{unit,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, #{priceMethod,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{cateCode,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.base.model.BaseCommodity">
     insert into base_commodity
@@ -130,8 +135,14 @@
       <if test="name != null">
         NAME,
       </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
       <if test="spec != null">
         SPEC,
+      </if>
+      <if test="priceMethod != null">
+        PRICE_METHOD,
       </if>
       <if test="barCode != null">
         BAR_CODE,
@@ -165,11 +176,17 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
       <if test="spec != null">
         #{spec,jdbcType=VARCHAR},
       </if>
+      <if test="priceMethod != null">
+        #{priceMethod,jdbcType=VARCHAR},
+      </if>
       <if test="barCode != null">
-        #{barCode,jdbcType=CHAR},
+        #{barCode,jdbcType=VARCHAR},
       </if>
       <if test="cateCode != null">
         #{cateCode,jdbcType=VARCHAR},
@@ -209,11 +226,17 @@
       <if test="record.name != null">
         NAME = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.unit != null">
+        UNIT = #{record.unit,jdbcType=VARCHAR},
+      </if>
       <if test="record.spec != null">
         SPEC = #{record.spec,jdbcType=VARCHAR},
       </if>
+      <if test="record.priceMethod != null">
+        PRICE_METHOD = #{record.priceMethod,jdbcType=VARCHAR},
+      </if>
       <if test="record.barCode != null">
-        BAR_CODE = #{record.barCode,jdbcType=CHAR},
+        BAR_CODE = #{record.barCode,jdbcType=VARCHAR},
       </if>
       <if test="record.cateCode != null">
         CATE_CODE = #{record.cateCode,jdbcType=VARCHAR},
@@ -243,8 +266,10 @@
     set ID = #{record.id,jdbcType=VARCHAR},
       CODE = #{record.code,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
+      UNIT = #{record.unit,jdbcType=VARCHAR},
       SPEC = #{record.spec,jdbcType=VARCHAR},
-      BAR_CODE = #{record.barCode,jdbcType=CHAR},
+      PRICE_METHOD = #{record.priceMethod,jdbcType=VARCHAR},
+      BAR_CODE = #{record.barCode,jdbcType=VARCHAR},
       CATE_CODE = #{record.cateCode,jdbcType=VARCHAR},
       NOTE = #{record.note,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -264,11 +289,17 @@
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
       <if test="spec != null">
         SPEC = #{spec,jdbcType=VARCHAR},
       </if>
+      <if test="priceMethod != null">
+        PRICE_METHOD = #{priceMethod,jdbcType=VARCHAR},
+      </if>
       <if test="barCode != null">
-        BAR_CODE = #{barCode,jdbcType=CHAR},
+        BAR_CODE = #{barCode,jdbcType=VARCHAR},
       </if>
       <if test="cateCode != null">
         CATE_CODE = #{cateCode,jdbcType=VARCHAR},
@@ -295,8 +326,10 @@
     update base_commodity
     set CODE = #{code,jdbcType=VARCHAR},
       NAME = #{name,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
       SPEC = #{spec,jdbcType=VARCHAR},
-      BAR_CODE = #{barCode,jdbcType=CHAR},
+      PRICE_METHOD = #{priceMethod,jdbcType=VARCHAR},
+      BAR_CODE = #{barCode,jdbcType=VARCHAR},
       CATE_CODE = #{cateCode,jdbcType=VARCHAR},
       NOTE = #{note,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},

@@ -27,6 +27,8 @@ public class BaseComCate {
     private String updater;
 
     private Date updateTime;
+    
+    private Integer childCount;
 
     public String getId() {
         return id;
@@ -123,4 +125,12 @@ public class BaseComCate {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public Integer getChildCount() {
+		return childCount;
+	}
+
+	public void setChildCount(Integer childCount) {
+		this.childCount = childCount;
+	}
 }

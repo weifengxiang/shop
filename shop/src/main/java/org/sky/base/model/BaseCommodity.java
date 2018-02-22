@@ -9,7 +9,11 @@ public class BaseCommodity {
 
     private String name;
 
+    private String unit;
+
     private String spec;
+
+    private String priceMethod;
 
     private String barCode;
 
@@ -51,12 +55,28 @@ public class BaseCommodity {
         this.name = name;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     public String getSpec() {
         return spec;
     }
 
     public void setSpec(String spec) {
         this.spec = spec;
+    }
+
+    public String getPriceMethod() {
+        return priceMethod;
+    }
+
+    public void setPriceMethod(String priceMethod) {
+        this.priceMethod = priceMethod;
     }
 
     public String getBarCode() {
