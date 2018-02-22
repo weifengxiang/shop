@@ -100,6 +100,32 @@
 		$('#'+gridId).datagrid('beginEdit',rowIndex);
 	};
 	/**
+	 * 编辑选择行
+	 */
+	SKY_EASYUI.beginEditChecked=function(gridId){
+		var checkeds = $('#'+gridId).datagrid('getChecked');
+		if(checkeds.length != 1){
+			$.messager.alert('提示','请选择一条记录！！','info');
+			return;
+		}
+		for(var i=0;i<checkeds.length;i++){
+			var index = $('#'+gridId).datagrid('getRowIndex',checkeds[i]);
+			SKY_EASYUI.beginEdit(gridId,index);
+		}
+				
+	}
+	/**
+	 * 添加一行
+	 */
+	SKY_EASYUI.appendRow=function(gridId,rowData){
+		if (SKY_EASYUI.endEditing(gridId)){
+			$('#'+gridId).datagrid('appendRow',rowData);
+			var editIndex = $('#'+gridId).datagrid('getRows').length-1;
+			$('#'+gridId).datagrid('selectRow', editIndex)
+					.datagrid('beginEdit', editIndex);
+		}
+	};
+	/**
 	 * 附件上传
 	 */
 	SKY_EASYUI.upLoad=function(opts){

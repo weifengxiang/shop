@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sky.sys.client.SysQuartzJobMapper">
+  <resultMap id="BaseResultMap" type="org.sky.sys.model.SysQuartzJob">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+    <result column="JOB_GROUP_NAME" jdbcType="VARCHAR" property="jobGroupName" />
+    <result column="JOB_CLASS" jdbcType="VARCHAR" property="jobClass" />
+    <result column="CRON_EXPRESSION" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, JOB_NAME, JOB_GROUP_NAME, JOB_CLASS, CRON_EXPRESSION, STATUS, UPDATE_TIME, NOTE, 
+    CREATER, CREATE_TIME, UPDATER
+  </sql>
+  <select id="selectByExample" parameterType="org.sky.sys.model.SysQuartzJobExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_quartz_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MySqlPaginationSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_quartz_job
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_quartz_job
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.sky.sys.model.SysQuartzJobExample">
+    delete from sys_quartz_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.sky.sys.model.SysQuartzJob">
+    insert into sys_quartz_job (ID, JOB_NAME, JOB_GROUP_NAME, 
+      JOB_CLASS, CRON_EXPRESSION, STATUS, 
+      UPDATE_TIME, NOTE, CREATER, 
+      CREATE_TIME, UPDATER)
+    values (#{id,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, #{jobGroupName,jdbcType=VARCHAR}, 
+      #{jobClass,jdbcType=VARCHAR}, #{cronExpression,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sky.sys.model.SysQuartzJob">
+    insert into sys_quartz_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="jobName != null">
+        JOB_NAME,
+      </if>
+      <if test="jobGroupName != null">
+        JOB_GROUP_NAME,
+      </if>
+      <if test="jobClass != null">
+        JOB_CLASS,
+      </if>
+      <if test="cronExpression != null">
+        CRON_EXPRESSION,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="creater != null">
+        CREATER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobGroupName != null">
+        #{jobGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobClass != null">
+        #{jobClass,jdbcType=VARCHAR},
+      </if>
+      <if test="cronExpression != null">
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.sky.sys.model.SysQuartzJobExample" resultType="java.lang.Long">
+    select count(*) from sys_quartz_job
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_quartz_job
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobName != null">
+        JOB_NAME = #{record.jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobGroupName != null">
+        JOB_GROUP_NAME = #{record.jobGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobClass != null">
+        JOB_CLASS = #{record.jobClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cronExpression != null">
+        CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.note != null">
+        NOTE = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null">
+        CREATER = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null">
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_quartz_job
+    set ID = #{record.id,jdbcType=VARCHAR},
+      JOB_NAME = #{record.jobName,jdbcType=VARCHAR},
+      JOB_GROUP_NAME = #{record.jobGroupName,jdbcType=VARCHAR},
+      JOB_CLASS = #{record.jobClass,jdbcType=VARCHAR},
+      CRON_EXPRESSION = #{record.cronExpression,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      NOTE = #{record.note,jdbcType=VARCHAR},
+      CREATER = #{record.creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sky.sys.model.SysQuartzJob">
+    update sys_quartz_job
+    <set>
+      <if test="jobName != null">
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobGroupName != null">
+        JOB_GROUP_NAME = #{jobGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobClass != null">
+        JOB_CLASS = #{jobClass,jdbcType=VARCHAR},
+      </if>
+      <if test="cronExpression != null">
+        CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sky.sys.model.SysQuartzJob">
+    update sys_quartz_job
+    set JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      JOB_GROUP_NAME = #{jobGroupName,jdbcType=VARCHAR},
+      JOB_CLASS = #{jobClass,jdbcType=VARCHAR},
+      CRON_EXPRESSION = #{cronExpression,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      NOTE = #{note,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="MySqlPaginationSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin},#{page.rows} ]]>
+    </if>
+  </sql>
+</mapper>
