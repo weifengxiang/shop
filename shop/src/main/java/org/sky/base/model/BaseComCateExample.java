@@ -1,5 +1,6 @@
 package org.sky.base.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -348,6 +349,66 @@ public class BaseComCateExample {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("NAME not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateIsNull() {
+            addCriterion("RATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateIsNotNull() {
+            addCriterion("RATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateEqualTo(BigDecimal value) {
+            addCriterion("RATE =", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateNotEqualTo(BigDecimal value) {
+            addCriterion("RATE <>", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateGreaterThan(BigDecimal value) {
+            addCriterion("RATE >", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("RATE >=", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateLessThan(BigDecimal value) {
+            addCriterion("RATE <", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("RATE <=", value, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateIn(List<BigDecimal> values) {
+            addCriterion("RATE in", values, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateNotIn(List<BigDecimal> values) {
+            addCriterion("RATE not in", values, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("RATE between", value1, value2, "rate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRateNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("RATE not between", value1, value2, "rate");
             return (Criteria) this;
         }
 

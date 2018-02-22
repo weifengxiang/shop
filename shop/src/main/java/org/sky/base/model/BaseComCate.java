@@ -1,5 +1,6 @@
 package org.sky.base.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class BaseComCate {
@@ -8,6 +9,8 @@ public class BaseComCate {
     private String code;
 
     private String name;
+
+    private BigDecimal rate;
 
     private String parCode;
 
@@ -24,8 +27,6 @@ public class BaseComCate {
     private String updater;
 
     private Date updateTime;
-    
-    private Integer childCount;
 
     public String getId() {
         return id;
@@ -49,6 +50,14 @@ public class BaseComCate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
     }
 
     public String getParCode() {
@@ -114,14 +123,4 @@ public class BaseComCate {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-
-	public Integer getChildCount() {
-		return childCount;
-	}
-
-	public void setChildCount(Integer childCount) {
-		this.childCount = childCount;
-	}
-
-	
 }

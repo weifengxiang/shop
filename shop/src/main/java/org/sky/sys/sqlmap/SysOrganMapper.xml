@@ -7,6 +7,12 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PAR_CODE" jdbcType="VARCHAR" property="parCode" />
     <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="D_PRICE" jdbcType="VARCHAR" property="dPrice" />
+    <result column="ATTR" jdbcType="VARCHAR" property="attr" />
+    <result column="AREA" jdbcType="DECIMAL" property="area" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="ADDR" jdbcType="VARCHAR" property="addr" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
     <result column="SEQ" jdbcType="SMALLINT" property="seq" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -75,7 +81,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CODE, NAME, PAR_CODE, TYPE, SEQ, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    ID, CODE, NAME, PAR_CODE, TYPE, D_PRICE, ATTR, AREA, PHONE, ADDR, FAX, SEQ, NOTE, 
+    CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
     (SELECT ICON FROM SYS_ORGAN_TYPE T WHERE T.CODE=SYS_ORGAN.TYPE) AS ICON,
     (SELECT COUNT(1) FROM SYS_ORGAN SO WHERE SO.PAR_CODE=SYS_ORGAN.CODE) AS CHILD_COUNT
   </sql>
@@ -112,13 +119,17 @@
   </delete>
   <insert id="insert" parameterType="org.sky.sys.model.SysOrgan">
     insert into sys_organ (ID, CODE, NAME, 
-      PAR_CODE, TYPE, SEQ, 
-      NOTE, CREATER, CREATE_TIME, 
-      UPDATER, UPDATE_TIME)
+      PAR_CODE, TYPE, D_PRICE, 
+      ATTR, AREA, PHONE, 
+      ADDR, FAX, SEQ, NOTE, 
+      CREATER, CREATE_TIME, UPDATER, 
+      UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{parCode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{seq,jdbcType=SMALLINT}, 
-      #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+      #{parCode,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{dPrice,jdbcType=VARCHAR}, 
+      #{attr,jdbcType=VARCHAR}, #{area,jdbcType=DECIMAL}, #{phone,jdbcType=VARCHAR}, 
+      #{addr,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{seq,jdbcType=SMALLINT}, #{note,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.sys.model.SysOrgan">
     insert into sys_organ
@@ -137,6 +148,24 @@
       </if>
       <if test="type != null">
         TYPE,
+      </if>
+      <if test="dPrice != null">
+        D_PRICE,
+      </if>
+      <if test="attr != null">
+        ATTR,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="addr != null">
+        ADDR,
+      </if>
+      <if test="fax != null">
+        FAX,
       </if>
       <if test="seq != null">
         SEQ,
@@ -172,6 +201,24 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dPrice != null">
+        #{dPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="attr != null">
+        #{attr,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
       </if>
       <if test="seq != null">
         #{seq,jdbcType=SMALLINT},
@@ -217,6 +264,24 @@
       <if test="record.type != null">
         TYPE = #{record.type,jdbcType=VARCHAR},
       </if>
+      <if test="record.dPrice != null">
+        D_PRICE = #{record.dPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr != null">
+        ATTR = #{record.attr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        AREA = #{record.area,jdbcType=DECIMAL},
+      </if>
+      <if test="record.phone != null">
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addr != null">
+        ADDR = #{record.addr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null">
+        FAX = #{record.fax,jdbcType=VARCHAR},
+      </if>
       <if test="record.seq != null">
         SEQ = #{record.seq,jdbcType=SMALLINT},
       </if>
@@ -247,6 +312,12 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       PAR_CODE = #{record.parCode,jdbcType=VARCHAR},
       TYPE = #{record.type,jdbcType=VARCHAR},
+      D_PRICE = #{record.dPrice,jdbcType=VARCHAR},
+      ATTR = #{record.attr,jdbcType=VARCHAR},
+      AREA = #{record.area,jdbcType=DECIMAL},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      ADDR = #{record.addr,jdbcType=VARCHAR},
+      FAX = #{record.fax,jdbcType=VARCHAR},
       SEQ = #{record.seq,jdbcType=SMALLINT},
       NOTE = #{record.note,jdbcType=VARCHAR},
       CREATER = #{record.creater,jdbcType=VARCHAR},
@@ -271,6 +342,24 @@
       </if>
       <if test="type != null">
         TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dPrice != null">
+        D_PRICE = #{dPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="attr != null">
+        ATTR = #{attr,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        ADDR = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        FAX = #{fax,jdbcType=VARCHAR},
       </if>
       <if test="seq != null">
         SEQ = #{seq,jdbcType=SMALLINT},
@@ -299,6 +388,12 @@
       NAME = #{name,jdbcType=VARCHAR},
       PAR_CODE = #{parCode,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
+      D_PRICE = #{dPrice,jdbcType=VARCHAR},
+      ATTR = #{attr,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=DECIMAL},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ADDR = #{addr,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
       SEQ = #{seq,jdbcType=SMALLINT},
       NOTE = #{note,jdbcType=VARCHAR},
       CREATER = #{creater,jdbcType=VARCHAR},
