@@ -293,4 +293,7 @@
       <![CDATA[ limit #{page.begin},#{page.rows} ]]>
     </if>
   </sql>
+  <insert id="insertBaseCheckDetailByPlan" parameterType="map">
+  	
+  </insert>
 </mapper>

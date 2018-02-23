@@ -28,29 +28,12 @@ function initComCateTree() {
 				},
 				onClick : function(node) {
 					var data=node.data;
-					if(data.id&&data.isLeaf=='1'){
-						
+					if(data.id){
+						loadcomcheckcfgdg();
 					}
 				},
 				onContextMenu : function(e, node) {
 					e.preventDefault();
-					var data=node.data;
-					if(data.id&&data.isLeaf=='1'){
-						$(this).tree('select', node.target);
-						$('#mmTree1').menu('show', {
-							left : e.pageX,
-							top : e.pageY
-						});
-					}else if(data.empCode){
-						$(this).tree('select', node.target);
-						$('#mmTree2').menu('show', {
-							left : e.pageX,
-							top : e.pageY
-						});
-					}else{
-						$.messager.alert('提示','只能为小类设置盘查人员','info');
-						return;
-					}
 				}
 			});
 }
@@ -76,7 +59,7 @@ function addBaseComcheckCfg(){
 		                paramOpts.comCate=comCate;
 		                paramOpts.callBack=function(){
 		                	dialog.close();
-		                	SKY_EASYUI.refreshSelectTreeNode('comcatetree');
+		                	loadcomcheckcfgdg();
 		                };
 		            	this.content.initAddBaseComcheckCfgPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
@@ -84,27 +67,23 @@ function addBaseComcheckCfg(){
 			  };
 	SKY_EASYUI.open(opts);
 }
- /**
+/**
  *删除商品盘点设置
  **/
 function delBaseComcheckCfg(){
-	var selectNode = $('#comcatetree').tree("getData",
-	  		 $('#comcatetree').tree("getSelected").target
-	  		);
-	if(null==selectNode){
-		$.messager.alert('提示','请选择一条记录','info');
+	var checkeds=$('#listbasecomcheckcfgdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length<1){
+		$.messager.alert('提示','请选择要删除的记录','info');
 		return;
 	}else{
-		var array = new Array();
-		array.push(selectNode.data);
-		var msg="确定要删除"+array.length+"条数据?";
+		var msg="确定要删除"+checkeds.length+"条数据?";
 		$.messager.confirm("删除确认",msg,
 		function (r){
 			if(r){
 				SKY_EASYUI.mask('正在进行删除，请稍等...');
 				var url = SKY.urlCSRF(basepath+'base/BaseComcheckCfg/delBaseComcheckCfg');
 				var params = {
-							"delRows":JSON.stringify(array)
+							"delRows":JSON.stringify(checkeds)
 						};
 				$.ajax({
 		    		url:url,
@@ -115,7 +94,7 @@ function delBaseComcheckCfg(){
 		    			SKY_EASYUI.unmask();
 		    			$.messager.alert("提示",data.name,"info");
 		    			if(data.code != '0'){
-		    				SKY_EASYUI.refreshSelectTreeParentNode('comcatetree');
+		    				$('#listbasecomcheckcfgdg').datagrid('reload');
 		    			}
 		    		}
 				});
@@ -130,10 +109,8 @@ function delBaseComcheckCfg(){
 *修改商品盘点设置
 **/
 function editBaseComcheckCfg(){
-	var selectNode = $('#comcatetree').tree("getData",
-	  		 $('#comcatetree').tree("getSelected").target
-	  		);
-	if(null==selectNode){
+	var checkeds=$('#listbasecomcheckcfgdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
@@ -148,10 +125,10 @@ function editBaseComcheckCfg(){
 		            if(this.content && this.content.initEditBaseComcheckCfgPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
-		                paramOpts.data=selectNode.data;
+		                paramOpts.data=checkeds[0];
 		                paramOpts.callBack=function(){
 		                	dialog.close();
-		                	SKY_EASYUI.refreshSelectTreeParentNode('comcatetree');
+		                	loadcomcheckcfgdg();
 		                };
 		            	this.content.initEditBaseComcheckCfgPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
@@ -163,10 +140,8 @@ function editBaseComcheckCfg(){
 *查看明细
 **/
 function detailBaseComcheckCfg(){
-	var selectNode = $('#comcatetree').tree("getData",
-	  		 $('#comcatetree').tree("getSelected").target
-	  		);
-	if(null==selectNode){
+	var checkeds=$('#listbasecomcheckcfgdg').datagrid('getChecked');
+	if(null==checkeds||checkeds.length!=1){
 		$.messager.alert('提示','请选择一条记录','info');
 		return;
 	}
@@ -181,7 +156,7 @@ function detailBaseComcheckCfg(){
 		            if(this.content && this.content.initDetailBaseComcheckCfgPage){//判断弹出窗体iframe中的driveInit方法是否存在 
 		                var paramOpts=new Object();
 		                paramOpts.dialog=dialog;
-		                paramOpts.data=selectNode.data;
+		                paramOpts.data=checkeds[0];
 		                paramOpts.callBack=function(){
 		                	dialog.close();
 		                };
@@ -190,4 +165,24 @@ function detailBaseComcheckCfg(){
 		        }
 			  };
 	SKY_EASYUI.open(opts);
+}
+/**
+ * 查询
+ */
+function loadcomcheckcfgdg(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	var comCate = selectNode.data;
+	$('#listbasecomcheckcfgdg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseComcheckCfg/getBaseComcheckCfgByPage');
+	$('#listbasecomcheckcfgdg').datagrid('load', {
+		filter : function(){
+			var ft = new HashMap();
+			var comCate_code =comCate.code;
+			if(comCate){
+				ft.put("comCate@=", comCate_code);
+			}
+			return ft.getJSON();
+		}
+	});
 }

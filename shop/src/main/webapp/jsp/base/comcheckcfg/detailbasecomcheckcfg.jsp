@@ -18,26 +18,33 @@ $(function() {
 		<form id="detailbasecomcheckcfgform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='comCate' id='comCate'/>
+			<input type='hidden' name='empCode' id='empCode'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>盘点类别:</label></th>
-					<td><input class="easyui-textbox" name="comCate"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-textbox" name="comCateName" id="comCateName"
+						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>员工编号:</label></th>
-					<td><input class="easyui-textbox" name="empCode"
-						data-options="required:true"></input></td>
+					<th><label>员工:</label></th>
+					<td><input class="easyui-textbox" name="empName" id="empName"
+						data-options="required:true"></input>
+						<a href="javascript:openUserHelp()"class="easyui-linkbutton" plain="true" iconCls="icon-search">选择</a>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
-					<td><input class="easyui-textbox" name="status"
-						data-options="required:true"></input></td>
+					<td>
+						<input type='radio' name="status" value='1' checked>有效</input>
+						<input type='radio' name="status" value='0'>无效</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
 					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
+						style="width:400px;height: 100px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

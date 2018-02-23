@@ -1,6 +1,8 @@
 package org.sky.check.client;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.sky.check.model.BaseCheckDetail;
 import org.sky.check.model.BaseCheckDetailExample;
@@ -27,4 +29,9 @@ public interface BaseCheckDetailMapper {
     int updateByPrimaryKeySelective(BaseCheckDetail record);
 
     int updateByPrimaryKey(BaseCheckDetail record);
+    /**
+     * 根据盘查计划生成盘查明细
+     * @param params
+     */
+    void insertBaseCheckDetailByPlan(@Param("params") Map params);
 }

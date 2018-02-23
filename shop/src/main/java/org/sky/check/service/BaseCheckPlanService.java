@@ -1,8 +1,10 @@
 package org.sky.check.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.check.client.BaseCheckDetailMapper;
 import org.sky.check.client.BaseCheckPlanMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.check.model.BaseCheckPlan;
@@ -19,6 +21,8 @@ public class BaseCheckPlanService {
 	private final Logger logger=Logger.getLogger(BaseCheckPlanService.class);
 	@Autowired
 	private BaseCheckPlanMapper basecheckplanmapper;
+	@Autowired
+	private BaseCheckDetailMapper basecheckdetailmapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
@@ -119,7 +123,25 @@ public class BaseCheckPlanService {
 	 * 每周创建盘查计划
 	 */
 	public void createComCheckPlanJOb() {
-		String date =  CommonUtils.formatDate(syscommonmapper.querySysDate());
+		Date date = syscommonmapper.querySysDate();
+		BaseCheckPlan plan = new BaseCheckPlan();
+		
+		plan.setName("");
+		plan.setState("1");
+		plan.setCreater(BspUtils.getLoginUser().getCode());
+		plan.setCreateTime(date);
+		plan.setUpdater(BspUtils.getLoginUser().getCode());
+		plan.setUpdateTime(date);
+		//插入文东店
+		plan.setId(CommonUtils.getUUID(32));
+		plan.setCode("001_"+CommonUtils.formatDate(date, "yyyy-MM-dd"));
+		plan.setShopCode("001");
+		basecheckplanmapper.insert(plan);
+		//插入省图店
+		plan.setId(CommonUtils.getUUID(32));
+		plan.setCode("002_"+CommonUtils.formatDate(date, "yyyy-MM-dd"));
+		plan.setShopCode("002");
+		basecheckplanmapper.insert(plan);
 		
 	}
 }
