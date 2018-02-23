@@ -1,13 +1,23 @@
 package org.sky.base.service;
 import org.apache.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.base.client.BaseComCateMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.base.model.BaseComCate;
 import org.sky.base.model.BaseComCateExample;
+import org.sky.base.model.BaseCommodity;
+import org.sky.base.model.BaseCommodityExample;
 import org.sky.sys.utils.PageListData;
+import org.sky.sys.utils.ReadExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,5 +122,58 @@ public class BaseComCateService {
 	public BaseComCate getBaseComCateById(String id){
 		BaseComCate bean = basecomcatemapper.selectByPrimaryKey(id);
 		return bean;
+	}
+	/**
+	 * 商品类别导入
+	 * @param filepath
+	 * @param full
+	 * @return
+	 * @throws ServiceException
+	 */
+	public int impExcelComCate(String filepath,boolean full) throws ServiceException{
+		List<List<Object>> results=null;
+		try {
+			results = ReadExcel.readExcel(new File(filepath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
+		}
+		if (results == null || results.size() < 2) {
+			new ServiceException("Excel为空！");
+		} else if (results.size() > 30001) {
+			new ServiceException("当前记录数：" + results.size() + "，Excel一次最多导入30000条数据！");
+		} else {
+			List<Object> titles = results.remove(0);
+			List<String> ts = new ArrayList<>();
+			for (Object title : titles) {
+				ts.add((String) title);
+			}
+			if (org.apache.commons.lang.StringUtils.isBlank(ts.get(ts.size() - 1))) {
+				ts.remove(ts.size() - 1);
+			}
+			//全量更新则删除相同类型 相同单位并且是Excel导入的数据的数据
+			if(full){
+				BaseComCateExample bce = new BaseComCateExample();
+				basecomcatemapper.deleteByExample(bce);
+			}
+			Date date = CommonUtils.getCurrentDbDate();
+			for(Object obj:results){
+				LinkedList<String> data = (LinkedList)obj;
+				BaseComCate bcc = new BaseComCate();
+				bcc.setId(CommonUtils.getUUID(32));
+				bcc.setCode(data.get(1));
+				//bcc.setRate(new BigDecimal(data.get(2)));
+				bcc.setName(data.get(3));
+				bcc.setParCode(bcc.getCode().substring(0, bcc.getCode().length()-2));
+				bcc.setCreater(BspUtils.getLoginUser().getCode());
+				bcc.setCreateTime(date);
+				bcc.setUpdater(BspUtils.getLoginUser().getCode());
+				bcc.setUpdateTime(date);
+				basecomcatemapper.insertSelective(bcc);
+			}
+			return results.size();
+		}
+		return 0;
 	}
 }

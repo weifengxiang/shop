@@ -214,5 +214,4 @@ public class BaseCommodityService {
 		}
 		return 0;
 	}
-
 }

@@ -52,10 +52,27 @@ public class BaseCommodityController extends BaseController{
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/base/commodity/listbasecommodity";
 	}
+	/**
+	 * 显示导入商品页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/base/BaseCommodity/initImpBaseCommodityPage", method = { RequestMethod.GET })
 	public String initImpBaseCommodityPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/base/commodity/impbasecommodity";
+	}
+	/**
+	 * 显示导入商品门类页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/base/BaseCommodity/initImpComCatePage", method = { RequestMethod.GET })
+	public String initImpComCatePage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/base/commodity/impcomcate";
 	}
 	/**
 	 * 商品类别树
@@ -258,9 +275,9 @@ public class BaseCommodityController extends BaseController{
 	/**
 	 * 商品信息导入
 	 */
-	@RequestMapping(value = "/base/BaseCommodity/saveImpExcel", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/base/BaseCommodity/saveBaseCommodityImpExcel", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody
-	ResultData saveImpSerdevSbxx(HttpServletRequest request, HttpServletResponse response)
+	ResultData saveBaseCommodityImpExcel(HttpServletRequest request, HttpServletResponse response)
 			throws IllegalStateException, IOException {
 		ResultData rd = new ResultData();
 		double lastTime=0;
@@ -315,5 +332,69 @@ public class BaseCommodityController extends BaseController{
 		rd.setName("上传成功,共导入"+count+"条记录,耗时"+lastTime+"秒");
 		return rd;
 	}
-
+	/**
+	 * 商品类别导入
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/base/BaseCommodity/saveComCateImpExcel", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	ResultData saveComCateImpExcel(HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
+		ResultData rd = new ResultData();
+		double lastTime=0;
+		int count=0;
+		try {
+			// 创建一个通用的多部分解析器
+			CommonsMultipartResolver multipartResolver = (CommonsMultipartResolver)BspUtils.getBean("multipartResolver");
+			// 判断 request 是否有文件上传,即多部分请求
+			if (multipartResolver.isMultipart(request)) {
+				// 转换成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)multipartResolver.resolveMultipart(request);
+				Map<String, Object> paramMap = new HashMap();
+				String params = multiRequest.getParameter("data");
+				paramMap = JsonUtils.json2map(params);
+				// 取得request中的所有文件名
+				Iterator<String> iter = multiRequest.getFileNames();
+				
+				while (iter.hasNext()) {
+					// 记录上传过程起始时的时间，用来计算上传时间
+					long pre = (long) System.currentTimeMillis();
+					// 取得上传文件
+					MultipartFile attachfile = multiRequest.getFile(iter.next());
+					if (attachfile != null) {
+						// 取得当前上传文件的文件名称
+						String fileName = attachfile.getOriginalFilename();
+						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+						if (fileName.trim() != "") {
+							// 定义上传路径
+							boolean full = (boolean)paramMap.get("full");
+							String path = ConfUtils.getValue("ATTACHMENT_DIR")+ File.separator + fileName;
+							File localFile = new File(path);
+							if (!localFile.getParentFile().exists()) {
+								localFile.getParentFile().mkdirs();
+							}
+							attachfile.transferTo(localFile);
+							count=basecomcateService.impExcelComCate(path,full);
+						}
+					}
+					// 记录上传该文件后的时间
+					long finaltime = (long) System.currentTimeMillis();
+					lastTime = (finaltime - pre)/1000.0;
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("上传失败<br>" + e.getMessage());
+			return rd;
+		}
+		rd.setCode(ResultData.code_success);
+		rd.setName("上传成功,共导入"+count+"条记录,耗时"+lastTime+"秒");
+		return rd;
+	}
 }

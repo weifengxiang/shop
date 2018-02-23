@@ -122,6 +122,8 @@ $(function() {
 		data-options="iconCls:'icon-06',plain:true" onclick="detailBaseCommodity()">查看明细</a>
 </div>
 <div id="mmTree" class="easyui-menu"">
+	<div onclick="impComCate()" data-options="iconCls:'icon-excel'">导入商品类别</div>
+	<div class="menu-sep"></div>
 	<div onclick="addComCate()" data-options="iconCls:'icon-add'">添加下级商品类别</div>
 	<div class="menu-sep"></div>
 	<div onclick="editComCate()" data-options="iconCls:'icon-edit'">修改商品类别</div>

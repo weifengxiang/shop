@@ -1,4 +1,4 @@
-function initImpBaseCommodity(param){
+function initImpComCate(param){
 	init();
 	var dialog = param.dialog;
 	$('#reset').on('click',function(){
@@ -32,7 +32,7 @@ function initImpBaseCommodity(param){
 							           SKY_EASYUI.unmask();
 							    	   $.messager.alert('提示',e.responseText,'info');
 							        },
-							        url:SKY.urlCSRF(basepath+'base/BaseCommodity/saveBaseCommodityImpExcel'), 
+							        url:SKY.urlCSRF(basepath+'base/BaseCommodity/saveComCateImpExcel'), 
 							        type:'post',   
 							        dataType:'json',   
 							        timeout:-1    

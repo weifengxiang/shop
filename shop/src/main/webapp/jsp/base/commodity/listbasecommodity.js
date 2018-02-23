@@ -377,3 +377,26 @@ function detailComCate(){
 			  };
 	SKY_EASYUI.open(opts);
 }
+/**
+ * 导入商品门类
+ * @returns
+ */
+function impComCate(){
+	var opts={
+			id:'impComCate',
+			title:'导入商品类别',
+			width:400,
+			height:300,
+			modal:true,
+			content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initImpComCatePage'),
+			onLoad: function(dialog){ 
+	            if(this.content && this.content.initImpComCate){//判断弹出窗体iframe中的driveInit方法是否存在 
+	                var paramOpts=new Object();
+	                paramOpts.dialog=dialog;
+	                paramOpts.callback=initComCateTree;
+	            	this.content.initImpComCate(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+	            } 
+	        }
+		  };
+	SKY_EASYUI.open(opts);	
+}
