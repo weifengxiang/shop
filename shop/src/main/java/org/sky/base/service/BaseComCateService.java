@@ -165,11 +165,25 @@ public class BaseComCateService {
 				bcc.setCode(data.get(1));
 				//bcc.setRate(new BigDecimal(data.get(2)));
 				bcc.setName(data.get(3));
-				bcc.setParCode(bcc.getCode().substring(0, bcc.getCode().length()-2));
+				if(2==bcc.getCode().length()) {
+					bcc.setParCode("root");
+				}else {
+					bcc.setParCode(bcc.getCode().substring(0, bcc.getCode().length()-2));
+				}
 				bcc.setCreater(BspUtils.getLoginUser().getCode());
 				bcc.setCreateTime(date);
 				bcc.setUpdater(BspUtils.getLoginUser().getCode());
 				bcc.setUpdateTime(date);
+				String seq="";
+				if("root".equals(bcc.getParCode())) {
+					seq=bcc.getCode();
+				}else {
+					seq = bcc.getCode().substring(bcc.getCode().length()-2);
+				}
+				if(!StringUtils.isNumeric(seq)) {
+					seq="99";
+				}
+				bcc.setSeq(Integer.parseInt(seq));
 				basecomcatemapper.insertSelective(bcc);
 			}
 			return results.size();
