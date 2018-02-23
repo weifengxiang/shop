@@ -13,9 +13,6 @@ $(function() {
 </head>
 <body class="easyui-layout" style="width: 100%; height: 100%; padding: 0; border: 0"
 	  data-options='border:false,fit:true'>
-<div data-options="region:'west',split:true,title:'商品类别管理'" style="width:300px;padding:0px;">
-		<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
-</div>
 <div data-options=" region:'north',iconCls: 'icon-table'" class="easyui-panel" title="查询条件"
 	 style="width:100%; height:63px; padding:0px;" cellpadding="0">
 	<table class='noborder'>
@@ -31,6 +28,9 @@ $(function() {
 			<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 		</tr>
 	</table>
+</div>
+<div data-options="region:'west',split:true,title:'商品类别管理'" style="width:300px;padding:0px;">
+		<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
 <div data-options=" region:'center',iconCls: 'icon-table'" title="商品管理">
 <table  id="listbasecommoditydg" class="easyui-datagrid"  style="width:100%; height:63px; padding:0px;" cellpadding="0"
