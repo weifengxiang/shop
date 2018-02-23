@@ -111,6 +111,8 @@ $(function() {
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-excel',plain:true" onclick="impBaseCommodity()">导入商品Excel</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true" onclick="addBaseCommodity()">增加</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-edit',plain:true" onclick="editBaseCommodity()">修改</a>

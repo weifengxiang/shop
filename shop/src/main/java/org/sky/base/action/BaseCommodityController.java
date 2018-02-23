@@ -1,5 +1,9 @@
 package org.sky.base.action;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +17,8 @@ import org.sky.base.model.BaseCommodityExample;
 import org.sky.base.model.BaseCommodityExample.Criteria;
 import org.sky.base.service.BaseComCateService;
 import org.sky.base.service.BaseCommodityService;
+import org.sky.sys.utils.BspUtils;
+import org.sky.sys.utils.ConfUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
@@ -24,6 +30,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class BaseCommodityController extends BaseController{
@@ -42,6 +51,11 @@ public class BaseCommodityController extends BaseController{
 	public String initBaseCommodityListPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/base/commodity/listbasecommodity";
+	}
+	@RequestMapping(value = "/base/BaseCommodity/initImpBaseCommodityPage", method = { RequestMethod.GET })
+	public String initImpBaseCommodityPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/base/commodity/impbasecommodity";
 	}
 	/**
 	 * 商品类别树
@@ -241,4 +255,65 @@ public class BaseCommodityController extends BaseController{
 		BaseCommodity bean = basecommodityService.getBaseCommodityById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	/**
+	 * 商品信息导入
+	 */
+	@RequestMapping(value = "/base/BaseCommodity/saveImpExcel", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	ResultData saveImpSerdevSbxx(HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
+		ResultData rd = new ResultData();
+		double lastTime=0;
+		int count=0;
+		try {
+			// 创建一个通用的多部分解析器
+			CommonsMultipartResolver multipartResolver = (CommonsMultipartResolver)BspUtils.getBean("multipartResolver");
+			// 判断 request 是否有文件上传,即多部分请求
+			if (multipartResolver.isMultipart(request)) {
+				// 转换成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)multipartResolver.resolveMultipart(request);
+				Map<String, Object> paramMap = new HashMap();
+				String params = multiRequest.getParameter("data");
+				paramMap = JsonUtils.json2map(params);
+				// 取得request中的所有文件名
+				Iterator<String> iter = multiRequest.getFileNames();
+				
+				while (iter.hasNext()) {
+					// 记录上传过程起始时的时间，用来计算上传时间
+					long pre = (long) System.currentTimeMillis();
+					// 取得上传文件
+					MultipartFile attachfile = multiRequest.getFile(iter.next());
+					if (attachfile != null) {
+						// 取得当前上传文件的文件名称
+						String fileName = attachfile.getOriginalFilename();
+						// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+						if (fileName.trim() != "") {
+							// 定义上传路径
+							boolean full = (boolean)paramMap.get("full");
+							String path = ConfUtils.getValue("ATTACHMENT_DIR")+ File.separator + fileName;
+							File localFile = new File(path);
+							if (!localFile.getParentFile().exists()) {
+								localFile.getParentFile().mkdirs();
+							}
+							attachfile.transferTo(localFile);
+							count=basecommodityService.impExcelBaseCommodity(path,full);
+						}
+					}
+					// 记录上传该文件后的时间
+					long finaltime = (long) System.currentTimeMillis();
+					lastTime = (finaltime - pre)/1000.0;
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("上传失败<br>" + e.getMessage());
+			return rd;
+		}
+		rd.setCode(ResultData.code_success);
+		rd.setName("上传成功,共导入"+count+"条记录,耗时"+lastTime+"秒");
+		return rd;
+	}
+
 }

@@ -51,14 +51,14 @@ function initComCateTree() {
  **/
 function addBaseCommodity(){
 	if(!$('#comcatetree').tree("getSelected")){
-		$.messager.alert('提示', '请选择商品小类', 'info');
+		$.messager.alert('提示', '请选择商品门类', 'info');
 		return;
 	}
 	var selectNode = $('#comcatetree').tree("getData",
 	  		 $('#comcatetree').tree("getSelected").target
 	  		);
-	if (null == selectNode.data || selectNode.data.isLeaf!='1') {
-		$.messager.alert('提示', '请选择商品小类', 'info');
+	if (null == selectNode.data) {
+		$.messager.alert('提示', '请选择商品门类', 'info');
 		return;
 	}
 	var opts={
@@ -177,6 +177,29 @@ function detailBaseCommodity(){
 		                	dialog.close();
 		                };
 		            	this.content.initDetailBaseCommodityPage(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
+		            } 
+		        }
+			  };
+	SKY_EASYUI.open(opts);
+}
+/**
+ * 导入商品Excel
+ * @returns
+ */
+function impBaseCommodity(){
+	var opts={
+				id:'impBaseCommodity',
+				title:'导入商品',
+				width:400,
+				height:300,
+				modal:true,
+				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCommodity/initImpBaseCommodityPage'),
+				onLoad: function(dialog){ 
+		            if(this.content && this.content.initImpBaseCommodity){//判断弹出窗体iframe中的driveInit方法是否存在 
+		                var paramOpts=new Object();
+		                paramOpts.dialog=dialog;
+		                paramOpts.callback=searchButton;
+		            	this.content.initImpBaseCommodity(paramOpts);//调用并将参数传入，此处当然也可以传入其他内容 
 		            } 
 		        }
 			  };

@@ -1,7 +1,12 @@
 package org.sky.base.service;
 import org.apache.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +19,7 @@ import org.sky.base.model.BaseComCateExample;
 import org.sky.base.model.BaseCommodity;
 import org.sky.base.model.BaseCommodityExample;
 import org.sky.sys.utils.PageListData;
+import org.sky.sys.utils.ReadExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -152,4 +158,61 @@ public class BaseCommodityService {
 		BaseCommodity bean = basecommoditymapper.selectByPrimaryKey(id);
 		return bean;
 	}
+	/**
+	 * 商品信息导入
+	 * @param filepath
+	 * @param full
+	 * @return
+	 * @throws ServiceException
+	 */
+	public int impExcelBaseCommodity(String filepath,boolean full) throws ServiceException{
+		List<List<Object>> results=null;
+		try {
+			results = ReadExcel.readExcel(new File(filepath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
+		}
+		if (results == null || results.size() < 2) {
+			new ServiceException("Excel为空！");
+		} else if (results.size() > 30001) {
+			new ServiceException("当前记录数：" + results.size() + "，Excel一次最多导入30000条数据！");
+		} else {
+			List<Object> titles = results.remove(0);
+			List<String> ts = new ArrayList<>();
+			for (Object title : titles) {
+				ts.add((String) title);
+			}
+			if (org.apache.commons.lang.StringUtils.isBlank(ts.get(ts.size() - 1))) {
+				ts.remove(ts.size() - 1);
+			}
+			//全量更新则删除相同类型 相同单位并且是Excel导入的数据的数据
+			if(full){
+				BaseCommodityExample bce = new BaseCommodityExample();
+				basecommoditymapper.deleteByExample(bce);
+			}
+			Date date = CommonUtils.getCurrentDbDate();
+			for(Object obj:results){
+				LinkedList<String> data = (LinkedList)obj;
+				BaseCommodity comm = new BaseCommodity();
+				comm.setId(CommonUtils.getUUID(32));
+				comm.setCode(data.get(1));
+				comm.setBarCode(data.get(1));
+				comm.setName(data.get(2));
+				comm.setUnit(data.get(3));
+				comm.setSpec(data.get(4));
+				comm.setPriceMethod(data.get(5));
+				comm.setCateCode(data.get(6).split("-")[0].trim());
+				comm.setCreater(BspUtils.getLoginUser().getCode());
+				comm.setCreateTime(date);
+				comm.setUpdater(BspUtils.getLoginUser().getCode());
+				comm.setUpdateTime(date);
+				basecommoditymapper.insertSelective(comm);
+			}
+			return results.size();
+		}
+		return 0;
+	}
+
 }
