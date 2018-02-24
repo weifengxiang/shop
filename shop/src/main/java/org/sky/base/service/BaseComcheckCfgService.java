@@ -56,20 +56,11 @@ public class BaseComcheckCfgService {
 				ts.setText(bcc.getName()+"["+bcc.getCode()+"]");
 				ts.setSeq(bcc.getSeq());
 				ts.setIconCls("icon-box_world");
-				ts.setState("closed");
-				ts.setData(bcc);
-				tslist.add(ts); 
-			}
-		}else {
-			BaseComcheckCfgExample bcce = new BaseComcheckCfgExample();
-			bcce.createCriteria().andComCateEqualTo(code);
-			List<BaseComcheckCfg> list = basecomcheckcfgmapper.selectByExample(bcce);
-			for(BaseComcheckCfg bcc:list){
-				TreeStru ts = new TreeStru();
-				ts.setId(bcc.getId());
-				ts.setText(bcc.getEmpCode()+"["+bcc.getEmpCode()+"]");
-				ts.setIconCls("icon-user_female");
-				ts.setState("open");
+				if(bcc.getChildCount()>0) {
+					ts.setState("closed");
+				}else {
+					ts.setState("open");
+				}
 				ts.setData(bcc);
 				tslist.add(ts); 
 			}
