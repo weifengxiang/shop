@@ -23,10 +23,6 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入名称'" name="q_name"  id="q_name" ></input></td>				
 		<th><label>盘点门店:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入盘点门店'" name="q_shopCode"  id="q_shopCode" ></input></td>				
-		<th><label>备注:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_note"  id="q_note" ></input></td>				
-		<th><label>1有效;0:无效:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入1有效;0:无效'" name="q_state"  id="q_state" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
@@ -80,12 +76,6 @@ $(function() {
 						options:{
 							required:true
 						}}">备注</th>
-				<th data-options="field:'state',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">1有效;0:无效</th>
 		</tr>
 	</thead>
 </table>
