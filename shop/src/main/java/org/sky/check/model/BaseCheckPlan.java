@@ -10,6 +10,8 @@ public class BaseCheckPlan {
     private String name;
 
     private String shopCode;
+    
+    private String shopName;
 
     private String note;
 
@@ -102,4 +104,12 @@ public class BaseCheckPlan {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 }

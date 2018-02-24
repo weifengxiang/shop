@@ -6,6 +6,7 @@
     <result column="CODE" jdbcType="VARCHAR" property="code" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="SHOP_CODE" jdbcType="VARCHAR" property="shopCode" />
+    <result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="STATE" jdbcType="CHAR" property="state" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CODE, NAME, SHOP_CODE, NOTE, STATE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, CODE, NAME, SHOP_CODE, NOTE, STATE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM SYS_ORGAN SO WHERE SO.CODE = SHOP_CODE) AS SHOP_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.check.model.BaseCheckPlanExample" resultMap="BaseResultMap">
     select

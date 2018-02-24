@@ -21,8 +21,6 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入编号'" name="q_code"  id="q_code" ></input></td>				
 		<th><label>名称:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入名称'" name="q_name"  id="q_name" ></input></td>				
-		<th><label>盘点门店:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入盘点门店'" name="q_shopCode"  id="q_shopCode" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
@@ -64,7 +62,7 @@ $(function() {
 						options:{
 							required:true
 						}}">名称</th>
-				<th data-options="field:'shopCode',width:180,
+				<th data-options="field:'shopName',width:180,
 				editor:{
 						type:'textbox',
 						options:{

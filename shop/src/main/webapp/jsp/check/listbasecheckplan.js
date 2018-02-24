@@ -148,18 +148,6 @@ function searchButton(){
 			if(name){
 				ft.put("name@=", name);
 			}
-			var shopCode =$('#q_shopCode').textbox("getValue");
-			if(shopCode){
-				ft.put("shopCode@=", shopCode);
-			}
-			var note =$('#q_note').textbox("getValue");
-			if(note){
-				ft.put("note@=", note);
-			}
-			var state =$('#q_state').textbox("getValue");
-			if(state){
-				ft.put("state@=", state);
-			}
 			return ft.getJSON();
 		}
 	});
