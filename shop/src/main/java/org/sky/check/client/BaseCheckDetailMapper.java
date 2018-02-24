@@ -30,7 +30,7 @@ public interface BaseCheckDetailMapper {
 
     int updateByPrimaryKey(BaseCheckDetail record);
     /**
-     * 根据盘查计划生成盘查明细
+     * 
      * @param params
      */
     void insertBaseCheckDetailByPlan(@Param("params") Map params);

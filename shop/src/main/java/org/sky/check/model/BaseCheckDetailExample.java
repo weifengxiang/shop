@@ -351,6 +351,76 @@ public class BaseCheckDetailExample {
             return (Criteria) this;
         }
 
+        public Criteria andCheckerIsNull() {
+            addCriterion("CHECKER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerIsNotNull() {
+            addCriterion("CHECKER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerEqualTo(String value) {
+            addCriterion("CHECKER =", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerNotEqualTo(String value) {
+            addCriterion("CHECKER <>", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerGreaterThan(String value) {
+            addCriterion("CHECKER >", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerGreaterThanOrEqualTo(String value) {
+            addCriterion("CHECKER >=", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerLessThan(String value) {
+            addCriterion("CHECKER <", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerLessThanOrEqualTo(String value) {
+            addCriterion("CHECKER <=", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerLike(String value) {
+            addCriterion("CHECKER like", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerNotLike(String value) {
+            addCriterion("CHECKER not like", value, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerIn(List<String> values) {
+            addCriterion("CHECKER in", values, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerNotIn(List<String> values) {
+            addCriterion("CHECKER not in", values, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerBetween(String value1, String value2) {
+            addCriterion("CHECKER between", value1, value2, "checker");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckerNotBetween(String value1, String value2) {
+            addCriterion("CHECKER not between", value1, value2, "checker");
+            return (Criteria) this;
+        }
+
         public Criteria andResultIsNull() {
             addCriterion("RESULT is null");
             return (Criteria) this;

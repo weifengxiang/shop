@@ -24,7 +24,6 @@
 		<javaClientGenerator targetPackage="org.sky.check.client"	targetProject="src\main\java" type="XMLMAPPER" />
 		
 
-		<table tableName="BASE_CHECK_PLAN"></table>
 		<table tableName="BASE_CHECK_DETAIL"></table>
 	</context>
 </generatorConfiguration>

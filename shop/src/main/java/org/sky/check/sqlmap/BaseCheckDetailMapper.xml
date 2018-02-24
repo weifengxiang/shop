@@ -5,6 +5,7 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="PLAN_CODE" jdbcType="VARCHAR" property="planCode" />
     <result column="COM_CODE" jdbcType="VARCHAR" property="comCode" />
+    <result column="CHECKER" jdbcType="VARCHAR" property="checker" />
     <result column="RESULT" jdbcType="CHAR" property="result" />
     <result column="STATE" jdbcType="VARCHAR" property="state" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, PLAN_CODE, COM_CODE, RESULT, STATE, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME
+    ID, PLAN_CODE, COM_CODE, CHECKER, RESULT, STATE, NOTE, CREATER, CREATE_TIME, UPDATER, 
+    UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="org.sky.check.model.BaseCheckDetailExample" resultMap="BaseResultMap">
     select
@@ -107,13 +109,13 @@
   </delete>
   <insert id="insert" parameterType="org.sky.check.model.BaseCheckDetail">
     insert into base_check_detail (ID, PLAN_CODE, COM_CODE, 
-      RESULT, STATE, NOTE, CREATER, 
-      CREATE_TIME, UPDATER, UPDATE_TIME
-      )
+      CHECKER, RESULT, STATE, 
+      NOTE, CREATER, CREATE_TIME, 
+      UPDATER, UPDATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{planCode,jdbcType=VARCHAR}, #{comCode,jdbcType=VARCHAR}, 
-      #{result,jdbcType=CHAR}, #{state,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{checker,jdbcType=VARCHAR}, #{result,jdbcType=CHAR}, #{state,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sky.check.model.BaseCheckDetail">
     insert into base_check_detail
@@ -126,6 +128,9 @@
       </if>
       <if test="comCode != null">
         COM_CODE,
+      </if>
+      <if test="checker != null">
+        CHECKER,
       </if>
       <if test="result != null">
         RESULT,
@@ -158,6 +163,9 @@
       </if>
       <if test="comCode != null">
         #{comCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        #{checker,jdbcType=VARCHAR},
       </if>
       <if test="result != null">
         #{result,jdbcType=CHAR},
@@ -200,6 +208,9 @@
       <if test="record.comCode != null">
         COM_CODE = #{record.comCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.checker != null">
+        CHECKER = #{record.checker,jdbcType=VARCHAR},
+      </if>
       <if test="record.result != null">
         RESULT = #{record.result,jdbcType=CHAR},
       </if>
@@ -231,6 +242,7 @@
     set ID = #{record.id,jdbcType=VARCHAR},
       PLAN_CODE = #{record.planCode,jdbcType=VARCHAR},
       COM_CODE = #{record.comCode,jdbcType=VARCHAR},
+      CHECKER = #{record.checker,jdbcType=VARCHAR},
       RESULT = #{record.result,jdbcType=CHAR},
       STATE = #{record.state,jdbcType=VARCHAR},
       NOTE = #{record.note,jdbcType=VARCHAR},
@@ -250,6 +262,9 @@
       </if>
       <if test="comCode != null">
         COM_CODE = #{comCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null">
+        CHECKER = #{checker,jdbcType=VARCHAR},
       </if>
       <if test="result != null">
         RESULT = #{result,jdbcType=CHAR},
@@ -279,6 +294,7 @@
     update base_check_detail
     set PLAN_CODE = #{planCode,jdbcType=VARCHAR},
       COM_CODE = #{comCode,jdbcType=VARCHAR},
+      CHECKER = #{checker,jdbcType=VARCHAR},
       RESULT = #{result,jdbcType=CHAR},
       STATE = #{state,jdbcType=VARCHAR},
       NOTE = #{note,jdbcType=VARCHAR},
@@ -294,6 +310,25 @@
     </if>
   </sql>
   <insert id="insertBaseCheckDetailByPlan" parameterType="map">
-  	
+  	insert into base_check_detail (ID, PLAN_CODE, COM_CODE, 
+      CHECKER, STATE,CREATER, CREATE_TIME)
+  	SELECT REPLACE(UUID(),'-','') AS ID,
+			PLAN_CODE,
+			COM_CODE,
+			EMP_CODE AS CHECKER,
+			'0' AS STATE,
+			'SYS_JOB' AS CREATER,
+			NOW() AS CREATETIME
+			FROM
+			(
+			SELECT
+			DISTINCT 
+			(SELECT CONCAT(ORGAN_CODE,'_',${params.date}) FROM SYS_USER WHERE CODE = BCC.EMP_CODE) AS PLAN_CODE,
+			BC.CODE AS COM_CODE,
+			BCC.EMP_CODE AS EMP_CODE
+			FROM
+			BASE_COMMODITY BC, BASE_COMCHECK_CFG BCC
+			WHERE BC.CATE_CODE LIKE CONCAT(BCC.COM_CATE,'%')
+			) AS TAB
   </insert>
 </mapper>

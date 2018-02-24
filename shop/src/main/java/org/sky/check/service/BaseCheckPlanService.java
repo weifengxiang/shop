@@ -2,7 +2,10 @@ package org.sky.check.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.sky.sys.client.SysCommonMapper;
 import org.sky.check.client.BaseCheckDetailMapper;
 import org.sky.check.client.BaseCheckPlanMapper;
@@ -122,15 +125,16 @@ public class BaseCheckPlanService {
 	/**
 	 * 每周创建盘查计划
 	 */
+	@Transactional
 	public void createComCheckPlanJOb() {
 		Date date = syscommonmapper.querySysDate();
 		BaseCheckPlan plan = new BaseCheckPlan();
 		
-		plan.setName("");
+		plan.setName(CommonUtils.formatDate(date, "yyyy-MM-dd")+"盘查计划");
 		plan.setState("1");
-		plan.setCreater(BspUtils.getLoginUser().getCode());
+		plan.setCreater("sys_job");
 		plan.setCreateTime(date);
-		plan.setUpdater(BspUtils.getLoginUser().getCode());
+		plan.setUpdater("sys_job");
 		plan.setUpdateTime(date);
 		//插入文东店
 		plan.setId(CommonUtils.getUUID(32));
@@ -142,6 +146,9 @@ public class BaseCheckPlanService {
 		plan.setCode("002_"+CommonUtils.formatDate(date, "yyyy-MM-dd"));
 		plan.setShopCode("002");
 		basecheckplanmapper.insert(plan);
-		
+		//插入盘点明细
+		Map params = new HashMap();
+		params.put("date", CommonUtils.formatDate(date, "yyyy-MM-dd"));
+		basecheckdetailmapper.insertBaseCheckDetailByPlan(params);
 	}
 }

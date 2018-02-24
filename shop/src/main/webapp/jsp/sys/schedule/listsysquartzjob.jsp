@@ -93,7 +93,7 @@ $(function() {
 					formatter:function(value,row){
 						return SKY.formatterEnum(value,row,SYS_JOBSTATUS);
 					}">状态</th>
-				<th data-options="field:'remark',width:180,
+				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',
 						options:{

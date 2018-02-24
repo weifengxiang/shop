@@ -9,6 +9,8 @@ public class BaseCheckDetail {
 
     private String comCode;
 
+    private String checker;
+
     private String result;
 
     private String state;
@@ -45,6 +47,14 @@ public class BaseCheckDetail {
 
     public void setComCode(String comCode) {
         this.comCode = comCode;
+    }
+
+    public String getChecker() {
+        return checker;
+    }
+
+    public void setChecker(String checker) {
+        this.checker = checker;
     }
 
     public String getResult() {
