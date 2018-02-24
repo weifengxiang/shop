@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
+	private final static Logger logger=Logger.getLogger(ReadExcel.class);
 	/**
 	 * 对外提供读取excel 的方法
 	 * */
@@ -33,6 +35,7 @@ public class ReadExcel {
 		} else if ("xlsx".equalsIgnoreCase(extension)) {
 			return read2007Excel(file);
 		} else {
+			logger.error("不支持的文件类型");
 			throw new IOException("不支持的文件类型");
 		}
 	}
@@ -114,7 +117,7 @@ public class ReadExcel {
 				if (value == null || "".equals(value)) {
 					value = "";
 				}
-				System.out.println("获取第"+i+"行第"+j+"列单元格数据："+value);
+				logger.debug("获取第"+i+"行第"+j+"列单元格数据："+value);
 				linked.add(value);
 			}
 			list.add(linked);
@@ -196,7 +199,7 @@ public class ReadExcel {
 				if (value == null || "".equals(value)) {
 					value = "";
 				}
-				System.out.println("获取第"+(i+1)+"行第"+(j+1)+"列单元格数据："+value);
+				logger.debug("获取第"+i+"行第"+j+"列单元格数据："+value);
 				linked.add(value);
 			}
 			list.add(linked);
