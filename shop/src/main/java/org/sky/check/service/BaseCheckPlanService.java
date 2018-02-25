@@ -171,6 +171,9 @@ public class BaseCheckPlanService {
 		Map params = new HashMap();
 		params.put("planCode",planCode);
 		List<Map> list = basecheckdetailmapper.selectBaseCheckPlanComCateList(params);
+		if(list.isEmpty()) {
+			throw new ServiceException("该盘查计划下没有明细");
+		}
 		List<String> parCateCodeList = new ArrayList();
 		for(Map map:list) {
 			String cateCode = (String)map.get("cate_code");
@@ -238,15 +241,16 @@ public class BaseCheckPlanService {
 					childts.setText((String)map.get("cate_name")+"["+(String)map.get("cate_code")+"]");
 					childts.setSeq((Integer)map.get("seq"));
 					childts.setIconCls("icon-box_world");
-					childts.setState("closed");
 					childts.setData(map);
 					childTsList.add(childts); 
 				}
 			}
 			if(!childTsList.isEmpty()) {
 				ts.setChildren(childTsList);
+				ts.setState("closed");
 				initPlanComCateTree(childTsList,list);
 			}else {
+				ts.setState("open");
 				return;
 			}
 		}

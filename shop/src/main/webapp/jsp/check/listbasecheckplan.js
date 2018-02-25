@@ -114,8 +114,8 @@ function detailBaseCheckPlan(){
 	var opts={
 				id:'detailBaseCheckPlan',
 				title:'盘点计划明细',
-				width:600,
-				height:450,
+				width:800,
+				height:600,
 				modal:true,
 				content:'url:'+SKY.urlCSRF(basepath+'base/BaseCheckPlan/initDetailBaseCheckPlanPage'),
 				onLoad: function(dialog){ 

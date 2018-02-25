@@ -6,6 +6,8 @@ function initDetailBaseCheckPlanPage(paramOpts){
 	$('#cloBtn').on('click',function(){
 		paramOpts.dialog.close();
 	});
+	$('#planCode').textbox('setValue',paramOpts.data.code);
+	$('#planName').textbox('setValue',paramOpts.data.name);
 	initComCateTree(paramOpts.data);
 }
 /**
@@ -30,11 +32,34 @@ function initComCateTree(data) {
 						method : 'POST',
 						onClick : function(node) {
 							var data=node.data;
-							if(data.id){
+							if(data){
+								searchPlanDetail();
 							}
 						}
 					});
 		}
 	});
-	
+}
+/**
+ * 盘查明细查询
+ */
+function searchPlanDetail(){
+	var selectNode = $('#comcatetree').tree("getData",
+	  		 $('#comcatetree').tree("getSelected").target
+	  		);
+	$('#listbasecheckdetaildg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseCheckDetail/getBaseCheckDetailByPage');
+	$('#listbasecheckdetaildg').datagrid('load', {
+		filter : function(){
+			var ft = new HashMap();
+			var planCode =$('#planCode').textbox("getValue");
+			if(planCode){
+				ft.put("planCode@=", planCode);
+			}
+			var cate_code=selectNode.data.cate_code;
+			if(cate_code){
+				ft.put("exists(select 1 from base_commodity bc where bc.cate_code='"+cate_code+"' and bc.code=com_code) and 1@=",1);
+			}
+			return ft.getJSON();
+		}
+	});
 }

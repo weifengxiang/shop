@@ -5,6 +5,7 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="PLAN_CODE" jdbcType="VARCHAR" property="planCode" />
     <result column="COM_CODE" jdbcType="VARCHAR" property="comCode" />
+    <result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
     <result column="CHECKER" jdbcType="VARCHAR" property="checker" />
     <result column="RESULT" jdbcType="CHAR" property="result" />
     <result column="STATE" jdbcType="VARCHAR" property="state" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, PLAN_CODE, COM_CODE, CHECKER, RESULT, STATE, NOTE, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    ID, PLAN_CODE, COM_CODE, CHECKER, RESULT, STATE, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
+    (SELECT NAME FROM BASE_COMMODITY WHERE CODE = COM_CODE) AS COM_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.check.model.BaseCheckDetailExample" resultMap="BaseResultMap">
     select

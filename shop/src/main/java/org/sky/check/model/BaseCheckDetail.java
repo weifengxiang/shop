@@ -8,6 +8,8 @@ public class BaseCheckDetail {
     private String planCode;
 
     private String comCode;
+    
+    private String comName;
 
     private String checker;
 
@@ -112,4 +114,12 @@ public class BaseCheckDetail {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getComName() {
+		return comName;
+	}
+
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
 }
