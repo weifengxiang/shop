@@ -20,7 +20,7 @@
 		</layout>
 	</appender>
 	<appender name="DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="c:/logs/debug.log" />
+		<param name="File" value="d:/logs/debug.log" />
 		<param name="DatePattern" value="'daily.'yyyy-MM-dd-HH'.log'" /> 
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
@@ -31,7 +31,7 @@
 		</filter>
 	</appender>
 	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="c:/logs/info.log" />
+		<param name="File" value="d:/logs/info.log" />
 		<param name="DatePattern" value="'daily.'yyyy-MM-dd-HH'.log'" /> 
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
@@ -42,7 +42,7 @@
 		</filter>
 	</appender>
 	<appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="c:/logs/warn.log" />
+		<param name="File" value="d:/logs/warn.log" />
 		<param name="DatePattern" value="'daily.'yyyy-MM-dd-HH'.log'" /> 
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
@@ -53,7 +53,7 @@
 		</filter>
 	</appender>
 	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="c:/logs/error.log" />
+		<param name="File" value="d:/logs/error.log" />
 		<param name="DatePattern" value="'daily.'yyyy-MM-dd-HH'.log'" /> 
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
@@ -66,7 +66,7 @@
 
 
 	<appender name="WATCHTASK" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="c:/logs/watchtask.log" />
+		<param name="File" value="d:/logs/watchtask.log" />
 		<param name="DatePattern" value="'daily.'yyyy-MM-dd-HH'.log'" /> 
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />

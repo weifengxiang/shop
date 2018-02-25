@@ -16,6 +16,7 @@ import org.sky.sys.utils.Page;
 import org.sky.sys.utils.PageListData;
 import org.sky.sys.utils.ResultData;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,22 @@ public class BaseCheckPlanController extends BaseController{
 		pote.setPage(p);
 		PageListData pageData = basecheckplanService.getBaseCheckPlanByPage(pote);
 		return JsonUtils.obj2json(pageData);
+	}
+	/**
+	 * 盘点计划商品门类树
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/base/BaseCheckPlan/getBaseCheckPlanCateTree", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<TreeStru> getBaseCheckPlanCateTree(HttpServletRequest request, 
+			HttpServletResponse response){
+		String data= request.getParameter("data");
+		Map dataMap=null;
+		if(!StringUtils.isNull(data)){
+			dataMap = JsonUtils.json2map(data);
+		}
+		return basecheckplanService.getBaseCheckPlanCateTree(dataMap);
 	}
 	/**
 	*显示盘点计划新增页面

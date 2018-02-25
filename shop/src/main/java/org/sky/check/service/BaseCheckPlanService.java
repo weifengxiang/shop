@@ -1,24 +1,34 @@
 package org.sky.check.service;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.sky.sys.client.SysCommonMapper;
+import org.sky.base.client.BaseComCateMapper;
+import org.sky.base.model.BaseComCate;
+import org.sky.base.model.BaseComCateExample;
 import org.sky.check.client.BaseCheckDetailMapper;
 import org.sky.check.client.BaseCheckPlanMapper;
 import org.sky.sys.exception.ServiceException;
+import org.sky.check.model.BaseCheckDetailExample;
 import org.sky.check.model.BaseCheckPlan;
 import org.sky.check.model.BaseCheckPlanExample;
 import org.sky.sys.utils.PageListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import net.sf.json.JSON;
+
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 @Service
 public class BaseCheckPlanService {
 	private final Logger logger=Logger.getLogger(BaseCheckPlanService.class);
@@ -26,6 +36,8 @@ public class BaseCheckPlanService {
 	private BaseCheckPlanMapper basecheckplanmapper;
 	@Autowired
 	private BaseCheckDetailMapper basecheckdetailmapper;
+	@Autowired
+	private BaseComCateMapper basecomcatemapper;
 	@Autowired
 	private SysCommonMapper syscommonmapper;
 	/**
@@ -107,12 +119,15 @@ public class BaseCheckPlanService {
 		}
 	}
 	/**
-	*根据主键批量删除对象
+	*根据主键批量删除盘查计划及盘查明细
 	**/
 	@Transactional
 	public void delBaseCheckPlanById(List<BaseCheckPlan> delList){
 		for(BaseCheckPlan del:delList){
 			basecheckplanmapper.deleteByPrimaryKey(del.getId());
+			BaseCheckDetailExample bcde = new BaseCheckDetailExample();
+			bcde.createCriteria().andPlanCodeEqualTo(del.getCode());
+			basecheckdetailmapper.deleteByExample(bcde);
 		}
 	}
 	/**
@@ -150,5 +165,90 @@ public class BaseCheckPlanService {
 		Map params = new HashMap();
 		params.put("date", CommonUtils.formatDate(date, "yyyy-MM-dd"));
 		basecheckdetailmapper.insertBaseCheckDetailByPlan(params);
+	}
+	public List<TreeStru> getBaseCheckPlanCateTree(Map m){
+		String planCode = (String)m.get("planCode");
+		Map params = new HashMap();
+		params.put("planCode",planCode);
+		List<Map> list = basecheckdetailmapper.selectBaseCheckPlanComCateList(params);
+		List<String> parCateCodeList = new ArrayList();
+		for(Map map:list) {
+			String cateCode = (String)map.get("cate_code");
+			//添加商品门类的父级
+			for(int i=0;i<cateCode.length();i=i+2) {
+				String parCode = cateCode.substring(0,i+2);
+				if(!parCateCodeList.contains(parCode)) {
+					parCateCodeList.add(parCode);
+				}
+			}
+		}
+		BaseComCateExample bcce = new BaseComCateExample();
+		bcce.createCriteria().andCodeIn(parCateCodeList);
+		bcce.setOrderByClause("code,seq");
+		List<BaseComCate> parlist = basecomcatemapper.selectByExample(bcce);
+		//合并父级商品门类
+		for(BaseComCate bcc:parlist) {
+			boolean exists=false;
+			for(Map map:list) {
+				if(map.get("cate_code").equals(bcc.getCode())) {
+					exists=true;
+				}
+			}
+			if(!exists) {
+				Map parCateMap = new HashMap();
+				parCateMap.put("plan_code", planCode);
+				parCateMap.put("cate_code", bcc.getCode());
+				parCateMap.put("cate_name", bcc.getName());
+				parCateMap.put("seq", bcc.getSeq());
+				list.add(parCateMap);
+			}
+		}
+		List<TreeStru> treeList = new ArrayList();
+		initPlanComCateTree(treeList,list);
+		return treeList;
+	}
+	/**
+	 * 递归初始化树
+	 * @param treeList
+	 * @param list
+	 */
+	private void initPlanComCateTree(List<TreeStru> treeList,List<Map> list) {
+		if(treeList.isEmpty()) {
+			for(Map map:list) {
+				if(((String)map.get("cate_code")).length()==2) {
+					TreeStru ts = new TreeStru();
+					ts.setId((String)map.get("cate_code"));
+					ts.setText((String)map.get("cate_name")+"["+(String)map.get("cate_code")+"]");
+					ts.setSeq((Integer)map.get("seq"));
+					ts.setIconCls("icon-box_world");
+					ts.setState("closed");
+					ts.setData(map);
+					treeList.add(ts); 
+				}
+			}
+		}
+		//添加下级
+		for(TreeStru ts:treeList) {
+			List<TreeStru> childTsList = new ArrayList();
+			for(Map map:list) {
+				String cateCode = (String)map.get("cate_code");
+				if(cateCode.startsWith(ts.getId()) && cateCode.length()==(ts.getId().length()+2)) {
+					TreeStru childts = new TreeStru();
+					childts.setId((String)map.get("cate_code"));
+					childts.setText((String)map.get("cate_name")+"["+(String)map.get("cate_code")+"]");
+					childts.setSeq((Integer)map.get("seq"));
+					childts.setIconCls("icon-box_world");
+					childts.setState("closed");
+					childts.setData(map);
+					childTsList.add(childts); 
+				}
+			}
+			if(!childTsList.isEmpty()) {
+				ts.setChildren(childTsList);
+				initPlanComCateTree(childTsList,list);
+			}else {
+				return;
+			}
+		}
 	}
 }

@@ -13,39 +13,11 @@ $(function() {
 </script> 
 </head>
 <body>
-<div class="easyui-panel"  style="width:100%;height:100%;text-align: center;"
-	 data-options="footer:'#detailPageButtonsFt'">
-		<form id="detailbasecheckplanform" class="easyui-form" method="post" 
-			data-options="novalidate:true">
-			<input type='hidden' name='id' id='id'/>
-			<table style="width:100%">
-				  <tr>
-					<th><label>编号:</label></th>
-					<td><input class="easyui-textbox" name="code"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>名称:</label></th>
-					<td><input class="easyui-textbox" name="name"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>盘点门店:</label></th>
-					<td><input class="easyui-textbox" name="shopCode"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
-					<th><label>1有效;0:无效:</label></th>
-					<td><input class="easyui-textbox" name="state"
-						data-options="required:true"></input></td>
-				  </tr>
-			</table>
-		</form>
+<div class="easyui-layout" style="width: 100%; height: 100%; padding: 0; border: 0"
+	  data-options='border:false,fit:true'>
+<div data-options="region:'west',split:true,title:'商品类别'" style="width:300px;padding:0px;">
+		<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
+</div>
 </div>
 <div id='detailPageButtonsFt' style="text-align:center; padding:2px; top:0px">
 	<a href="javascript:void(0)" id='cloBtn' class="easyui-linkbutton" iconCls='icon-cancel'">关闭</a>
