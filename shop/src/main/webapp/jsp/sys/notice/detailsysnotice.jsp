@@ -18,36 +18,40 @@ $(function() {
 		<form id="detailsysnoticeform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='publisher' id='publisher'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>标题:</label></th>
-					<td><input class="easyui-textbox" name="title"
+					<td colspan='3'><input class="easyui-textbox" name="title" 
+						style="width:400px"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>内容:</label></th>
-					<td><input class="easyui-textbox" name="content"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="content"
+						style="width:400px;height: 100px"
+						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>发布人:</label></th>
-					<td><input class="easyui-textbox" name="publisher"
+					<td><input class="easyui-textbox" name="publisherName" id="publisherName" readonly
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>发布日期:</label></th>
-					<td><input class="easyui-textbox" name="pubtime"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-datetimebox" name="pubtime" id="pubtime" readonly
+						data-options="required:true"></input></td> 
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
-					<td><input class="easyui-textbox" name="state"
-						data-options="required:true"></input></td>
+					<td colspan='3'>
+						<input type='radio' name="state" value='1' checked>发布</input>
+						<input type='radio' name="state" value='0'>暂存</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="note"
+						style="width:400px;height: 100px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

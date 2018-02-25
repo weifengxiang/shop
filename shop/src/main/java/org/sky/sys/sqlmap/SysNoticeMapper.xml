@@ -6,6 +6,7 @@
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />
     <result column="PUBLISHER" jdbcType="VARCHAR" property="publisher" />
+    <result column="PUBLISHER_NAME" jdbcType="VARCHAR" property="publisherName" />
     <result column="PUBTIME" jdbcType="TIMESTAMP" property="pubtime" />
     <result column="STATE" jdbcType="CHAR" property="state" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
@@ -74,7 +75,8 @@
   </sql>
   <sql id="Base_Column_List">
     ID, TITLE, CONTENT, PUBLISHER, PUBTIME, STATE, NOTE, CREATER, CREATE_TIME, UPDATER, 
-    UPDATE_TIME
+    UPDATE_TIME,
+    (SELECT NAME FROM SYS_USER WHERE CODE=PUBLISHER) AS PUBLISHER_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.sys.model.SysNoticeExample" resultMap="BaseResultMap">
     select

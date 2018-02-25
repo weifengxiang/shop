@@ -1,3 +1,4 @@
+<%@page import="org.sky.sys.utils.CommonUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/jsp/inc/include.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +8,9 @@
 <script type="text/javascript" src='${basepath}jsp/sys/notice/editsysnotice.js'></script>
 <script type="text/javascript">
 var _callbacks = $.Callbacks();
+var userCode = '<%=org.sky.sys.utils.BspUtils.getLoginUser().getCode() %>';
+var userName = '<%=org.sky.sys.utils.BspUtils.getLoginUser().getName() %>';
+var dateTime = '<%=CommonUtils.getCurrentDate() %>';
 $(function() {
 	
 });
@@ -18,36 +22,40 @@ $(function() {
 		<form id="addeditsysnoticeform" class="easyui-form" method="post" 
 			data-options="novalidate:true">
 			<input type='hidden' name='id' id='id'/>
+			<input type='hidden' name='publisher' id='publisher'/>
 			<table style="width:100%">
 				  <tr>
 					<th><label>标题:</label></th>
-					<td><input class="easyui-textbox" name="title"
+					<td colspan='3'><input class="easyui-textbox" name="title" 
+						style="width:400px"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>内容:</label></th>
-					<td><input class="easyui-textbox" name="content"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="content"
+						style="width:400px;height: 100px"
+						data-options="required:true,multiline:true"></input></td>
 				  </tr>
 				  <tr>
 					<th><label>发布人:</label></th>
-					<td><input class="easyui-textbox" name="publisher"
+					<td><input class="easyui-textbox" name="publisherName" id="publisherName" readonly
 						data-options="required:true"></input></td>
-				  </tr>
-				  <tr>
 					<th><label>发布日期:</label></th>
-					<td><input class="easyui-textbox" name="pubtime"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-datetimebox" name="pubtime" id="pubtime" readonly
+						data-options="required:true"></input></td> 
 				  </tr>
 				  <tr>
 					<th><label>状态:</label></th>
-					<td><input class="easyui-textbox" name="state"
-						data-options="required:true"></input></td>
+					<td colspan='3'>
+						<input type='radio' name="state" value='1' checked>发布</input>
+						<input type='radio' name="state" value='0'>暂存</input>
+					</td>
 				  </tr>
 				  <tr>
 					<th><label>备注:</label></th>
-					<td><input class="easyui-textbox" name="note"
-						data-options="required:true"></input></td>
+					<td colspan='3'><input class="easyui-textbox" name="note"
+						style="width:400px;height: 100px"
+						data-options="multiline:true"></input></td>
 				  </tr>
 			</table>
 		</form>

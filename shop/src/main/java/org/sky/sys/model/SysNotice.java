@@ -10,6 +10,8 @@ public class SysNotice {
     private String content;
 
     private String publisher;
+    
+    private String publisherName;
 
     private Date pubtime;
 
@@ -112,4 +114,12 @@ public class SysNotice {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getPublisherName() {
+		return publisherName;
+	}
+
+	public void setPublisherName(String publisherName) {
+		this.publisherName = publisherName;
+	}
 }

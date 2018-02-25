@@ -41,6 +41,7 @@ public class SysNoticeService {
 		try{
 			if(null!=addlist&&addlist.size()>0){
 				for(SysNotice add:addlist){
+					add.setId(CommonUtils.getUUID(32));
 					sysnoticemapper.insertSelective(add);
 				}
 			}
@@ -63,6 +64,7 @@ public class SysNoticeService {
 	@Transactional
 	public void saveAddSysNotice(SysNotice add) throws ServiceException{
 		try{
+			add.setId(CommonUtils.getUUID(32));
 			sysnoticemapper.insertSelective(add);
 		}catch(Exception e){
 			logger.error("保存添加单个对象执行失败",e);
