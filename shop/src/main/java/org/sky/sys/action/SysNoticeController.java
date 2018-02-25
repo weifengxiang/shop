@@ -142,4 +142,14 @@ public class SysNoticeController extends BaseController{
 		SysNotice bean = sysnoticeService.getSysNoticeById(id);
 		return JsonUtils.obj2json(bean);
 	}
+	/**
+	*查询最新的消息通知
+	**/
+	@RequestMapping(value = "/base/SysNotice/getLasterSysNotice", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String getLasterSysNotice(
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		SysNotice bean = sysnoticeService.getLasterSysNotice();
+		return JsonUtils.obj2json(bean);
+	}
 }

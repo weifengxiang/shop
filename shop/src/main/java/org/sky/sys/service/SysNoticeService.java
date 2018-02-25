@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.Page;
 import org.sky.sys.utils.StringUtils;
 @Service
 public class SysNoticeService {
@@ -116,5 +117,24 @@ public class SysNoticeService {
 	public SysNotice getSysNoticeById(String id){
 		SysNotice bean = sysnoticemapper.selectByPrimaryKey(id);
 		return bean;
+	}
+	/**
+	 * 查询最新发布通知
+	 * @return
+	 */
+	public SysNotice getLasterSysNotice(){
+		SysNoticeExample sne = new SysNoticeExample();
+		sne.createCriteria().andStateEqualTo("1");
+		sne.setOrderByClause(" PUBTIME desc ");
+		Page page = new Page();
+		page.setBegin(0);
+		page.setRows(1);
+		sne.setPage(page);
+		List<SysNotice> list = sysnoticemapper.selectByExample(sne);
+		if(list.size()>0) {
+			return list.get(0);
+		}else {
+			return new SysNotice();
+		}
 	}
 }
