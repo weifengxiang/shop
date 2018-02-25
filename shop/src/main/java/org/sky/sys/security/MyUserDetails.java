@@ -54,13 +54,15 @@ public class MyUserDetails implements UserDetails {
 	private Boolean credentialsNonExpired;
 	
 	private Boolean accountNonLocked;
+	
+	private String clientType;
 
 	public MyUserDetails(
 			String loginid,String userid,String username,String password,String organcode,
 			String organname,String depcode,String depname,Date loginDate,Collection authorities,
 			String loginIp,
 			Boolean accountNonExpired,Boolean accountNonLocked,
-			Boolean credentialsNonExpired,Boolean enabled){
+			Boolean credentialsNonExpired,Boolean enabled,String clientType){
 		this.loginid=loginid;
 		this.userid=userid;
 		this.username=username;
@@ -76,6 +78,7 @@ public class MyUserDetails implements UserDetails {
 		this.accountNonLocked=accountNonLocked;
 		this.credentialsNonExpired=credentialsNonExpired;
 		this.enabled=enabled;
+		this.clientType=clientType;
 		
 	}
 	public MyUserDetails(){
@@ -350,6 +353,12 @@ public class MyUserDetails implements UserDetails {
 			code = code * -7;
 		}
 		return code;
+	}
+	public String getClientType() {
+		return clientType;
+	}
+	public void setClientType(String clientType) {
+		this.clientType = clientType;
 	}
 
 }

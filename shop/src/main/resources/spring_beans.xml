@@ -96,7 +96,7 @@
     </bean>
     
     <bean id="wall-filter-config" class="com.alibaba.druid.wall.WallConfig" init-method="init">
-        <property name="dir" value="META-INF/druid/wall/oracle" />
+        <property name="dir" value="META-INF/druid/wall/mysql" />
     </bean>
     <aop:config proxy-target-class="true">
         <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />

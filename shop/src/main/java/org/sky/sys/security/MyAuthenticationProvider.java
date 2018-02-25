@@ -14,6 +14,7 @@ import org.sky.sys.model.SysUserRoleExample;
 import org.sky.sys.service.SysOrganService;
 import org.sky.sys.service.SysUserRoleService;
 import org.sky.sys.service.SysUserService;
+import org.sky.sys.utils.BspUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,6 +50,7 @@ public class MyAuthenticationProvider extends AbstractUserDetailsAuthenticationP
 	 */
 	@Override
 	protected UserDetails retrieveUser(String loginCode,UsernamePasswordAuthenticationToken token)	throws AuthenticationException {
+		String client = BspUtils.getHttpRequest().getParameter("client");
 		UserDetails user = null; 
 		SysUser sysuser = userService.getSysUserByCode(loginCode);
 		if(null==sysuser){
@@ -81,7 +83,7 @@ public class MyAuthenticationProvider extends AbstractUserDetailsAuthenticationP
 			}
 		});
 		user=new MyUserDetails(loginCode,sysuser.getId(),sysuser.getName(),sysuser.getPassword(),sysuser.getOrganCode(),
-				"","","",null,authorities,"",true,true,true,true);
+				"","","",null,authorities,"",true,true,true,true,client);
 	    return user;  
 	}
  

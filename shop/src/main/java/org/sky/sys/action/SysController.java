@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
 import org.sky.sys.model.SysUser;
 import org.sky.sys.model.SysWidget;
+import org.sky.sys.security.MyUserDetails;
 import org.sky.sys.service.SecurityCodeService;
 import org.sky.sys.service.SysService;
 import org.sky.sys.service.SysWidgetService;
@@ -18,6 +19,7 @@ import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.MenuStru;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,6 +113,18 @@ public class SysController {
 			HttpServletRequest request, HttpServletResponse response) {
 		return "login";
 	}
+	/**
+	 * 钉钉login
+	 * @param map
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/dingding/login", method = { RequestMethod.GET })
+	public String dingdingLogin(Map<String, Object> map,
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/dingding/login";
+	}
 	@RequestMapping(value = "/loginfailed", method = { RequestMethod.GET })
 	public String loginfailed(Map<String, Object> map,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -126,7 +140,12 @@ public class SysController {
 		/**
 		 * 可以根据这里跳转到不同的页面
 		 */
-		return "jsp/main/main";
+		MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+		if("dd".equals(userDetails.getClientType())) {
+			return "jsp/dingding/main";
+		}else {
+			return "jsp/main/main";
+		}
 	}
 	
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET })
