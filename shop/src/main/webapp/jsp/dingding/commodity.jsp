@@ -17,7 +17,7 @@
 	</script>
 </head>
 <body>
-	<div class="easyui-navpanel" style='width:100%;height:100%' >
+	<div class="easyui-navpanel">
 		<header>
 			<div class="m-toolbar">
 				<div class="m-left">
@@ -26,8 +26,8 @@
 				<div class="m-title">商品列表</div>
 			</div>
 		</header>
-		<div style="padding:20px 10px">
-			<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:100%'
+		<div>
+			<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:100px'
 				data-options="
 						singleSelect:true,border:false,fit:true,fitColumns:true,
 						scrollbarSize:0,
