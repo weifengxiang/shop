@@ -38,7 +38,7 @@ $(function(){
 function initComCateTree() {
 	var params=new HashMap();
 	params.put('planCode',planCode);
-	var url = basepath + 'base/BaseCheckPlan/getBaseCheckPlanCateTree';
+	var url = basepath + 'dd/DDController/getBaseCheckPlanCateTree';
 	url=SKY.urlCSRF(url);
 	$.ajax({
 		url:url,

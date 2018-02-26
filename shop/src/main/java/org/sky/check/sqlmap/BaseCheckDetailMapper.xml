@@ -341,7 +341,12 @@
 	where 
 		bc.cate_code=bcc.code
 		and bcd.com_code = bc.code
-		and bcd.plan_code=#{params.planCode,jdbcType=VARCHAR}
+		<if test="params.planCode != null">
+			and bcd.plan_code=#{params.planCode,jdbcType=VARCHAR}
+		</if>
+		<if test="params.checker != null">
+			and bcd.checker=#{params.checker,jdbcType=VARCHAR}
+		</if>
 	order by bcc.code,bcc.seq
   </select>
 </mapper>

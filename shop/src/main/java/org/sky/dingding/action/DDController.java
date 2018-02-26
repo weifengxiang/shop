@@ -1,6 +1,7 @@
 package org.sky.dingding.action;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import org.sky.sys.exception.ServiceException;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.ResultData;
+import org.sky.sys.utils.StringUtils;
+import org.sky.sys.utils.TreeStru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +55,22 @@ public class DDController extends BaseController {
 		}
 		mv.setViewName("jsp/dingding/"+name);
 		return mv;
+	}
+	/**
+	 * 盘点计划商品门类树
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/dd/DDController/getBaseCheckPlanCateTree", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<TreeStru> getBaseCheckPlanCateTree(HttpServletRequest request, 
+			HttpServletResponse response){
+		String data= request.getParameter("data");
+		Map dataMap=null;
+		if(!StringUtils.isNull(data)){
+			dataMap = JsonUtils.json2map(data);
+		}
+		return ddservice.getBaseCheckPlanCateTree(dataMap);
 	}
 	/**
 	 * 显示盘点商品详情列表页面

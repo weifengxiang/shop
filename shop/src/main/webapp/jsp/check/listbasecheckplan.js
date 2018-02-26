@@ -5,7 +5,8 @@ function init(){
 		filter : function(){
 			var ft = new HashMap();
 			return ft.getJSON();
-		}
+		},
+		sortfield:'create_time desc'
 	});
 }
  /**
@@ -149,6 +150,7 @@ function searchButton(){
 				ft.put("name@=", name);
 			}
 			return ft.getJSON();
-		}
+		},
+		sortfield:'create_time desc'
 	});
 }
