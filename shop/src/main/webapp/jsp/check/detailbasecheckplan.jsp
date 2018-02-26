@@ -7,7 +7,8 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/check/detailbasecheckplan.js'></script>
 <script type="text/javascript">
-var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
+var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>;
+var CHECK_RESULT = <%=EnumUtils.getEnums("CHECK.RESULT") %>;
 var _callbacks = $.Callbacks();
 $(function() {
 	
@@ -71,7 +72,10 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">盘点结果</th>
+						}},
+				formatter:function(value,row){
+						  	 return SKY.formatterEnum(value,row,CHECK_RESULT);
+						 }">盘点结果</th>
 				<th data-options="field:'state',width:100,
 				editor:{
 						type:'textbox',

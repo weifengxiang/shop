@@ -13,54 +13,55 @@
 	<script type="text/javascript">
 	var planCode = '${planCode}';
 	var cateCode = '${cateCode}';
-	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
+	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>;
+	var CHECK_RESULT = <%=EnumUtils.getEnums("CHECK.RESULT") %>;
 	</script>
 </head>
 <body>
-	<div class="easyui-navpanel">
-		<header>
-			<div class="m-toolbar">
-				<div class="m-left">
-					<a href="#" class="easyui-linkbutton m-back" data-options="plain:true,outline:true,back:true">Back</a>
-				</div>
-				<div class="m-title">商品列表</div>
-			</div>
-		</header>
-		<div>
-			<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:100px'
-				data-options="
-						singleSelect:true,border:false,fit:true,fitColumns:true,
-						scrollbarSize:0,
-						pagination:true
-					">
-				<thead>
-					<tr>
-							<th data-options="field:'comName',width:180,
-							editor:{
-									type:'textbox',
-									options:{
-										required:true
-									}}">商品名称</th>
-							<th data-options="field:'result',width:100,
-							editor:{
-									type:'textbox',
-									options:{
-										required:true
-									}}">盘点结果</th>
-							<th data-options="field:'state',width:100,
-							editor:{
-									type:'textbox',
-									options:{
-										required:true
-									}},
-							formatter:function(value,row){
-									  	 return SKY.formatterEnum(value,row,CHECK_STATE);
-									 }">盘点状态</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
+	<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:100px'
+		data-options="
+				singleSelect:true,border:false,fit:true,fitColumns:true,
+				scrollbarSize:0,
+				pagination:true
+			">
+		<thead>
+			<tr>
+					<th data-options="field:'comName',width:120,
+					editor:{
+							type:'textbox',
+							options:{
+								required:true
+							}}">商品名称</th>
+					<th data-options="field:'result',width:50,
+					editor:{
+							type:'textbox',
+							options:{
+								required:true
+							}},
+					formatter:function(value,row){
+							  	 return SKY.formatterEnum(value,row,CHECK_RESULT);
+							 }">盘点结果</th>
+					<th data-options="field:'state',width:50,
+					editor:{
+							type:'textbox',
+							options:{
+								required:true
+							}},
+					formatter:function(value,row){
+							  	 return SKY.formatterEnum(value,row,CHECK_STATE);
+							 }">盘点状态</th>
+					<th data-options="field:'id',width:100,
+					editor:{
+							type:'textbox',
+							options:{
+								required:true
+							}},
+					formatter:function(value,row){
+							  	 return foramtButton(row);
+							 }">操作</th>
+			</tr>
+		</thead>
+	</table>
 </body>	
 <script type="text/javascript">
 $(function(){
@@ -83,6 +84,24 @@ function searchPlanDetail(){
 			return ft.getJSON();
 		}
 	});
+}
+function foramtButton(row){
+	return "<input type='button' value='有货' onclick=\"check('"+row.id+"','1')\"></input>"+
+		   "&nbsp&nbsp&nbsp&nbsp"+
+		   "<input type='button' value='缺货' onclick=\"check('"+row.id+"','0')\"></input>";
+}
+/**
+ * 0:缺货,1:有货
+ */
+function check(id,result){
+	var url=basepath+'/dd/DDController/'+id+'/'+result;
+	$.post(SKY.urlCSRF(url), function(data){
+		   if(data.code=='1'){
+			   $('#listbasecheckdetaildg').datagrid('reload');
+		   }else{
+			   $.messager.alert('提示',data.name,'error')
+		   }
+		 });
 }
 </script>
 </html>

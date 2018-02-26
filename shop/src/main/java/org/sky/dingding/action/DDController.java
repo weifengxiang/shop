@@ -1,13 +1,22 @@
 package org.sky.dingding.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sky.check.model.BaseCheckPlan;
+import org.sky.dingding.service.DDService;
 import org.sky.sys.action.BaseController;
+import org.sky.sys.exception.ServiceException;
+import org.sky.sys.utils.JsonUtils;
+import org.sky.sys.utils.ResultData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  * 钉钉业务Controller
@@ -16,7 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class DDController extends BaseController {
-
+	@Autowired
+	private DDService ddservice;
 	/**
 	 * 显示盘点商品详情列表页面
 	 * @param planCode 计划编号
@@ -35,5 +45,27 @@ public class DDController extends BaseController {
 		mv.addObject("cateCode", cateCode);
 		mv.setViewName("jsp/dingding/commodity");
 		return mv;
+	}
+	/**
+	*商品盘查计划
+	**/
+	@RequestMapping(value = "/dd/DDController/{id}/{result}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String delBaseCheckPlan(
+			@PathVariable String id,
+			@PathVariable String result,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			ddservice.check(id, result);
+			rd.setCode(ResultData.code_success);
+			rd.setName("盘点成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("盘点失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
 	}
 }
