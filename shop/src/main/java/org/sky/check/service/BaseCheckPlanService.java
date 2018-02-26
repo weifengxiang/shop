@@ -255,4 +255,15 @@ public class BaseCheckPlanService {
 			}
 		}
 	}
+	public BaseCheckPlan getLasterBaseCheckPlan(String shopCode) {
+		BaseCheckPlanExample bcpe = new BaseCheckPlanExample();
+		bcpe.createCriteria().andShopCodeEqualTo(shopCode);
+		bcpe.setOrderByClause(" create_time desc");
+		List<BaseCheckPlan> list = basecheckplanmapper.selectByExample(bcpe);
+		if(!list.isEmpty()) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
 }

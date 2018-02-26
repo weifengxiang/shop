@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.sky.check.model.BaseCheckPlan;
+import org.sky.check.service.BaseCheckPlanService;
 import org.sky.dingding.service.DDService;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.exception.ServiceException;
+import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.JsonUtils;
 import org.sky.sys.utils.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class DDController extends BaseController {
 	@Autowired
 	private DDService ddservice;
+	@Autowired
+	private BaseCheckPlanService basecheckplanservice;
 	
 	/**
 	 * 页面切换
@@ -40,6 +44,12 @@ public class DDController extends BaseController {
 			@PathVariable String name,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
+		//盘查页面获取最新的计划编号
+		if("check".equals(name)) {
+			String organCode = BspUtils.getLoginUser().getOrganCode();
+			BaseCheckPlan bcp = basecheckplanservice.getLasterBaseCheckPlan(organCode);
+			mv.addObject("checkPlan", bcp);
+		}
 		mv.setViewName("jsp/dingding/"+name);
 		return mv;
 	}

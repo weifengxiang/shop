@@ -9,11 +9,14 @@
 	<title>商品盘查系统</title>
 	<security:csrfMetaTags />
 	<script type="text/javascript">
+
+	var planCode='${checkPlan.code}';
 	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
 	</script>
 </head>
 <body>
 	<div class="easyui-navpanel">
+		${checkPlan.name}
 		<div style='height: 100%;'>
 			<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 	    </div>
@@ -26,7 +29,6 @@
 	</div>
 </body>	
 <script type="text/javascript">
-var planCode='001_2018-02-24';
 $(function(){
 	$('#notice').on('click',function(){
 		window.location.href=basepath+"dd/DDController/initPage/main";
