@@ -25,10 +25,10 @@
 		<security:csrfInput/>
 		<input type='hidden' name='client' value='dd'/>
 			<div style="margin-bottom:10px">
-				<input class="easyui-textbox" label="用户名:" name="username" id="j_username" prompt="请输入用户名" style="width:100%">
+				<input class="easyui-textbox" data-options="prompt:'请输入用户名',iconCls:'icon-man'"  name="username" id="j_username" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
-				<input class="easyui-passwordbox" label="密码:" name="password" id="j_password" prompt="请输入密码" style="width:100%">
+				<input class="easyui-passwordbox" data-options="prompt:'请输入密码'" name="password" id="j_password" style="width:100%">
 			</div>
 			<div style="margin-bottom:10px">
 				<font color=red>${SPRING_SECURITY_LAST_EXCEPTION.message}</font>

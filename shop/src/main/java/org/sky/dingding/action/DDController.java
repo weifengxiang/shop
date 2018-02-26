@@ -27,6 +27,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class DDController extends BaseController {
 	@Autowired
 	private DDService ddservice;
+	
+	/**
+	 * 页面切换
+	 * @param name
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/dd/DDController/initPage/{name}", method = { RequestMethod.GET })
+	public ModelAndView initPage(
+			@PathVariable String name,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("jsp/dingding/"+name);
+		return mv;
+	}
 	/**
 	 * 显示盘点商品详情列表页面
 	 * @param planCode 计划编号
