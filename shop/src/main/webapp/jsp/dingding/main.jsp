@@ -53,51 +53,6 @@
 			line-height:150%;
 		}
 	</style>
-	<div id="p3" class="easyui-navpanel" style='width:100%;height:100%' >
-		<header>
-			<div class="m-toolbar">
-				<div class="m-left">
-					<a href="#" class="easyui-linkbutton m-back" data-options="plain:true,outline:true,back:true">Back</a>
-				</div>
-				<div class="m-title">商品列表</div>
-			</div>
-		</header>
-		<div style="padding:20px 10px">
-			<table  id="listbasecheckdetaildg" class="easyui-datagrid" 
-				data-options="
-						singleSelect:true,fitColumns:true,scrollbarSize:0,
-						fit:true,
-						border:false,
-						pagination:true
-					">
-	<thead>
-		<tr>
-				<th data-options="field:'comName',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">商品名称</th>
-				<th data-options="field:'result',width:100,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">盘点结果</th>
-				<th data-options="field:'state',width:100,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}},
-				formatter:function(value,row){
-						  	 return SKY.formatterEnum(value,row,CHECK_STATE);
-						 }">盘点状态</th>
-		</tr>
-	</thead>
-</table>
-		</div>
-	</div>
 </body>	
 <script type="text/javascript">
 var planCode='001_2018-02-24';
@@ -125,8 +80,7 @@ function initComCateTree() {
 						onClick : function(node) {
 							var data=node.data;
 							if(data){
-								$.mobile.go('#p3')
-								searchPlanDetail();
+								window.location.href=basepath+"dd/DDController/initBaseCheckDetailListPage/"+planCode+"/"+data.cate_code;
 							}
 						}
 					});
