@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>商品盘查系统</title>
+	<script type="text/javascript" src="${basepath}skin/jquery/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${basepath}skin/js/md5.js"></script>
 	<security:csrfMetaTags />
 </head>
@@ -41,6 +42,8 @@
 </body>
 <script type="text/javascript">
 function login() {
+	//记录cookie
+	$.cookie('client','dd',{ path: '/', expires:100});
 	var j_username = $("#j_username").textbox('getValue');
 	if(!j_username){
 		$.messager.alert('提示','请输入登录名','error');

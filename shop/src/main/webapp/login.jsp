@@ -140,6 +140,10 @@ function getLeft(){
 	return (width-400)+'px';
 }
 $(function(){
+	var client = $.cookie('client');
+	if('dd'==client){
+		window.location.href=basepath+'dingding/login';
+	}
 	initRememberMe();
 	$(document).keypress(function(e) {  
 		// 回车键事件  
