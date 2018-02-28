@@ -347,6 +347,9 @@
 		<if test="params.checker != null">
 			and bcd.checker=#{params.checker,jdbcType=VARCHAR}
 		</if>
+		<if test="params.state != null">
+			and bcd.state=#{params.state,jdbcType=VARCHAR}
+		</if>
 	order by bcc.code,bcc.seq
   </select>
 </mapper>

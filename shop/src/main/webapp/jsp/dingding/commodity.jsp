@@ -13,6 +13,7 @@
 	<script type="text/javascript">
 	var planCode = '${planCode}';
 	var cateCode = '${cateCode}';
+	var state = '${state}';
 	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>;
 	var CHECK_RESULT = <%=EnumUtils.getEnums("CHECK.RESULT") %>;
 	</script>
@@ -77,6 +78,9 @@ function searchPlanDetail(){
 			var ft = new HashMap();
 			if(planCode){
 				ft.put("planCode@=", planCode);
+			}
+			if('-1'!=state){
+				ft.put("state@=", state);
 			}
 			if(cateCode){
 				ft.put("exists(select 1 from base_commodity bc where bc.cate_code='"+cateCode+"' and bc.code=com_code) and 1@=",1);

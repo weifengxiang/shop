@@ -17,7 +17,10 @@
 <body>
 	<div class="easyui-navpanel">
 		${checkPlan.name}
-		<div style='height: 100%;'>
+		<input type='radio' name='state' value='-1' checked>全部</input>
+		<input type='radio' name='state' value='0'>未盘点</input>
+		<input type='radio' name='state' value='1'>已盘点</input>
+		<div style='height: 100%;padding-top:10px; padding-left:10px'>
 			<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 	    </div>
 		<footer>
@@ -34,10 +37,20 @@ $(function(){
 		window.location.href=basepath+"dd/DDController/initPage/main";
 	});
 	initComCateTree();
+	$("input[name='state']").on('click',function(){
+		initComCateTree();
+	});
 });
+/**
+ * 盘点计划树
+ */
 function initComCateTree() {
 	var params=new HashMap();
+	var state=$("input[name='state']:checked").val();
 	params.put('planCode',planCode);
+	if(state!='-1'){
+		params.put('state',state);
+	}
 	var url = basepath + 'dd/DDController/getBaseCheckPlanCateTree';
 	url=SKY.urlCSRF(url);
 	$.ajax({
@@ -54,32 +67,10 @@ function initComCateTree() {
 						onClick : function(node) {
 							var data=node.data;
 							if(data){
-								window.location.href=basepath+"dd/DDController/initBaseCheckDetailListPage/"+planCode+"/"+data.cate_code;
+								window.location.href=basepath+"dd/DDController/initBaseCheckDetailListPage/"+planCode+"/"+data.cate_code+"/"+state;
 							}
 						}
 					});
-		}
-	});
-}
-/**
- * 盘查明细查询
- */
-function searchPlanDetail(){
-	var selectNode = $('#comcatetree').tree("getData",
-	  		 $('#comcatetree').tree("getSelected").target
-	  		);
-	$('#listbasecheckdetaildg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseCheckDetail/getBaseCheckDetailByPage')
-	$('#listbasecheckdetaildg').datagrid('load', {
-		filter : function(){
-			var ft = new HashMap();
-			if(planCode){
-				ft.put("planCode@=", planCode);
-			}
-			var cate_code=selectNode.data.cate_code;
-			if(cate_code){
-				ft.put("exists(select 1 from base_commodity bc where bc.cate_code='"+cate_code+"' and bc.code=com_code) and 1@=",1);
-			}
-			return ft.getJSON();
 		}
 	});
 }

@@ -80,22 +80,24 @@ public class DDController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/dd/DDController/initBaseCheckDetailListPage/{planCode}/{cateCode}", method = { RequestMethod.GET })
+	@RequestMapping(value = "/dd/DDController/initBaseCheckDetailListPage/{planCode}/{cateCode}/{state}", method = { RequestMethod.GET })
 	public ModelAndView initBaseCheckDetailListPage(
 			@PathVariable String planCode,
 			@PathVariable String cateCode,
+			@PathVariable String state,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("planCode", planCode);
 		mv.addObject("cateCode", cateCode);
+		mv.addObject("state", state);
 		mv.setViewName("jsp/dingding/commodity");
 		return mv;
 	}
 	/**
-	*商品盘查计划
+	*商品盘查
 	**/
 	@RequestMapping(value = "/dd/DDController/{id}/{result}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
-	public @ResponseBody String delBaseCheckPlan(
+	public @ResponseBody String saveCheckPlan(
 			@PathVariable String id,
 			@PathVariable String result,
 			HttpServletRequest request, 

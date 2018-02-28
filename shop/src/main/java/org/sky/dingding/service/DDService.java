@@ -15,6 +15,7 @@ import org.sky.sys.client.SysCommonMapper;
 import org.sky.sys.exception.ServiceException;
 import org.sky.sys.utils.BspUtils;
 import org.sky.sys.utils.CommonUtils;
+import org.sky.sys.utils.StringUtils;
 import org.sky.sys.utils.TreeStru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,12 @@ public class DDService {
 	 */
 	public List<TreeStru> getBaseCheckPlanCateTree(Map m){
 		String planCode = (String)m.get("planCode");
+		String state = (String)m.get("state");
 		Map params = new HashMap();
 		params.put("planCode",planCode);
+		if(!StringUtils.isNull(state)) {
+			params.put("state",state);
+		}
 		params.put("checker",BspUtils.getLoginUser().getCode());
 		List<Map> list = basecheckdetailmapper.selectBaseCheckPlanComCateList(params);
 		if(list.isEmpty()) {
