@@ -34,26 +34,38 @@ public class DDController extends BaseController {
 	private DDService ddservice;
 	@Autowired
 	private BaseCheckPlanService basecheckplanservice;
-	
 	/**
-	 * 页面切换
+	 * 
+	 * @param state
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/dd/DDController/main", method = { RequestMethod.GET })
+	public ModelAndView main(
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("jsp/dingding/main");
+		return mv;
+	}
+	/**
+	 * 商品盘查
 	 * @param name
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/dd/DDController/initPage/{name}", method = { RequestMethod.GET })
-	public ModelAndView initPage(
-			@PathVariable String name,
+	@RequestMapping(value = "/dd/DDController/check/{state}", method = { RequestMethod.GET })
+	public ModelAndView check(
+			@PathVariable String state,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		//盘查页面获取最新的计划编号
-		if("check".equals(name)) {
-			String organCode = BspUtils.getLoginUser().getOrganCode();
-			BaseCheckPlan bcp = basecheckplanservice.getLasterBaseCheckPlan(organCode);
-			mv.addObject("checkPlan", bcp);
-		}
-		mv.setViewName("jsp/dingding/"+name);
+		String organCode = BspUtils.getLoginUser().getOrganCode();
+		BaseCheckPlan bcp = basecheckplanservice.getLasterBaseCheckPlan(organCode);
+		mv.addObject("checkPlan", bcp);
+		mv.addObject("state", state);
+		mv.setViewName("jsp/dingding/check");
 		return mv;
 	}
 	/**

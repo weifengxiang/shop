@@ -12,12 +12,13 @@
 
 	var planCode='${checkPlan.code}';
 	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
+	var state = '${state}';
 	</script>
 </head>
 <body>
 	<div class="easyui-navpanel">
 		${checkPlan.name}
-		<input type='radio' name='state' value='-1' checked>全部</input>
+		<input type='radio' name='state' value='-1'>全部</input>
 		<input type='radio' name='state' value='0'>未盘点</input>
 		<input type='radio' name='state' value='1'>已盘点</input>
 		<div style='height: 100%;padding-top:10px; padding-left:10px'>
@@ -34,8 +35,9 @@
 <script type="text/javascript">
 $(function(){
 	$('#notice').on('click',function(){
-		window.location.href=basepath+"dd/DDController/initPage/main";
+		window.location.href=basepath+"dd/DDController/main";
 	});
+	$("input[name='state'][value='"+state+"']").attr('checked',true)
 	initComCateTree();
 	$("input[name='state']").on('click',function(){
 		initComCateTree();

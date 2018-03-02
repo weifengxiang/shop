@@ -19,7 +19,11 @@
 	</script>
 </head>
 <body>
-	<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:100px'
+	<div style='width:100%;height:10%'>
+		<p><a href="#" class="easyui-linkbutton c1" id='backBtn' style="width:100px;padding-right: 10px">返回</a></p>
+	</div>
+	<div style='width:100%;height:90%'>
+	<table id="listbasecheckdetaildg" class="easyui-datagrid" style='width:100%;height:90%'
 		data-options="
 				singleSelect:true,border:false,fit:true,fitColumns:true,
 				scrollbarSize:0,
@@ -63,10 +67,14 @@
 			</tr>
 		</thead>
 	</table>
+	</div>
 </body>	
 <script type="text/javascript">
 $(function(){
 	searchPlanDetail();
+	$('#backBtn').on('click',function(){
+		window.location.href=basepath+"dd/DDController/check/"+state;
+	});
 });
 /**
  * 盘查明细查询
