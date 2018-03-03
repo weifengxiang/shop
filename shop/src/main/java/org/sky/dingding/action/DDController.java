@@ -55,16 +55,17 @@ public class DDController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/dd/DDController/check/{state}", method = { RequestMethod.GET })
+	@RequestMapping(value = "/dd/DDController/check", method = { RequestMethod.GET })
 	public ModelAndView check(
-			@PathVariable String state,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
+		String params = request.getParameter("params");
+		Map paramMap = JsonUtils.json2map(params);
 		//盘查页面获取最新的计划编号
 		String organCode = BspUtils.getLoginUser().getOrganCode();
 		BaseCheckPlan bcp = basecheckplanservice.getLasterBaseCheckPlan(organCode);
 		mv.addObject("checkPlan", bcp);
-		mv.addObject("state", state);
+		mv.addObject("params", paramMap);
 		mv.setViewName("jsp/dingding/check");
 		return mv;
 	}

@@ -12,7 +12,8 @@
 
 	var planCode='${checkPlan.code}';
 	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
-	var state = '${state}';
+	var state = '${params.state}';
+	var cateCode = '${params.cateCode}';
 	</script>
 </head>
 <body>
@@ -40,6 +41,7 @@ $(function(){
 	$("input[name='state'][value='"+state+"']").attr('checked',true)
 	initComCateTree();
 	$("input[name='state']").on('click',function(){
+		cateCode='';
 		initComCateTree();
 	});
 });
@@ -70,6 +72,18 @@ function initComCateTree() {
 							var data=node.data;
 							if(data){
 								window.location.href=basepath+"dd/DDController/initBaseCheckDetailListPage/"+planCode+"/"+data.cate_code+"/"+state;
+							}
+						},
+						onLoadSuccess:function(node, data){
+							if(cateCode){
+								var node = $('#comcatetree').tree('find',cateCode);
+								if(null==node){
+									node = $('#comcatetree').tree('find',cateCode.substring(0,cateCode.length-2));
+								}
+								if(null==node){
+									node = $('#comcatetree').tree('find',cateCode.substring(0,cateCode.length-4));
+								}
+								$('#comcatetree').tree('expandTo', node.target);
 							}
 						}
 					});

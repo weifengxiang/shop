@@ -74,7 +74,10 @@
 $(function(){
 	searchPlanDetail();
 	$('#backBtn').on('click',function(){
-		window.location.href=basepath+"dd/DDController/check/"+state;
+		var params = new HashMap();
+		params.put('state',state);
+		params.put('cateCode',cateCode);
+		window.location.href=basepath+"dd/DDController/check?params="+params.getJSON();
 	});
 });
 /**

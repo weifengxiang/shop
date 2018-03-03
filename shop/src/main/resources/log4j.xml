@@ -85,7 +85,7 @@
 
 	<!-- root部分定义了log4j的默认输出级别和方式 -->
 	<root>
-		<priority value="ERROR" />
+		<priority value="DEBUG" />
 		<appender-ref ref="DEBUG" />
 		<appender-ref ref="INFO" />
 		<appender-ref ref="WARN" />

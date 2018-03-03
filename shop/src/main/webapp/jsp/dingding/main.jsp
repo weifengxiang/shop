@@ -49,7 +49,9 @@ $(function(){
 	var url=basepath+"base/SysNotice/getLasterSysNotice";
 	$('#detailsysnoticeform').form('load',SKY.urlCSRF(url));
 	$('#chechPlan').on('click',function(){
-		window.location.href=basepath+"dd/DDController/check/0";
+		var params = new HashMap();
+		params.put('state','0');
+		window.location.href=basepath+"dd/DDController/check?params="+params.getJSON();
 	});
 });
 </script>
