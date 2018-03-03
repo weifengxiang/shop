@@ -12,6 +12,8 @@ public class BaseComcheckCfg {
     private String empCode;
     
     private String empName;
+    
+    private String orgName;
 
     private String status;
 
@@ -111,5 +113,13 @@ public class BaseComcheckCfg {
 
 	public void setEmpName(String empName) {
 		this.empName = empName;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
 	}
 }

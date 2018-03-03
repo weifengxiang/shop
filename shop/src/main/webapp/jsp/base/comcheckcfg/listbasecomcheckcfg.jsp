@@ -55,6 +55,12 @@ $(function() {
 						options:{
 							required:true
 						}}">员工</th>
+				<th data-options="field:'orgName',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">门店</th>
 				<th data-options="field:'status',width:180,
 				editor:{
 						type:'textbox',

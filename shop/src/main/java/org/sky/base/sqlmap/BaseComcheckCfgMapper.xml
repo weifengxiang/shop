@@ -7,6 +7,7 @@
     <result column="COM_CATE_NAME" jdbcType="VARCHAR" property="comCateName" />
     <result column="EMP_CODE" jdbcType="VARCHAR" property="empCode" />
     <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
     <result column="STATUS" jdbcType="CHAR" property="status" />
     <result column="NOTE" jdbcType="VARCHAR" property="note" />
     <result column="CREATER" jdbcType="VARCHAR" property="creater" />
@@ -75,7 +76,8 @@
   <sql id="Base_Column_List">
     ID, COM_CATE, EMP_CODE, STATUS, NOTE, CREATER, CREATE_TIME, UPDATER, UPDATE_TIME,
     (SELECT NAME FROM BASE_COM_CATE BCC WHERE BCC.CODE=COM_CATE) AS COM_CATE_NAME,
-    (SELECT NAME FROM SYS_USER SU WHERE SU.CODE=EMP_CODE) AS EMP_NAME
+    (SELECT NAME FROM SYS_USER SU WHERE SU.CODE=EMP_CODE) AS EMP_NAME,
+    (SELECT SO.NAME FROM SYS_ORGAN SO,SYS_USER SU WHERE SO.CODE=SU.ORGAN_CODE AND SU.CODE=EMP_CODE) AS ORG_NAME
   </sql>
   <select id="selectByExample" parameterType="org.sky.base.model.BaseComcheckCfgExample" resultMap="BaseResultMap">
     select
