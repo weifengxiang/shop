@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${basepath}skin/plugins/jquery-easyui-1.5.4/themes/mobile.css">
 <link rel="stylesheet" type="text/css" href="${basepath}skin/plugins/jquery-easyui-1.5.4/themes/color.css">
 <link rel="stylesheet" type="text/css" href="${basepath}skin/plugins/jquery-easyui-1.5.4/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${basepath}skin/css/dd.css">
      
 <script type="text/javascript" src="${basepath}skin/plugins/jquery-easyui-1.5.4/jquery.min.js"></script>
 <script type="text/javascript" src="${basepath}skin/plugins/jquery-easyui-1.5.4/jquery.easyui.min.js"></script>
