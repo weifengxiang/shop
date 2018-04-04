@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="easyui-navpanel">
-		${checkPlan.name}
+		${checkPlan.shopName}${checkPlan.name}<br/>
 		<input type='radio' name='state' value='-1'>全部</input>
 		<input type='radio' name='state' value='0'>未检查</input>
 		<input type='radio' name='state' value='1'>已检查</input>

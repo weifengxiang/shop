@@ -21,7 +21,7 @@ function initEditBaseComCatePage(paramOpts){
 	var url=basepath+"base/BaseCommodity/getBaseComCateById?id="+paramOpts.data.id;
 	$('#addeditbasecomcateform').form('load',SKY.urlCSRF(url));
 	$('#code').textbox('readonly',true);
-	$('#name').textbox('readonly',true);
+	//$('#name').textbox('readonly',true);
 }
 /**
  * 保存添加/编辑商品门类管理

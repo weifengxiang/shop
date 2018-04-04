@@ -37,7 +37,7 @@ $(function() {
 					</td>
 					<th><label>毛利率/加价率:</label></th>
 					<td><input class="easyui-numberbox" name="rate"
-						data-options="required:true,precision:2"></input></td>
+						data-options="precision:2"></input></td>
 				  </tr>
 				  <tr colspan='3'>
 					<th><label>序号:</label></th>
