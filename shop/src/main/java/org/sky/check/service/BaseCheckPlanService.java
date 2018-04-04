@@ -266,4 +266,8 @@ public class BaseCheckPlanService {
 			return null;
 		}
 	}
+	public List<BaseCheckPlan> selectBaseCheckPlanByExample(BaseCheckPlanExample ep){
+		List list = basecheckplanmapper.selectByExample(ep);
+		return list;
+	}
 }
