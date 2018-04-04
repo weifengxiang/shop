@@ -32,7 +32,7 @@ public class BaseCheckPlanController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示盘点计划列表页面
+	*显示检查计划列表页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/initBaseCheckPlanListPage", method = { RequestMethod.GET })
 	public String initBaseCheckPlanListPage(
@@ -40,7 +40,7 @@ public class BaseCheckPlanController extends BaseController{
 		return "jsp/check/listbasecheckplan";
 	}
 	/**
-	 * 盘点计划分页查询
+	 * 检查计划分页查询
 	 * @param request
 	 * @param response
 	 * @return
@@ -66,7 +66,7 @@ public class BaseCheckPlanController extends BaseController{
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
-	 * 盘点计划商品门类树
+	 * 检查计划商品门类树
 	 * @param request
 	 * @param response
 	 * @return
@@ -82,7 +82,7 @@ public class BaseCheckPlanController extends BaseController{
 		return basecheckplanService.getBaseCheckPlanCateTree(dataMap);
 	}
 	/**
-	*显示盘点计划新增页面
+	*显示检查计划新增页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/initAddBaseCheckPlanPage", method = { RequestMethod.GET })
 	public String initAddBaseCheckPlanPage(
@@ -90,7 +90,7 @@ public class BaseCheckPlanController extends BaseController{
 		return "jsp/check/editbasecheckplan";
 	}
 	/**
-	*显示盘点计划修改页面
+	*显示检查计划修改页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/initEditBaseCheckPlanPage", method = { RequestMethod.GET })
 	public String initEditBaseCheckPlanPage(
@@ -98,7 +98,7 @@ public class BaseCheckPlanController extends BaseController{
 		return "jsp/check/editbasecheckplan";
 	}
 	/**
-	*显示盘点计划详细页面
+	*显示检查计划详细页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/initDetailBaseCheckPlanPage", method = { RequestMethod.GET })
 	public String initDetailBaseCheckPlanPage(
@@ -106,7 +106,7 @@ public class BaseCheckPlanController extends BaseController{
 		return "jsp/check/detailbasecheckplan";
 	}
 	/**
-	*保存新增/修改盘点计划
+	*保存新增/修改检查计划
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/saveAddEditBaseCheckPlan", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditBaseCheckPlan(
@@ -127,7 +127,7 @@ public class BaseCheckPlanController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*删除盘点计划
+	*删除检查计划
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/delBaseCheckPlan", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delBaseCheckPlan(
@@ -149,7 +149,7 @@ public class BaseCheckPlanController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*根据主键查询盘点计划
+	*根据主键查询检查计划
 	**/
 	@RequestMapping(value = "/base/BaseCheckPlan/getBaseCheckPlanById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getBaseCheckPlanById(

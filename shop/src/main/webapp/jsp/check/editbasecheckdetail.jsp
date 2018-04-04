@@ -30,12 +30,12 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>盘点结果:</label></th>
+					<th><label>检查结果:</label></th>
 					<td><input class="easyui-textbox" name="result"
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>盘点状态:</label></th>
+					<th><label>检查状态:</label></th>
 					<td><input class="easyui-textbox" name="state"
 						data-options="required:true"></input></td>
 				  </tr>

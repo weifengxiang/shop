@@ -37,7 +37,7 @@ $(function() {
 <div data-options="region:'west',split:true,title:'商品类别'" style="width:300px;padding:0px;">
 		<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="盘点详情管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="检查详情管理">
 <table  id="listbasecheckdetaildg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -75,7 +75,7 @@ $(function() {
 						}},
 				formatter:function(value,row){
 						  	 return SKY.formatterEnum(value,row,CHECK_RESULT);
-						 }">盘点结果</th>
+						 }">检查结果</th>
 				<th data-options="field:'state',width:100,
 				editor:{
 						type:'textbox',
@@ -84,7 +84,7 @@ $(function() {
 						}},
 				formatter:function(value,row){
 						  	 return SKY.formatterEnum(value,row,CHECK_STATE);
-						 }">盘点状态</th>
+						 }">检查状态</th>
 				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',

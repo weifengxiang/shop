@@ -22,7 +22,7 @@ $(function() {
 			<input type='hidden' name='empCode' id='empCode'/>
 			<table style="width:100%">
 				  <tr>
-					<th><label>盘点类别:</label></th>
+					<th><label>检查类别:</label></th>
 					<td><input class="easyui-textbox" name="comCateName" id="comCateName"
 						data-options="required:true,readonly:true"></input></td>
 				  </tr>

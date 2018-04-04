@@ -1,0 +1,137 @@
+/*节点轴的控制*/
+.side-catalog {
+    width: 270px;
+    height: 456px;
+    position: fixed;
+    bottom: 10px;
+    font-size: 14px;
+    font-family:'Raleway', sans-serif;
+    line-height: 19px;
+}
+
+    .side-catalog .side-bar {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 456px;
+        background-color: #eaeaea;
+        border: 1px solid #eaeaea;
+        border-top: 0;
+        border-bottom: 0;
+        left: 5px;
+    }
+
+        .side-catalog .side-bar .circle.start, .side-catalog .side-bar .circle.end {
+            position: absolute;
+            left: -5px;
+            width: 10px;
+            height: 10px;
+            background: transparent url(sideCatalog_a278e02.gif) 0 -199px no-repeat;
+            zoom: 1;
+            overflow: hidden;
+        }
+
+        .side-catalog .side-bar .circle.start {
+            top: 0;
+        }
+
+        .side-catalog .side-bar .circle.end {
+            margin: 0;
+            bottom: 0;
+        }
+
+    .side-catalog .catalog-scroller {
+        padding-top: 15px;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 210px;
+        height: 456px;
+        overflow: hidden;
+    }
+
+        .side-catalog .catalog-scroller .catalog-list {
+            width: 228px;
+            height: auto;
+            position: relative;
+        }
+  /*关于节点的设置*/
+.pointer {
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-top: 14px;
+    left: 0;
+    background: transparent url(sideCatalog_a278e02.gif) 3px -222px no-repeat;
+}
+/*活动节点，此处仅是子菜单活动的情况下，还没实现父级菜单与子级菜单活动区分的样式*/
+.nav .nav .active .pointer {
+      display:block;
+        height: 13px!important;
+        width: 18px!important;
+        background: transparent url(sideCatalog_a278e02.gif) -271px -38px no-repeat!important;
+}
+
+
+    
+   body {
+        position: relative;
+        line-height: 1.5;
+        font-family: 'Raleway', sans-serif;
+    }
+  /*关于nav组件的不同显示状况的处理*/ 
+    .nav a {
+        color: black;
+        font-style: italic;
+    }
+    .nav .active {
+        font-weight: bold;
+      
+    }
+    .nav .nav {
+        display: none;
+    }
+    .nav .active .nav {
+        display: block;
+    }
+    .nav .nav a {
+        font-weight: normal;
+        font-size: .85em;
+    }
+    .nav .nav .active a,
+    .nav .nav .active:hover a,
+    .nav .nav .active:focus a {
+        font-weight: bold;
+        padding-left: 30px;
+        /*border-left: 2px solid black;*/
+    }
+  /*进入导航后，设置距离顶部的位置*/
+    .affix-top {
+        position: relative;
+    }
+    .affix {
+        top: 10px;
+    }
+    /*以下三个是到达导航底部时，设置导航位置、宽度，必须设置*/
+    .affix,
+    .affix-bottom {
+        width: 250px;
+    }
+    .affix-bottom {
+        position: absolute;
+    }
+   
+    @media (min-width: 1200px) {
+        .affix,
+        .affix-bottom {
+            width: 280px;
+        }
+    }
+
+a:hover {
+    background: #fff!important;
+    font-weight: 700;
+}

@@ -32,7 +32,7 @@ public class BaseComcheckCfgController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示商品盘点设置列表页面
+	*显示商品检查设置列表页面
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/initBaseComcheckCfgListPage", method = { RequestMethod.GET })
 	public String initBaseComcheckCfgListPage(
@@ -40,7 +40,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return "jsp/base/comcheckcfg/listbasecomcheckcfg";
 	}
 	/**
-	 * 商品盘点设置树
+	 * 商品检查设置树
 	 * @param request
 	 * @param response
 	 * @return
@@ -56,7 +56,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return basecomcheckcfgService.getBaseComcheckCfg(dataMap);
 	}
 	/**
-	 * 商品盘点设置分页查询
+	 * 商品检查设置分页查询
 	 * @param request
 	 * @param response
 	 * @return
@@ -82,7 +82,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
-	*显示商品盘点设置新增页面
+	*显示商品检查设置新增页面
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/initAddBaseComcheckCfgPage", method = { RequestMethod.GET })
 	public String initAddBaseComcheckCfgPage(
@@ -90,7 +90,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return "jsp/base/comcheckcfg/editbasecomcheckcfg";
 	}
 	/**
-	*显示商品盘点设置修改页面
+	*显示商品检查设置修改页面
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/initEditBaseComcheckCfgPage", method = { RequestMethod.GET })
 	public String initEditBaseComcheckCfgPage(
@@ -98,7 +98,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return "jsp/base/comcheckcfg/editbasecomcheckcfg";
 	}
 	/**
-	*显示商品盘点设置详细页面
+	*显示商品检查设置详细页面
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/initDetailBaseComcheckCfgPage", method = { RequestMethod.GET })
 	public String initDetailBaseComcheckCfgPage(
@@ -106,7 +106,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return "jsp/base/comcheckcfg/detailbasecomcheckcfg";
 	}
 	/**
-	*保存新增/修改商品盘点设置
+	*保存新增/修改商品检查设置
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/saveAddEditBaseComcheckCfg", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditBaseComcheckCfg(
@@ -127,7 +127,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*删除商品盘点设置
+	*删除商品检查设置
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/delBaseComcheckCfg", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delBaseComcheckCfg(
@@ -149,7 +149,7 @@ public class BaseComcheckCfgController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*根据主键查询商品盘点设置
+	*根据主键查询商品检查设置
 	**/
 	@RequestMapping(value = "/base/BaseComcheckCfg/getBaseComcheckCfgById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getBaseComcheckCfgById(

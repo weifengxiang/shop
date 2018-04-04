@@ -1,5 +1,5 @@
 /**
- * 初始化添加盘点计划页面
+ * 初始化添加检查计划页面
  */
 function initAddBaseCheckPlanPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -8,7 +8,7 @@ function initAddBaseCheckPlanPage(paramOpts){
 	});
 }
 /**
- * 初始化编辑盘点计划页面
+ * 初始化编辑检查计划页面
  */
 function initEditBaseCheckPlanPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -19,7 +19,7 @@ function initEditBaseCheckPlanPage(paramOpts){
 	$('#addeditbasecheckplanform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑盘点计划
+ * 保存添加/编辑检查计划
  */
 function submitAddEditBaseCheckPlanForm() {
 	var options = { 

@@ -31,7 +31,7 @@ public class BaseCheckDetailController extends BaseController{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	*显示盘点详情列表页面
+	*显示检查详情列表页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/initBaseCheckDetailListPage", method = { RequestMethod.GET })
 	public String initBaseCheckDetailListPage(
@@ -39,7 +39,7 @@ public class BaseCheckDetailController extends BaseController{
 		return "jsp/check/listbasecheckdetail";
 	}
 	/**
-	 * 盘点详情分页查询
+	 * 检查详情分页查询
 	 * @param request
 	 * @param response
 	 * @return
@@ -65,7 +65,7 @@ public class BaseCheckDetailController extends BaseController{
 		return JsonUtils.obj2json(pageData);
 	}
 	/**
-	*显示盘点详情新增页面
+	*显示检查详情新增页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/initAddBaseCheckDetailPage", method = { RequestMethod.GET })
 	public String initAddBaseCheckDetailPage(
@@ -73,7 +73,7 @@ public class BaseCheckDetailController extends BaseController{
 		return "jsp/check/editbasecheckdetail";
 	}
 	/**
-	*显示盘点详情修改页面
+	*显示检查详情修改页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/initEditBaseCheckDetailPage", method = { RequestMethod.GET })
 	public String initEditBaseCheckDetailPage(
@@ -81,7 +81,7 @@ public class BaseCheckDetailController extends BaseController{
 		return "jsp/check/editbasecheckdetail";
 	}
 	/**
-	*显示盘点详情详细页面
+	*显示检查详情详细页面
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/initDetailBaseCheckDetailPage", method = { RequestMethod.GET })
 	public String initDetailBaseCheckDetailPage(
@@ -89,7 +89,7 @@ public class BaseCheckDetailController extends BaseController{
 		return "jsp/check/detailbasecheckdetail";
 	}
 	/**
-	*保存新增/修改盘点详情
+	*保存新增/修改检查详情
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/saveAddEditBaseCheckDetail", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveAddEditBaseCheckDetail(
@@ -110,7 +110,7 @@ public class BaseCheckDetailController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*删除盘点详情
+	*删除检查详情
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/delBaseCheckDetail", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String delBaseCheckDetail(
@@ -132,7 +132,7 @@ public class BaseCheckDetailController extends BaseController{
 		return JsonUtils.obj2json(rd);
 	}
 	/**
-	*根据主键查询盘点详情
+	*根据主键查询检查详情
 	**/
 	@RequestMapping(value = "/base/BaseCheckDetail/getBaseCheckDetailById", method =RequestMethod.GET,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getBaseCheckDetailById(

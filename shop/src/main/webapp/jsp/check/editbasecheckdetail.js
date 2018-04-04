@@ -1,5 +1,5 @@
 /**
- * 初始化添加盘点详情页面
+ * 初始化添加检查详情页面
  */
 function initAddBaseCheckDetailPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -8,7 +8,7 @@ function initAddBaseCheckDetailPage(paramOpts){
 	});
 }
 /**
- * 初始化编辑盘点详情页面
+ * 初始化编辑检查详情页面
  */
 function initEditBaseCheckDetailPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -19,7 +19,7 @@ function initEditBaseCheckDetailPage(paramOpts){
 	$('#addeditbasecheckdetailform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑盘点详情
+ * 保存添加/编辑检查详情
  */
 function submitAddEditBaseCheckDetailForm() {
 	var options = { 

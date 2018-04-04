@@ -6,7 +6,7 @@ import org.quartz.JobExecutionException;
 import org.sky.check.service.BaseCheckPlanService;
 import org.sky.sys.utils.BspUtils;
 /**
- * 创建每天盘查计划（每周一执行一次）
+ * 创建每天检查计划（每周一执行一次）
  * @author weifx
  *
  */

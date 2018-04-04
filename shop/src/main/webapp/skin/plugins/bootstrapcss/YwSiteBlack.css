@@ -1,0 +1,260 @@
+body {
+	background-color: #BAD3E7!important;
+}
+fieldset legend {
+    font-weight:700;
+    color:#5c5490;
+}
+.container{
+	width:100%!important;
+}
+
+label {
+ color:black!important;
+}
+small {
+    color: #999999;
+    font-size: 10px;
+    float:right;
+    right: 0px;
+}
+.btn-group label {
+    color:white!important;
+    font-weight:700;
+}
+ a:hover {
+         color:white!important;
+         font-weight:700
+    }
+.float-right {
+    float:right;
+}
+.form-content{
+		background-color: white;
+	}
+		.menu-left{
+		    float:left;
+			background-color: #4A515C;
+			min-height:600px;
+			padding:0px 0px !important;
+			margin:0px 0px !important;
+			border-left:solid 1px #4A515C; 
+		}
+		.menu-left-item{
+			height:120px;
+			font-size:30px;
+			text-align: center;
+			padding-top:40px;
+			 color:white;
+			font-size:15px;
+		}
+		 
+		.checked{
+		 background-color:white;
+		 color:gray;
+		}
+		
+		.menu-right{
+		   padding:0px 0px !important;
+			margin:0px 0px !important;
+	     	float:right;
+			background-color: white;
+			min-height:600px;
+		}
+		
+/*页头样式开始**/
+
+.navbar-default {
+    background-color: #000000!important;
+    border-color: #020D48!important;
+    color:white!important;
+}
+    .navbar-default .navbar-nav li a {
+      color:white;
+        
+    }
+
+.navbar-default a {
+    color:white;
+}
+    .open a {
+         color:black!important;
+    }
+     .open a:hover {
+         color:white;
+         font-weight:700
+    }
+.navbar-brand {
+    font-weight:800;
+    text-shadow:1px 1px 1px red;
+     color:white!important;
+}
+.nav-menu {
+    height: 34px;
+    line-height: 0px!important;
+    display: block;
+    padding: 15px 6px!important;
+    margin: 12px;
+}
+
+    .nav-menu:hover {
+        border: 1px #ff6a00 solid;
+        border-radius: 5px;
+        color: #ff6a00!important;
+    }
+
+.menu-logo {
+    width: 25px;
+    height: 25px;
+    display: inline!important;
+    margin-bottom: 5px;
+}
+
+.input-margin {
+    margin-top: 8px;
+}
+
+.navbar-nomargin {
+    margin: 0px;
+}
+
+.navbar-nomargin-bottom {
+    margin-bottom: 0px!important;
+}
+
+
+.navbar-big {
+    height: 100px;
+    line-height: 100px;
+}
+.nav-child{
+ 		height:40px;
+ 		line-height:40px;
+ 		background-color:#F2F3FB;
+ 		padding:0px 0px!important;
+ 		margin:0px 0px!important;
+ 	}
+ 	.child-menu-item{
+ 		text-align: center;
+ 	}
+ 	.child-menu-item-checked{
+ 		text-align: center;
+ 		background-color:white;
+ 		border-bottom: 3px solid green;
+ 	}
+.line {
+    height: 5px;
+    /* fallback */
+    background-color: red;
+    /* chrome 2+, safari 4+; multiple color stops */
+    background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.32, red), color-stop(0.66, rgb(3, 242, 120)), color-stop(0.83, #5c7c99));
+    /* chrome 10+, safari 5.1+ */
+    background-image: -webkit-linear-gradient(45deg, red, rgb(3, 242, 120), #5c7c99);
+    /* firefox; multiple color stops */
+    background-image: -moz-linear-gradient(45deg, red, rgb(3, 242, 120), #5c7c99);
+    /* ie10 */
+    background-image: -ms-linear-gradient(45deg, red 0%, rgb(3, 242, 120) 100%);
+    /* opera 11.1 */
+    background-image: -o-linear-gradient(45deg, red, rgb(3, 242, 120));
+    /* The "standard" */
+    background-image: linear-gradient(45deg, red, rgb(3, 242, 120));
+}
+.navbar{
+	border-radius:0px!important;
+	
+}
+.navbar-down-right {
+    float: right;
+    bottom: 5px;
+    position: absolute;
+    right: 50px;
+}
+
+.navbar-up-right {
+    margin-right:0px;
+     float: right;
+     top: 5px;
+     position: absolute;
+     right: 50px;
+}
+.a-remind {
+    font-size: 20px;
+}
+.label-remind {
+        float: right;
+    /* width: 15px; */
+    /* height: 16px; */
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+    right: 10px
+}
+.container {
+    width:100%;
+}
+/*页头样式结束**/
+
+/**页面正文**/
+/**Form表单背景面板*/
+
+/**Form表单内容面*/
+.form-content {
+    margin:12px!important;
+   
+}
+.messageHeader {
+    border-bottom:1px solid #e5e2e2;
+    height:30px;
+    width:250px;
+    line-height:30px;
+    text-align:center;
+
+}
+.messageContent {
+    border-bottom:1px solid #e5e2e2;
+    height:40px;
+    width:250px;
+  
+    text-align:left;
+   
+}
+.messageContent a {
+     vertical-align:middle;
+    height:100%;
+      line-height:40px!important;
+   
+}
+.messageFooter {
+    height:30px;
+    width:250px;
+    line-height:30px;
+    text-align:center;
+}
+.no-Padding{
+	padding-left:0px!important;
+	padding-right:0px!important;
+	padding-top:0px!important;
+	padding-bottom:0px!important;
+	padding:0px 0px!important;
+	
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+.bs-callout-danger {
+    border-left-color: #ce4844;
+}
+.bs-callout-info {
+    border-left-color: #1b809e;
+}
+.bs-callout-warning {
+    border-left-color: #aa6708;
+}
+.bs-callout-success {
+    border-left-color: #5DBA5D;
+}

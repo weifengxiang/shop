@@ -30,7 +30,7 @@ $(function() {
 						data-options="required:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>盘点门店:</label></th>
+					<th><label>检查门店:</label></th>
 					<td><input class="easyui-textbox" name="shopCode"
 						data-options="required:true"></input></td>
 				  </tr>

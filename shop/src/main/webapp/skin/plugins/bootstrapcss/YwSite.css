@@ -1,0 +1,146 @@
+﻿body {
+}
+fieldset legend {
+    font-weight:700;
+    color:#5c5490;
+}
+label {
+ color:#5c5490!important;
+}
+small {
+    color: #999999;
+    font-size: 10px;
+    float:right;
+    right: 0px;
+}
+.btn-group label {
+    font-weight:700;
+}
+.float-right {
+    float:right;
+}
+/*页头样式开始**/
+.nav-menu {
+    height: 34px;
+    line-height: 0px!important;
+    display: block;
+    padding: 15px 6px!important;
+    margin: 12px;
+}
+
+    .nav-menu:hover {
+        border: 1px #ff6a00 solid;
+        border-radius: 5px;
+        color: #ff6a00!important;
+    }
+
+.menu-logo {
+    width: 25px;
+    height: 25px;
+    display: inline!important;
+    margin-bottom: 5px;
+}
+
+.input-margin {
+    margin-top: 8px;
+}
+
+.navbar-nomargin {
+    margin: 0px;
+}
+
+.navbar-nomargin-bottom {
+    margin-bottom: 0px!important;
+}
+
+
+.navbar-big {
+    height: 100px;
+    line-height: 100px;
+}
+
+.line {
+    height: 5px;
+    /* fallback */
+    background-color: red;
+    /* chrome 2+, safari 4+; multiple color stops */
+    background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.32, red), color-stop(0.66, #395873), color-stop(0.83, #5c7c99));
+    /* chrome 10+, safari 5.1+ */
+    background-image: -webkit-linear-gradient(45deg, red, #395873, #5c7c99);
+    /* firefox; multiple color stops */
+    background-image: -moz-linear-gradient(45deg, red, #395873, #5c7c99);
+    /* ie10 */
+    background-image: -ms-linear-gradient(45deg, red 0%, #395873 100%);
+    /* opera 11.1 */
+    background-image: -o-linear-gradient(45deg, red, #395873);
+    /* The "standard" */
+    background-image: linear-gradient(45deg, red, #395873);
+}
+
+.navbar-down-right {
+    float: right;
+    bottom: 5px;
+    position: absolute;
+    right: 50px;
+}
+
+.navbar-up-right {
+    margin-right:0px;
+     float: right;
+     top: 5px;
+     position: absolute;
+     right: 50px;
+}
+.a-remind {
+    font-size: 20px;
+}
+.label-remind {
+        float: right;
+    /* width: 15px; */
+    /* height: 16px; */
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+    right: 10px
+}
+.container {
+    width:90%;
+}
+/*页头样式结束**/
+
+/**页面正文**/
+/**Form表单背景面板*/
+
+/**Form表单内容面*/
+.form-content {
+    margin:12px;
+}
+.messageHeader {
+    border-bottom:1px solid #e5e2e2;
+    height:30px;
+    width:250px;
+    line-height:30px;
+    text-align:center;
+
+}
+.messageContent {
+    border-bottom:1px solid #e5e2e2;
+    height:40px;
+    width:250px;
+  
+    text-align:left;
+   
+}
+.messageContent a {
+     vertical-align:middle;
+    height:100%;
+      line-height:40px!important;
+   
+}
+.messageFooter {
+    height:30px;
+    width:250px;
+    line-height:30px;
+    text-align:center;
+}
+

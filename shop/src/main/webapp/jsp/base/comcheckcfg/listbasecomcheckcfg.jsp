@@ -18,7 +18,7 @@ $(function() {
 <div data-options=" region:'west',iconCls: 'icon-table',split:true" title="商品门类" style="width:300px">
 	<ul class="easyui-tree" id="comcatetree" data-options='animate:true'></ul>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="商品盘点设置管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="商品检查设置管理">
 <table  id="listbasecomcheckcfgdg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -48,7 +48,7 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">盘点类别</th>
+						}}">检查类别</th>
 				<th data-options="field:'empName',width:180,
 				editor:{
 						type:'textbox',
@@ -82,11 +82,11 @@ $(function() {
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="addBaseComcheckCfg()">添加盘查人员</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="addBaseComcheckCfg()">添加检查人员</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-edit',plain:true" onclick="editBaseComcheckCfg()">修改盘查人员</a>
+		data-options="iconCls:'icon-edit',plain:true" onclick="editBaseComcheckCfg()">修改检查人员</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delBaseComcheckCfg()">删除盘查人员</a>
+		data-options="iconCls:'icon-20130408025545236_easyicon_net_30',plain:true" onclick="delBaseComcheckCfg()">删除检查人员</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-06',plain:true" onclick="detailBaseComcheckCfg()">查看明细</a>
 </div>

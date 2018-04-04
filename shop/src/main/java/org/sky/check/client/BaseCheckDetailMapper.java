@@ -35,7 +35,7 @@ public interface BaseCheckDetailMapper {
      */
     void insertBaseCheckDetailByPlan(@Param("params") Map params);
     /**
-     * 盘查计划下的商品门类列表
+     * 检查计划下的商品门类列表
      * @param params
      * @return
      */

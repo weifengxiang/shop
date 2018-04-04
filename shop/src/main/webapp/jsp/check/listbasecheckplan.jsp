@@ -25,7 +25,7 @@ $(function() {
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="盘点计划管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="检查计划管理">
 <table  id="listbasecheckplandg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -67,7 +67,7 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">盘点门店</th>
+						}}">检查门店</th>
 				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',

@@ -1,5 +1,5 @@
 /**
- * 初始化盘点计划详细页面
+ * 初始化检查计划详细页面
  */
 function initDetailBaseCheckPlanPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -41,7 +41,7 @@ function initComCateTree(data) {
 	});
 }
 /**
- * 盘查明细查询
+ * 检查明细查询
  */
 function searchPlanDetail(){
 	var selectNode = $('#comcatetree').tree("getData",

@@ -119,7 +119,7 @@ public class BaseCheckPlanService {
 		}
 	}
 	/**
-	*根据主键批量删除盘查计划及盘查明细
+	*根据主键批量删除检查计划及检查明细
 	**/
 	@Transactional
 	public void delBaseCheckPlanById(List<BaseCheckPlan> delList){
@@ -138,14 +138,14 @@ public class BaseCheckPlanService {
 		return bean;
 	}
 	/**
-	 * 每周创建盘查计划
+	 * 每周创建检查计划
 	 */
 	@Transactional
 	public void createComCheckPlanJOb() {
 		Date date = syscommonmapper.querySysDate();
 		BaseCheckPlan plan = new BaseCheckPlan();
 		
-		plan.setName(CommonUtils.formatDate(date, "yyyy-MM-dd")+"盘查计划");
+		plan.setName(CommonUtils.formatDate(date, "yyyy-MM-dd")+"检查计划");
 		plan.setState("1");
 		plan.setCreater("sys_job");
 		plan.setCreateTime(date);
@@ -161,7 +161,7 @@ public class BaseCheckPlanService {
 		plan.setCode("002_"+CommonUtils.formatDate(date, "yyyy-MM-dd"));
 		plan.setShopCode("002");
 		basecheckplanmapper.insert(plan);
-		//插入盘点明细
+		//插入检查明细
 		Map params = new HashMap();
 		params.put("date", CommonUtils.formatDate(date, "yyyy-MM-dd"));
 		basecheckdetailmapper.insertBaseCheckDetailByPlan(params);
@@ -172,7 +172,7 @@ public class BaseCheckPlanService {
 		params.put("planCode",planCode);
 		List<Map> list = basecheckdetailmapper.selectBaseCheckPlanComCateList(params);
 		if(list.isEmpty()) {
-			throw new ServiceException("该盘查计划下没有明细");
+			throw new ServiceException("该检查计划下没有明细");
 		}
 		List<String> parCateCodeList = new ArrayList();
 		for(Map map:list) {

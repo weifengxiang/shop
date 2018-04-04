@@ -10,12 +10,12 @@ function init(){
 	});
 }
  /**
- *添加盘点计划
+ *添加检查计划
  **/
 function addBaseCheckPlan(){
 	var opts={
 				id:'addBaseCheckPlan',
-				title:'添加盘点计划',
+				title:'添加检查计划',
 				width:600,
 				height:450,
 				modal:true,
@@ -35,7 +35,7 @@ function addBaseCheckPlan(){
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除盘点计划
+ *删除检查计划
  **/
 function delBaseCheckPlan(){
 	var checkeds=$('#listbasecheckplandg').datagrid('getChecked');
@@ -73,7 +73,7 @@ function delBaseCheckPlan(){
 	}
 }
 /**
-*修改盘点计划
+*修改检查计划
 **/
 function editBaseCheckPlan(){
 	var checkeds=$('#listbasecheckplandg').datagrid('getChecked');
@@ -83,7 +83,7 @@ function editBaseCheckPlan(){
 	}
 	var opts={
 				id:'editBaseCheckPlan',
-				title:'修改盘点计划',
+				title:'修改检查计划',
 				width:600,
 				height:450,
 				modal:true,
@@ -114,7 +114,7 @@ function detailBaseCheckPlan(){
 	}
 	var opts={
 				id:'detailBaseCheckPlan',
-				title:'盘点计划明细',
+				title:'检查计划明细',
 				width:800,
 				height:600,
 				modal:true,

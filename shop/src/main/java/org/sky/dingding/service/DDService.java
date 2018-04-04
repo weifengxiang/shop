@@ -50,7 +50,7 @@ public class DDService {
 		params.put("checker",BspUtils.getLoginUser().getCode());
 		List<Map> list = basecheckdetailmapper.selectBaseCheckPlanComCateList(params);
 		if(list.isEmpty()) {
-			throw new ServiceException("该盘查计划下没有明细");
+			throw new ServiceException("该检查计划下没有明细");
 		}
 		List<String> parCateCodeList = new ArrayList();
 		for(Map map:list) {
@@ -89,7 +89,7 @@ public class DDService {
 		return treeList;
 	}
 	/**
-	 * 钉钉盘点
+	 * 钉钉检查
 	 */
 	@Transactional
 	public void check(String id,String result) throws ServiceException{

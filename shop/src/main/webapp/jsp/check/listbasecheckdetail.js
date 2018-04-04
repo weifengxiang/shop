@@ -9,12 +9,12 @@ function init(){
 	});
 }
  /**
- *添加盘点详情
+ *添加检查详情
  **/
 function addBaseCheckDetail(){
 	var opts={
 				id:'addBaseCheckDetail',
-				title:'添加盘点详情',
+				title:'添加检查详情',
 				width:600,
 				height:450,
 				modal:true,
@@ -34,7 +34,7 @@ function addBaseCheckDetail(){
 	SKY_EASYUI.open(opts);
 }
  /**
- *删除盘点详情
+ *删除检查详情
  **/
 function delBaseCheckDetail(){
 	var checkeds=$('#listbasecheckdetaildg').datagrid('getChecked');
@@ -72,7 +72,7 @@ function delBaseCheckDetail(){
 	}
 }
 /**
-*修改盘点详情
+*修改检查详情
 **/
 function editBaseCheckDetail(){
 	var checkeds=$('#listbasecheckdetaildg').datagrid('getChecked');
@@ -82,7 +82,7 @@ function editBaseCheckDetail(){
 	}
 	var opts={
 				id:'editBaseCheckDetail',
-				title:'修改盘点详情',
+				title:'修改检查详情',
 				width:600,
 				height:450,
 				modal:true,
@@ -113,7 +113,7 @@ function detailBaseCheckDetail(){
 	}
 	var opts={
 				id:'detailBaseCheckDetail',
-				title:'盘点详情明细',
+				title:'检查详情明细',
 				width:600,
 				height:450,
 				modal:true,

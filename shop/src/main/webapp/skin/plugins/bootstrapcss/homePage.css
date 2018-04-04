@@ -1,0 +1,76 @@
+
+/*
+	body
+*/
+.linkBox{
+	width:1072px;
+	height:37px;
+	margin:5px auto 10px auto;
+	background-color:#fff;
+	font-size:14px;
+  	box-shadow:-2px 5px 10px #c6cfcf;
+  	font-family:"Microsoft YaHei","Î¢ÈíÑÅºÚ";
+}
+.link-item{
+	padding:0 24px;
+	list-style:none;
+	float:left;
+	line-height:37px;
+	border-top:1px solid #dfd7d7;
+	border-left:1px solid #dfd7d7;
+}
+.link-item:last-child{
+	padding-right:31px;
+	border-right:1px solid #dfd7d7
+}
+
+.chartBox{
+	width:1072px;
+	margin:0 auto;
+}
+.chartHead{
+	height:49px;
+	font-family:"Microsoft YaHei","Î¢ÈíÑÅºÚ";
+	font-size:17px;
+	font-weight:600;
+	color:#0e5291;
+	line-height:50px;
+	background-image:url(/project-web-main/images/mainPage/menu.png);
+}
+.chartBody{
+	height:445px;
+	padding:0px 0px 0px 15px;
+	background-color:#e3e8f5;
+}
+.chartButtonBox{
+	height:30px;
+}
+
+.chartButtonBox button{
+	margin-right:5px;
+	margin-top:5px;
+	float:right;
+}
+.chartContent-Double{
+	width:516px;
+	float:left;
+	border-radius: 10px;
+	background-color:#fff;
+	margin-right:10px;
+}
+
+.chartContent-both{
+	width:1042px;
+	border-radius: 10px;
+	background-color:#fff;
+}
+.chartContent-Triple{
+	width:340px;
+	float:left;
+	margin-right:10px;
+	border-radius: 10px;
+	background-color:#fff;
+}
+.chartContent-Triple:last-child{
+	margin-right:0px;
+}

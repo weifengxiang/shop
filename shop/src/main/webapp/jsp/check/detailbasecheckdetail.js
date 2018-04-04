@@ -1,5 +1,5 @@
 /**
- * 初始化盘点详情详细页面
+ * 初始化检查详情详细页面
  */
 function initDetailBaseCheckDetailPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);

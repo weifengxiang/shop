@@ -1,0 +1,24 @@
+/******************重写tree grid 样式 begin******************/
+.jqx-grid-table{font-size:12px;}
+.jqx-widget-content{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:12px;}
+.jqx-grid-column-header, .jqx-grid-columngroup-header { border-width: 0px; font-weight: bold;}
+.jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-column-header, .jqx-widget .jqx-grid-group-cell {
+    border-color: #aaa;
+}
+.jqx-grid-table .jqx-grid-cell { 
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	border-width: 1px 0px 0px 0px; 
+}
+.jqx-grid-header { border-width: 0px;  font-weight: bold;}
+.jqx-rc-t {
+    -moz-border-radius-topleft: 0px !important;
+    -webkit-border-top-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    -moz-border-radius-topright: 0px !important;
+    -webkit-border-top-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+.jqx-cell { padding : 8px 0;}
+/******************重写tree grid 样式 end******************/

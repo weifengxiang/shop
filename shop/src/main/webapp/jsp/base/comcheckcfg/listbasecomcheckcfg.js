@@ -38,7 +38,7 @@ function initComCateTree() {
 			});
 }
  /**
- *添加商品盘点设置
+ *添加商品检查设置
  **/
 function addBaseComcheckCfg(){
 	var selectNode = $('#comcatetree').tree("getData",
@@ -47,7 +47,7 @@ function addBaseComcheckCfg(){
 	var comCate = selectNode.data;
 	var opts={
 				id:'addBaseComcheckCfg',
-				title:'添加商品盘点设置',
+				title:'添加商品检查设置',
 				width:600,
 				height:450,
 				modal:true,
@@ -68,7 +68,7 @@ function addBaseComcheckCfg(){
 	SKY_EASYUI.open(opts);
 }
 /**
- *删除商品盘点设置
+ *删除商品检查设置
  **/
 function delBaseComcheckCfg(){
 	var checkeds=$('#listbasecomcheckcfgdg').datagrid('getChecked');
@@ -106,7 +106,7 @@ function delBaseComcheckCfg(){
 	}
 }
 /**
-*修改商品盘点设置
+*修改商品检查设置
 **/
 function editBaseComcheckCfg(){
 	var checkeds=$('#listbasecomcheckcfgdg').datagrid('getChecked');
@@ -116,7 +116,7 @@ function editBaseComcheckCfg(){
 	}
 	var opts={
 				id:'editBaseComcheckCfg',
-				title:'修改商品盘点设置',
+				title:'修改商品检查设置',
 				width:600,
 				height:450,
 				modal:true,
@@ -147,7 +147,7 @@ function detailBaseComcheckCfg(){
 	}
 	var opts={
 				id:'detailBaseComcheckCfg',
-				title:'商品盘点设置明细',
+				title:'商品检查设置明细',
 				width:600,
 				height:450,
 				modal:true,

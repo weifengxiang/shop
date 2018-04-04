@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>商品盘查系统</title>
+	<title>商品检查系统</title>
 	<security:csrfMetaTags />
 	<script type="text/javascript">
 	var CHECK_STATE = <%=EnumUtils.getEnums("CHECK.STATE") %>
@@ -17,10 +17,10 @@
 		<form id="detailsysnoticeform">
 			<security:csrfInput/>
 			<input type='hidden' name='client' value='dd'/>
-				<div style="margin-bottom:10px">
+				<div style="margin-bottom:10px;padding-left: 10px;padding-right: 10px">
 					<input class='easyui-textbox' label="标题:" name="title" style="width:100%" readonly></input>
 				</div>
-				<div style="margin-bottom:10px">
+				<div style="margin-bottom:10px;padding-left: 10px;padding-right: 10px">
 					<input class='easyui-textbox' label="内容:" name="content" 
 						   style="width:100%;height:200px" readonly data-options="multiline:true"></input>
 				</div>
@@ -28,7 +28,7 @@
 		<footer>
             <div class="m-buttongroup m-buttongroup-justified" style="width:100%">
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top',plain:true">消息通知</a>
-                <a id='chechPlan' class="easyui-linkbutton" data-options="iconCls:'icon-large-clipart',size:'large',iconAlign:'top',plain:true">盘查计划</a>
+                <a id='chechPlan' class="easyui-linkbutton" data-options="iconCls:'icon-large-clipart',size:'large',iconAlign:'top',plain:true">检查计划</a>
             </div>
 		</footer>
 	</div>

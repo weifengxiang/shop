@@ -1,5 +1,5 @@
 /**
- * 初始化商品盘点设置详细页面
+ * 初始化商品检查设置详细页面
  */
 function initDetailBaseComcheckCfgPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);

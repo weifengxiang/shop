@@ -49,7 +49,7 @@ public class DDController extends BaseController {
 		return mv;
 	}
 	/**
-	 * 商品盘查
+	 * 商品检查
 	 * @param name
 	 * @param request
 	 * @param response
@@ -61,7 +61,7 @@ public class DDController extends BaseController {
 		ModelAndView mv = new ModelAndView();
 		String params = request.getParameter("params");
 		Map paramMap = JsonUtils.json2map(params);
-		//盘查页面获取最新的计划编号
+		//检查页面获取最新的计划编号
 		String organCode = BspUtils.getLoginUser().getOrganCode();
 		BaseCheckPlan bcp = basecheckplanservice.getLasterBaseCheckPlan(organCode);
 		mv.addObject("checkPlan", bcp);
@@ -70,7 +70,7 @@ public class DDController extends BaseController {
 		return mv;
 	}
 	/**
-	 * 盘点计划商品门类树
+	 * 检查计划商品门类树
 	 * @param request
 	 * @param response
 	 * @return
@@ -86,7 +86,7 @@ public class DDController extends BaseController {
 		return ddservice.getBaseCheckPlanCateTree(dataMap);
 	}
 	/**
-	 * 显示盘点商品详情列表页面
+	 * 显示检查商品详情列表页面
 	 * @param planCode 计划编号
 	 * @param cateCode 商品门类编号
 	 * @param request
@@ -107,7 +107,7 @@ public class DDController extends BaseController {
 		return mv;
 	}
 	/**
-	*商品盘查
+	*商品检查
 	**/
 	@RequestMapping(value = "/dd/DDController/{id}/{result}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveCheckPlan(
@@ -119,12 +119,12 @@ public class DDController extends BaseController {
 		try {
 			ddservice.check(id, result);
 			rd.setCode(ResultData.code_success);
-			rd.setName("盘点成功");
+			rd.setName("检查成功");
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			rd.setCode(ResultData.code_error);
-			rd.setName("盘点失败<br>"+e.getMessage());
+			rd.setName("检查失败<br>"+e.getMessage());
 		}
 		return JsonUtils.obj2json(rd);
 	}

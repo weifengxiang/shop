@@ -1,5 +1,5 @@
 /**
- * 初始化添加商品盘点设置页面
+ * 初始化添加商品检查设置页面
  */
 function initAddBaseComcheckCfgPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -11,7 +11,7 @@ function initAddBaseComcheckCfgPage(paramOpts){
 	$('#comCateName').textbox('setValue',comCate.name);
 }
 /**
- * 初始化编辑商品盘点设置页面
+ * 初始化编辑商品检查设置页面
  */
 function initEditBaseComcheckCfgPage(paramOpts){
 	_callbacks.add(paramOpts.callBack);
@@ -22,7 +22,7 @@ function initEditBaseComcheckCfgPage(paramOpts){
 	$('#addeditbasecomcheckcfgform').form('load',SKY.urlCSRF(url));
 }
 /**
- * 保存添加/编辑商品盘点设置
+ * 保存添加/编辑商品检查设置
  */
 function submitAddEditBaseComcheckCfgForm() {
 	var options = { 
@@ -58,7 +58,7 @@ function submitAddEditBaseComcheckCfgForm() {
 function openUserHelp(){
 	var opts={
 			id:'editBaseComcheckCfg',
-			title:'修改商品盘点设置',
+			title:'修改商品检查设置',
 			width:600,
 			height:450,
 			modal:true,

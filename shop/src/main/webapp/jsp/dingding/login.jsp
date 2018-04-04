@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>商品盘查系统</title>
+	<title>商品检查系统</title>
 	<script type="text/javascript" src="${basepath}skin/jquery/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${basepath}skin/js/md5.js"></script>
 	<security:csrfMetaTags />

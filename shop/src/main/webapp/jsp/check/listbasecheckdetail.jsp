@@ -21,17 +21,17 @@ $(function() {
 		<td><input  class="easyui-textbox" data-options="prompt:'输入计划编号'" name="q_planCode"  id="q_planCode" ></input></td>				
 		<th><label>商品编号:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入商品编号'" name="q_comCode"  id="q_comCode" ></input></td>				
-		<th><label>盘点结果:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入盘点结果'" name="q_result"  id="q_result" ></input></td>				
-		<th><label>盘点状态:</label></th>
-		<td><input  class="easyui-textbox" data-options="prompt:'输入盘点状态'" name="q_state"  id="q_state" ></input></td>				
+		<th><label>检查结果:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入检查结果'" name="q_result"  id="q_result" ></input></td>				
+		<th><label>检查状态:</label></th>
+		<td><input  class="easyui-textbox" data-options="prompt:'输入检查状态'" name="q_state"  id="q_state" ></input></td>				
 		<th><label>备注:</label></th>
 		<td><input  class="easyui-textbox" data-options="prompt:'输入备注'" name="q_note"  id="q_note" ></input></td>				
 		<td><a href="javascript:searchButton()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="盘点详情管理">
+<div data-options=" region:'center',iconCls: 'icon-table'" title="检查详情管理">
 <table  id="listbasecheckdetaildg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -73,13 +73,13 @@ $(function() {
 						type:'textbox',
 						options:{
 							required:true
-						}}">盘点结果</th>
+						}}">检查结果</th>
 				<th data-options="field:'state',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">盘点状态</th>
+						}}">检查状态</th>
 				<th data-options="field:'note',width:180,
 				editor:{
 						type:'textbox',

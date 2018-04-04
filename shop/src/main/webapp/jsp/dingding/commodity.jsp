@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>商品盘查系统</title>
+	<title>商品检查系统</title>
 	<security:csrfMetaTags />
 	</style>
 	<script type="text/javascript">
@@ -81,7 +81,7 @@ $(function(){
 	});
 });
 /**
- * 盘查明细查询
+ * 检查明细查询
  */
 function searchPlanDetail(){
 	$('#listbasecheckdetaildg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseCheckDetail/getBaseCheckDetailByPage')
@@ -104,7 +104,7 @@ function searchPlanDetail(){
 function foramtButton(row){
 	return "<nobr><input type='button' value='有货' onclick=\"check('"+row.id+"','1')\"></input>"+
 		   "&nbsp&nbsp&nbsp&nbsp"+
-		   "<input type='button' value='缺货' onclick=\"check('"+row.id+"','0')\"></input></nobr>";
+		   "<input type='button' value='断货' onclick=\"check('"+row.id+"','0')\"></input></nobr>";
 }
 /**
  * 0:缺货,1:有货
