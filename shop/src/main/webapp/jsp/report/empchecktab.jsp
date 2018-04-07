@@ -85,7 +85,7 @@ $(function() {
 </div>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-excel',plain:true" onclick="detailBaseCheckPlan()">导出Excel</a>
+		data-options="iconCls:'icon-excel',plain:true" onclick="expExcel()">导出Excel</a>
 </div>
 </body>
 </html>

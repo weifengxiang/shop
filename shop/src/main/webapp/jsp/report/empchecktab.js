@@ -47,7 +47,38 @@ function init(){
 function loadData(){
 	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
 	var planCode= $('#checkPlan').combobox('getValue');
-	var url='report/selectEmpCheckDetail/'+shopCode+'/'+planCode;
-	$('#listempCheckDetaildg').datagrid('options').url=SKY.urlCSRF(basepath+url);
+	var url=basepath+'report/selectEmpCheckDetail/'+shopCode+'/'+planCode;
+	$('#listempCheckDetaildg').datagrid('options').url=SKY.urlCSRF(url);
 	$('#listempCheckDetaildg').datagrid('load',{});
+}
+function expExcel(){
+	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
+	var planCode= $('#checkPlan').combobox('getValue');
+	if(null==shopCode||null==planCode){
+		$.messager.alert('提示','请选择要导出的记录','info');
+		return;
+	}else{
+		var msg="确定要导出数据?";
+		$.messager.confirm("导出确认",msg,
+		function (r){
+			if(r){
+				SKY_EASYUI.mask('正在进行导出，请稍等...');
+				var url = SKY.urlCSRF(basepath+'report/createEmpCheckDetailExcel/'+shopCode+'/'+planCode);
+				$.ajax({
+		    		url:url,
+		    		type: "POST",
+		    		dataType:'json',
+		    		success:function(data){
+		    			SKY_EASYUI.unmask();
+		    			$.messager.alert("提示",data.name,"info");
+		    			var filepath=data.data;
+		    			SKY_EASYUI.downLoad(filepath);
+		    		}
+				});
+			}else{
+				return;
+			}
+		}
+		);
+	}
 }

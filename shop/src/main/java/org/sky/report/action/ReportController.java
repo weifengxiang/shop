@@ -11,7 +11,9 @@ import org.sky.check.model.BaseCheckPlanExample;
 import org.sky.check.service.BaseCheckPlanService;
 import org.sky.report.service.ReportService;
 import org.sky.sys.action.BaseController;
+import org.sky.sys.exception.ServiceException;
 import org.sky.sys.utils.JsonUtils;
+import org.sky.sys.utils.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +66,14 @@ public class ReportController extends BaseController{
 		List<BaseCheckPlan> cpList = cpService.selectBaseCheckPlanByExample(ep);
 		return JsonUtils.obj2json(cpList);
 	}
+	/**
+	 * 员工检查情况表查询
+	 * @param shopCode
+	 * @param planCode
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/report/selectEmpCheckDetail/{shopCode}/{planCode}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String selectEmpCheckDetail(
 			@PathVariable String shopCode,
@@ -71,5 +81,33 @@ public class ReportController extends BaseController{
 			HttpServletRequest request, HttpServletResponse response) {
 		List<Map> list = reportService.selectEmpCheckDetail(shopCode, planCode);
 		return JsonUtils.obj2json(list);
+	}
+	/**
+	 * 员工检查情况表查询生成Excel
+	 * @param shopCode
+	 * @param planCode
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/report/createEmpCheckDetailExcel/{shopCode}/{planCode}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String createEmpCheckDetailExcel(
+			@PathVariable String shopCode,
+			@PathVariable String planCode,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String filepath = reportService.createEmpCheckDetailExcel(shopCode, planCode);
+			rd.setCode(ResultData.code_success);
+			rd.setData(filepath);
+			rd.setName("Excel生成成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("Excel生成失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
 	}
 }
