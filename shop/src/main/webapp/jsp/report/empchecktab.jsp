@@ -26,14 +26,14 @@ $(function() {
 </table>
 </div>
 <div data-options=" region:'center',iconCls: 'icon-table'" title="员工检查情况表">
-<table  id="listbasecheckplandg" class="easyui-datagrid" style="width: 100%; height: 100%"
+<table  id="listempCheckDetaildg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
 			fit:true,
 			border:false,
 			remoteSort : false,
 			toolbar: '#tb',
-			pagination:true,
+			pagination:false,
 			rownumbers: true,
 			checkbox:true,
 			singleSelect:true,
@@ -49,31 +49,36 @@ $(function() {
 		">
 	<thead>
 		<tr>
-			<th data-options="field: 'checked', checkbox:true"></th>
-				<th data-options="field:'code',width:180,
+				<th data-options="field:'CHECKER_NAME',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">编号</th>
-				<th data-options="field:'name',width:180,
+						}}">员工</th>
+				<th data-options="field:'CATENAME',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">名称</th>
-				<th data-options="field:'shopName',width:180,
+						}}">小类名称</th>
+				<th data-options="field:'TOTAL',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">检查门店</th>
-				<th data-options="field:'note',width:180,
+						}}">需检查总数</th>
+				<th data-options="field:'FINISH',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">备注</th>
+						}}">已检查总数</th>
+				<th data-options="field:'RATE',width:180,
+				editor:{
+						type:'textbox',
+						options:{
+							required:true
+						}}">检查完成率（%）</th>
 		</tr>
 	</thead>
 </table>

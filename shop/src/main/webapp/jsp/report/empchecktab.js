@@ -37,9 +37,17 @@ function init(){
 								    				data:data,
 								    				valueField: 'code',
 								    				textField: 'name',
+								    				onSelect:loadData
 								    			});
 								    		}
 										});
 						          }
 						      });
+}
+function loadData(){
+	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
+	var planCode= $('#checkPlan').combobox('getValue');
+	var url='report/selectEmpCheckDetail/'+shopCode+'/'+planCode;
+	$('#listempCheckDetaildg').datagrid('options').url=SKY.urlCSRF(basepath+url);
+	$('#listempCheckDetaildg').datagrid('load',{});
 }

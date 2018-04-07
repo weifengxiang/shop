@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.sky.check.model.BaseCheckPlan;
 import org.sky.check.model.BaseCheckPlanExample;
 import org.sky.check.service.BaseCheckPlanService;
+import org.sky.report.service.ReportService;
 import org.sky.sys.action.BaseController;
 import org.sky.sys.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +32,8 @@ public class ReportController extends BaseController{
 	
 	@Autowired
 	private BaseCheckPlanService cpService;
+	@Autowired
+	private ReportService reportService;
 	/**
 	 * 员工检查情况表
 	 * @param request
@@ -41,6 +45,12 @@ public class ReportController extends BaseController{
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/report/empchecktab";
 	}
+	/**
+	 * 根据门店编号查询检查计划
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/report/checkplan/getCheckPlanByOrganCode", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String getCheckPlanByOrganCode(
 			HttpServletRequest request, HttpServletResponse response) {
@@ -54,5 +64,12 @@ public class ReportController extends BaseController{
 		List<BaseCheckPlan> cpList = cpService.selectBaseCheckPlanByExample(ep);
 		return JsonUtils.obj2json(cpList);
 	}
-
+	@RequestMapping(value = "/report/selectEmpCheckDetail/{shopCode}/{planCode}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String selectEmpCheckDetail(
+			@PathVariable String shopCode,
+			@PathVariable String planCode,
+			HttpServletRequest request, HttpServletResponse response) {
+		List<Map> list = reportService.selectEmpCheckDetail(shopCode, planCode);
+		return JsonUtils.obj2json(list);
+	}
 }
