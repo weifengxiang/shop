@@ -23,4 +23,29 @@
 		AND CP.SHOP_CODE=#{params.shopCode,jdbcType=VARCHAR}
 		GROUP BY CATENAME
   </select>
+  <select id="selectOos" parameterType="map" resultType="java.util.Map">
+	SELECT 
+		(SELECT NAME FROM BASE_COM_CATE WHERE CODE = BC.CATE_CODE) AS CATENAME,
+		BC.NAME,
+		BC.BAR_CODE,
+		BC.SPEC,
+		CASE WHEN 0=BCD.RESULT AND BCD.STATE=1
+			 THEN '断货'
+		     WHEN 1=BCD.RESULT AND BCD.STATE=1
+			 THEN '有货'
+		ELSE '未检查'
+		END AS RESULT
+	FROM 
+		BASE_CHECK_DETAIL BCD,
+		BASE_COMMODITY BC
+	WHERE BCD.COM_CODE=BC.CODE
+	  AND BCD.STATE=1
+	  AND BCD.RESULT=0
+	AND EXISTS(
+		SELECT 1 FROM BASE_CHECK_PLAN BCP
+		WHERE BCP.CODE=BCD.PLAN_CODE
+		AND BCP.CODE=#{params.planCode,jdbcType=VARCHAR}
+		AND BCP.SHOP_CODE=#{params.shopCode,jdbcType=VARCHAR}
+	)
+  </select>
 </mapper>

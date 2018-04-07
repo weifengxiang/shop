@@ -65,5 +65,43 @@ public class ReportService {
 		BigExcel.createExcel(filepath,CommonUtils.getCurrentDate("yyyy-MM-dd")+"员工检查情况表", titles,fields,res);
 		return filepath;
 	}
-
+	/**
+	 * 查询缺货信息
+	 * @param shopCode
+	 * @param planCode
+	 * @return
+	 */
+	public List selectOos(String shopCode,String planCode) {
+		List res = null;
+		Map params = new HashMap();
+		params.put("shopCode", shopCode);
+		params.put("planCode", planCode);
+		res = reportMapper.selectOos(params);
+		return res;
+	}
+	/**
+	 * 断货信息生成Excel
+	 * @param shopCode
+	 * @param planCode
+	 * @return
+	 */
+	public String createOosExcel(String shopCode,String planCode) {
+		String filepath=null;
+		List<Map> res = null;
+		Map params = new HashMap();
+		params.put("shopCode", shopCode);
+		params.put("planCode", planCode);
+		res = reportMapper.selectOos(params);
+		int i=1;
+		for(Map m:res) {
+			m.put("IDX",i);
+			i++;
+		}
+		filepath = ConfUtils.getValue("temp_dir")+File.separator+"oos"
+				   +File.separator+BspUtils.getLoginUser().getCode()+".xls";
+		String[] titles={"序号","小类名称","商品名称","条码","规格","检查结果"};
+		String[] fields={"IDX","CATENAME","NAME","BAR_CODE","SPEC","RESULT"};
+		BigExcel.createExcel(filepath,CommonUtils.getCurrentDate("yyyy-MM-dd")+"断货统计表", titles,fields,res);
+		return filepath;
+	}
 }

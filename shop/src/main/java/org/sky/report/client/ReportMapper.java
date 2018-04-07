@@ -15,4 +15,10 @@ public interface ReportMapper {
      * @return
      */
     List<Map> selectEmpCheckDetail(@Param("params") Map params);
+    /**
+     * 断货统计表
+     * @param params
+     * @return
+     */
+    List<Map> selectOos(@Param("params") Map params);
 }

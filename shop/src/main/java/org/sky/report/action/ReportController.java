@@ -43,9 +43,20 @@ public class ReportController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/report/empchecktab/initPage", method = { RequestMethod.GET })
-	public String initBaseCommodityListPage(
+	public String initEmpchecktabPage(
 			HttpServletRequest request, HttpServletResponse response) {
 		return "jsp/report/empchecktab";
+	}
+	/**
+	 * 断货统计表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/report/oos/initPage", method = { RequestMethod.GET })
+	public String initoosListPage(
+			HttpServletRequest request, HttpServletResponse response) {
+		return "jsp/report/oostab";
 	}
 	/**
 	 * 根据门店编号查询检查计划
@@ -99,6 +110,50 @@ public class ReportController extends BaseController{
 		ResultData rd= new ResultData();
 		try {
 			String filepath = reportService.createEmpCheckDetailExcel(shopCode, planCode);
+			rd.setCode(ResultData.code_success);
+			rd.setData(filepath);
+			rd.setName("Excel生成成功");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rd.setCode(ResultData.code_error);
+			rd.setName("Excel生成失败<br>"+e.getMessage());
+		}
+		return JsonUtils.obj2json(rd);
+	}
+	/**
+	 * 断货统计表查询
+	 * @param shopCode
+	 * @param planCode
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/report/selectOos/{shopCode}/{planCode}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String selectOos(
+			@PathVariable String shopCode,
+			@PathVariable String planCode,
+			HttpServletRequest request, HttpServletResponse response) {
+		List<Map> list = reportService.selectOos(shopCode, planCode);
+		return JsonUtils.obj2json(list);
+	}
+	/**
+	 * 断货统计表查询生成Excel
+	 * @param shopCode
+	 * @param planCode
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/report/createOosExcel/{shopCode}/{planCode}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	public @ResponseBody String createOosExcel(
+			@PathVariable String shopCode,
+			@PathVariable String planCode,
+			HttpServletRequest request, 
+			HttpServletResponse response){
+		ResultData rd= new ResultData();
+		try {
+			String filepath = reportService.createOosExcel(shopCode, planCode);
 			rd.setCode(ResultData.code_success);
 			rd.setData(filepath);
 			rd.setName("Excel生成成功");
