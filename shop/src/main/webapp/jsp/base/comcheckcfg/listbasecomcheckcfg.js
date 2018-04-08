@@ -41,10 +41,18 @@ function initComCateTree() {
  *添加商品检查设置
  **/
 function addBaseComcheckCfg(){
+	if(!$('#comcatetree').tree("getSelected")){
+		$.messager.alert('提示','商品检查设置只能设置到大类！','error');
+		return;
+	}
 	var selectNode = $('#comcatetree').tree("getData",
 	  		 $('#comcatetree').tree("getSelected").target
 	  		);
 	var comCate = selectNode.data;
+	if(comCate.code.length!=2){
+		$.messager.alert('提示','商品检查设置只能设置到大类！','error');
+		return;
+	}
 	var opts={
 				id:'addBaseComcheckCfg',
 				title:'添加商品检查设置',
