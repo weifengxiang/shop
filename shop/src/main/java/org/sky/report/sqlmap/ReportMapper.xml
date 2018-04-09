@@ -3,8 +3,22 @@
 <mapper namespace="org.sky.report.client.ReportMapper">
   <select id="selectEmpCheckDetail" parameterType="map" resultType="java.util.Map">
 	SELECT 
-		(SELECT NAME FROM SYS_USER WHERE CODE = CD.CHECKER) AS CHECKER_NAME,
-		(SELECT BCC.NAME  FROM BASE_COMMODITY BC,BASE_COM_CATE BCC WHERE BC.CODE=CD.COM_CODE AND BCC.CODE=BC.CATE_CODE) AS CATENAME,
+	<if test='params.type=="B"'>
+		(SELECT BCC.NAME  FROM BASE_COM_CATE BCC 
+			WHERE SUBSTR(BC.CATE_CODE,1,2)=BCC.CODE) AS NAME,
+	</if>
+	<if test='params.type=="M"'>
+		(SELECT BCC.NAME  FROM BASE_COM_CATE BCC 
+			WHERE SUBSTR(BC.CATE_CODE,1,4)=BCC.CODE) AS NAME,
+	</if>
+	<if test='params.type=="S"'>
+		(SELECT BCC.NAME  FROM BASE_COM_CATE BCC 
+			WHERE BC.CATE_CODE=BCC.CODE) AS NAME,
+	</if>
+	<if test='params.type=="U"'>
+		(SELECT U.NAME  FROM SYS_USER U 
+			WHERE U.CODE=CD.CHECKER) AS NAME,
+	</if>
 		COUNT(1) AS TOTAL,
 		COUNT(
 			CASE WHEN CD.STATE='1' THEN 1
@@ -17,11 +31,25 @@
 			END)/COUNT(1)*100,2) AS RATE
 	FROM 
 		BASE_CHECK_PLAN CP,
-		BASE_CHECK_DETAIL CD
+		BASE_CHECK_DETAIL CD,
+		BASE_COMMODITY BC
 		WHERE CP.CODE=CD.PLAN_CODE
+		AND BC.CODE=CD.COM_CODE
 		AND CP.CODE=#{params.planCode,jdbcType=VARCHAR}
 		AND CP.SHOP_CODE=#{params.shopCode,jdbcType=VARCHAR}
-		GROUP BY CATENAME
+		GROUP BY 
+	<if test='params.type=="B"'>
+		SUBSTR(BC.CATE_CODE,1,2)
+	</if>
+	<if test='params.type=="M"'>
+		SUBSTR(BC.CATE_CODE,1,4)
+	</if>
+	<if test='params.type=="S"'>
+		BC.CATE_CODE
+	</if>
+	<if test='params.type=="U"'>
+		CD.CHECKER
+	</if>
   </select>
   <select id="selectOos" parameterType="map" resultType="java.util.Map">
 	SELECT 

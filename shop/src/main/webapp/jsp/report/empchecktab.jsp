@@ -7,6 +7,7 @@
 <security:csrfMetaTags/>
 <script type="text/javascript" src='${basepath}jsp/report/empchecktab.js'></script>
 <script type="text/javascript">
+var REP_TYPE=<%=EnumUtils.getEnums("REP.TYPE") %>;
 $(function() {
 	init();
 });
@@ -21,11 +22,20 @@ $(function() {
 		<th><label>门店:</label></th>
 		<td><input id="organTree" ></input></td>				
 		<th><label>检查批次:</label></th>
-		<td><input id='checkPlan' class="easyui-combobox"></input></td>				
+		<td><input id='checkPlan' class="easyui-combobox"></input></td>	
+		<th><label>统计方式:</label></th>
+		<td><input id='type' class="easyui-combobox"
+				   data-options="
+				   		value:'B',
+				   		data:REP_TYPE,
+				   		valueField:'code',
+				   		textField:'name'
+				   "></input></td>		
+		<td><a href="javascript:doSearch()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>	
 	</tr>
 </table>
 </div>
-<div data-options=" region:'center',iconCls: 'icon-table'" title="员工检查情况表">
+<div id='empCheckDiv' data-options=" region:'center',iconCls: 'icon-table'" title="员工检查情况表">
 <table  id="listempCheckDetaildg" class="easyui-datagrid" style="width: 100%; height: 100%"
 	data-options="
 			region:'center',
@@ -49,18 +59,12 @@ $(function() {
 		">
 	<thead>
 		<tr>
-				<th data-options="field:'CHECKER_NAME',width:180,
+				<th data-options="field:'NAME',width:180,
 				editor:{
 						type:'textbox',
 						options:{
 							required:true
-						}}">员工</th>
-				<th data-options="field:'CATENAME',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">小类名称</th>
+						}}">商品大类</th>
 				<th data-options="field:'TOTAL',width:180,
 				editor:{
 						type:'textbox',

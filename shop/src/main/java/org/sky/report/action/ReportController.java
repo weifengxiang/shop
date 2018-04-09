@@ -81,16 +81,18 @@ public class ReportController extends BaseController{
 	 * 员工检查情况表查询
 	 * @param shopCode
 	 * @param planCode
+	 * @param type
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/report/selectEmpCheckDetail/{shopCode}/{planCode}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/report/selectEmpCheckDetail/{shopCode}/{planCode}/{type}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String selectEmpCheckDetail(
 			@PathVariable String shopCode,
 			@PathVariable String planCode,
+			@PathVariable String type,
 			HttpServletRequest request, HttpServletResponse response) {
-		List<Map> list = reportService.selectEmpCheckDetail(shopCode, planCode);
+		List<Map> list = reportService.selectEmpCheckDetail(shopCode, planCode,type);
 		return JsonUtils.obj2json(list);
 	}
 	/**
@@ -101,15 +103,16 @@ public class ReportController extends BaseController{
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/report/createEmpCheckDetailExcel/{shopCode}/{planCode}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/report/createEmpCheckDetailExcel/{shopCode}/{planCode}/{type}", method =RequestMethod.POST,produces = "application/json;charset=UTF-8")
 	public @ResponseBody String createEmpCheckDetailExcel(
 			@PathVariable String shopCode,
 			@PathVariable String planCode,
+			@PathVariable String type,
 			HttpServletRequest request, 
 			HttpServletResponse response){
 		ResultData rd= new ResultData();
 		try {
-			String filepath = reportService.createEmpCheckDetailExcel(shopCode, planCode);
+			String filepath = reportService.createEmpCheckDetailExcel(shopCode, planCode,type);
 			rd.setCode(ResultData.code_success);
 			rd.setData(filepath);
 			rd.setName("Excel生成成功");

@@ -32,11 +32,12 @@ public class ReportService {
 	 * @param planCode(计划编号)
 	 * @return
 	 */
-	public List selectEmpCheckDetail(String shopCode,String planCode) {
+	public List selectEmpCheckDetail(String shopCode,String planCode,String type) {
 		List res = null;
 		Map params = new HashMap();
 		params.put("shopCode", shopCode);
 		params.put("planCode", planCode);
+		params.put("type", type);
 		res = reportMapper.selectEmpCheckDetail(params);
 		return res;
 	}
@@ -46,22 +47,33 @@ public class ReportService {
 	 * @param planCode(计划编号)
 	 * @return
 	 */
-	public String createEmpCheckDetailExcel(String shopCode,String planCode) {
+	public String createEmpCheckDetailExcel(String shopCode,String planCode,String type) {
 		String filepath=null;
 		List<Map> res = null;
 		Map params = new HashMap();
 		params.put("shopCode", shopCode);
 		params.put("planCode", planCode);
+		params.put("type", type);
 		res = reportMapper.selectEmpCheckDetail(params);
 		int i=1;
 		for(Map m:res) {
 			m.put("IDX",i);
 			i++;
 		}
+		String name = "";
+		if("B".equals(type)) {
+			name="商品大类";
+		}else if("M".equals(type)) {
+			name="商品中类";
+		}else if("S".equals(type)) {
+			name="商品小类";
+		}else if("U".equals(type)) {
+			name="员工";
+		} 
 		filepath = ConfUtils.getValue("temp_dir")+File.separator+"empcheck"
 				   +File.separator+BspUtils.getLoginUser().getCode()+".xls";
-		String[] titles={"序号","员工","小类名称","需检查总数","已检查数量","检查完成率（%）"};
-		String[] fields={"IDX","CHECKER_NAME","CATENAME","TOTAL","FINISH","RATE"};
+		String[] titles={"序号",name,"需检查总数","已检查数量","检查完成率（%）"};
+		String[] fields={"IDX","NAME","TOTAL","FINISH","RATE"};
 		BigExcel.createExcel(filepath,CommonUtils.getCurrentDate("yyyy-MM-dd")+"员工检查情况表", titles,fields,res);
 		return filepath;
 	}

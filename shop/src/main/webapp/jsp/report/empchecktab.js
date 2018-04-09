@@ -36,26 +36,69 @@ function init(){
 								    			$('#checkPlan').combobox({
 								    				data:data,
 								    				valueField: 'code',
-								    				textField: 'name',
-								    				onSelect:loadData
+								    				textField: 'name'
 								    			});
 								    		}
 										});
 						          }
 						      });
+	//初始化type
+	$('#type').combobox({
+		onSelect:function(record){
+			changeTitle(record);
+		}
+	});
 }
-function loadData(){
-	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
-	var planCode= $('#checkPlan').combobox('getValue');
-	var url=basepath+'report/selectEmpCheckDetail/'+shopCode+'/'+planCode;
+/**
+ * 执行查询
+ * @returns
+ */
+function doSearch(){
+	if(!$('#organTree').combotree('tree').tree('getSelected')){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var shopCode = $('#organTree').combotree('tree').tree('getSelected').data.code;
+	if(!shopCode){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var planCode = $('#checkPlan').combobox('getValue');
+	if(!planCode){
+		$.messager.alert('提示','请选择计划','error');
+		return;
+	}
+	var type = $('#type').combobox('getValue');
+	if(!type){
+		$.messager.alert('提示','请选择统计方式','error');
+		return;
+	}
+	var url=basepath+'report/selectEmpCheckDetail/'+shopCode+'/'+planCode+'/'+type;
 	$('#listempCheckDetaildg').datagrid('options').url=SKY.urlCSRF(url);
 	$('#listempCheckDetaildg').datagrid('load',{});
 }
 function expExcel(){
-	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
-	var planCode= $('#checkPlan').combobox('getValue');
+	if(!$('#organTree').combotree('tree').tree('getSelected')){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var shopCode = $('#organTree').combotree('tree').tree('getSelected').data.code;
+	if(!shopCode){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var planCode = $('#checkPlan').combobox('getValue');
+	if(!planCode){
+		$.messager.alert('提示','请选择计划','error');
+		return;
+	}
+	var type = $('#type').combobox('getValue');
+	if(!type){
+		$.messager.alert('提示','请选择统计方式','error');
+		return;
+	}
 	if(null==shopCode||null==planCode){
-		$.messager.alert('提示','请选择要导出的记录','info');
+		$.messager.alert('提示','请选择导出条件','info');
 		return;
 	}else{
 		var msg="确定要导出数据?";
@@ -63,7 +106,7 @@ function expExcel(){
 		function (r){
 			if(r){
 				SKY_EASYUI.mask('正在进行导出，请稍等...');
-				var url = SKY.urlCSRF(basepath+'report/createEmpCheckDetailExcel/'+shopCode+'/'+planCode);
+				var url = SKY.urlCSRF(basepath+'report/createEmpCheckDetailExcel/'+shopCode+'/'+planCode+'/'+type);
 				$.ajax({
 		    		url:url,
 		    		type: "POST",
@@ -81,4 +124,21 @@ function expExcel(){
 		}
 		);
 	}
+}
+function changeTitle(record){
+	var code = record.code;
+	var column = $('#listempCheckDetaildg').datagrid('getColumnOption',"NAME");
+	if("B"==code){
+		column.title='商品大类';
+	}else if("M"==code){
+		column.title='商品中类';
+	}else if("S"==code){
+		column.title='商品小类';
+	}else if("U"==code){
+		column.title='员工';
+	}
+	//删除所有行
+	$("#listempCheckDetaildg").datagrid('loadData', { total: 0, rows: []}); 
+	//更新title
+	$('#listempCheckDetaildg').datagrid();
 }
