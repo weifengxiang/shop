@@ -32,36 +32,17 @@
 			">
 		<thead>
 			<tr>
-					<th data-options="field:'comName',width:90,
-					editor:{
-							type:'textbox',
-							options:{
-								required:true
-							}}">商品名称</th>
+					<th data-options="field:'comName',width:90">商品名称</th>
+					<th data-options="field:'barCode',width:90">条码</th>
 					<th data-options="field:'result',width:30,
-					editor:{
-							type:'textbox',
-							options:{
-								required:true
-							}},
 					formatter:function(value,row){
 							  	 return SKY.formatterEnum(value,row,CHECK_RESULT);
 							 }">结果</th>
 					<th data-options="field:'state',width:30,
-					editor:{
-							type:'textbox',
-							options:{
-								required:true
-							}},
 					formatter:function(value,row){
 							  	 return SKY.formatterEnum(value,row,CHECK_STATE);
 							 }">状态</th>
-					<th data-options="field:'id',align:'center',width:70,
-					editor:{
-							type:'textbox',
-							options:{
-								required:true
-							}},
+					<th data-options="field:'id',align:'center',width:40,
 					formatter:function(value,row){
 							  	 return foramtButton(row);
 							 }">操作</th>
@@ -102,9 +83,9 @@ function searchPlanDetail(){
 	});
 }
 function foramtButton(row){
-	return "<nobr><input type='button' value='有货' onclick=\"check('"+row.id+"','1')\"></input>"+
-		   "&nbsp&nbsp&nbsp&nbsp"+
-		   "<input type='button' value='断货' onclick=\"check('"+row.id+"','0')\"></input></nobr>";
+	return "<div style='padding:5 5 5 0'><input type='button' value='有货' onclick=\"check('"+row.id+"','1')\"></input>"+
+		   "<br/><br/>"+
+		   "<input type='button' value='断货' onclick=\"check('"+row.id+"','0')\"></input></div>";
 }
 /**
  * 0:缺货,1:有货

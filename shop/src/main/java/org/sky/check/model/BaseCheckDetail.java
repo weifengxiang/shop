@@ -9,6 +9,8 @@ public class BaseCheckDetail {
 
     private String comCode;
     
+    private String barCode;
+    
     private String comName;
 
     private String checker;
@@ -51,7 +53,15 @@ public class BaseCheckDetail {
         this.comCode = comCode;
     }
 
-    public String getChecker() {
+    public String getBarCode() {
+		return barCode;
+	}
+
+	public void setBarCode(String barCode) {
+		this.barCode = barCode;
+	}
+
+	public String getChecker() {
         return checker;
     }
 
