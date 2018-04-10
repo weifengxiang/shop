@@ -139,6 +139,6 @@ function changeTitle(record){
 	}
 	//删除所有行
 	$("#listempCheckDetaildg").datagrid('loadData', { total: 0, rows: []}); 
-	//更新title
-	$('#listempCheckDetaildg').datagrid();
+	//更新title，设置url为是为了防止加载数据
+	$('#listempCheckDetaildg').datagrid({url:''});
 }
