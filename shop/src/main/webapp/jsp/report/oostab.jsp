@@ -21,7 +21,8 @@ $(function() {
 		<th><label>门店:</label></th>
 		<td><input id="organTree" ></input></td>				
 		<th><label>检查批次:</label></th>
-		<td><input id='checkPlan' class="easyui-combobox"></input></td>				
+		<td><input id='checkPlan' class="easyui-combobox"></input></td>	
+		<td><a href="javascript:doSearch()"class="easyui-linkbutton" plain="true" iconCls="icon-search">查询</a></td>				
 	</tr>
 </table>
 </div>

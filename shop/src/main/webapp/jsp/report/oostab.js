@@ -36,8 +36,7 @@ function init(){
 								    			$('#checkPlan').combobox({
 								    				data:data,
 								    				valueField: 'code',
-								    				textField: 'name',
-								    				onSelect:loadData
+								    				textField: 'name'
 								    			});
 								    		}
 										});
@@ -45,15 +44,39 @@ function init(){
 						      });
 }
 function loadData(){
-	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
-	var planCode= $('#checkPlan').combobox('getValue');
+	if(!$('#organTree').combotree('tree').tree('getSelected')){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var shopCode = $('#organTree').combotree('tree').tree('getSelected').data.code;
+	if(!shopCode){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var planCode = $('#checkPlan').combobox('getValue');
+	if(!planCode){
+		$.messager.alert('提示','请选择检查批次','error');
+		return;
+	}
 	var url=basepath+'report/selectOos/'+shopCode+'/'+planCode;
 	$('#listempCheckDetaildg').datagrid('options').url=SKY.urlCSRF(url);
 	$('#listempCheckDetaildg').datagrid('load',{});
 }
 function expExcel(){
-	var shopCode= $('#organTree').combotree('tree').tree('getSelected').data.code;
-	var planCode= $('#checkPlan').combobox('getValue');
+	if(!$('#organTree').combotree('tree').tree('getSelected')){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var shopCode = $('#organTree').combotree('tree').tree('getSelected').data.code;
+	if(!shopCode){
+		$.messager.alert('提示','请选择门店','error');
+		return;
+	}
+	var planCode = $('#checkPlan').combobox('getValue');
+	if(!planCode){
+		$.messager.alert('提示','请选择检查批次','error');
+		return;
+	}
 	if(null==shopCode||null==planCode){
 		$.messager.alert('提示','请选择要导出的记录','info');
 		return;
@@ -81,4 +104,7 @@ function expExcel(){
 		}
 		);
 	}
+}
+function doSearch(){
+	loadData();
 }

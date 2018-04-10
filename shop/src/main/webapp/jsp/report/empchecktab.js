@@ -89,7 +89,7 @@ function expExcel(){
 	}
 	var planCode = $('#checkPlan').combobox('getValue');
 	if(!planCode){
-		$.messager.alert('提示','请选择计划','error');
+		$.messager.alert('提示','请选择批次','error');
 		return;
 	}
 	var type = $('#type').combobox('getValue');
