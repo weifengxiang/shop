@@ -43,8 +43,8 @@ function initSysOrganTree() {
 function addSysRole(){
 	var selOrg=$('#organtree').tree('getSelected');
 	if(!selOrg||!selOrg.data||!selOrg.data.id){
-		$.messager.alert('提示','请选择组织机构','info');
-		return;
+		//$.messager.alert('提示','请选择组织机构','info');
+		//return;
 	}
 	var opts={
 				id:'addSysRole',
