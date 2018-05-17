@@ -187,7 +187,7 @@ public class BaseCommodityService {
 			if (org.apache.commons.lang.StringUtils.isBlank(ts.get(ts.size() - 1))) {
 				ts.remove(ts.size() - 1);
 			}
-			//全量更新则删除相同类型 相同单位并且是Excel导入的数据的数据
+			//全量更新则删除 之前的全部数据
 			if(full){
 				BaseCommodityExample bce = new BaseCommodityExample();
 				basecommoditymapper.deleteByExample(bce);
