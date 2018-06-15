@@ -331,11 +331,14 @@
 			BCC.EMP_CODE AS EMP_CODE
 			FROM
 			BASE_COMMODITY BC, BASE_COMCHECK_CFG BCC
-			WHERE BC.CATE_CODE LIKE CONCAT(BCC.COM_CATE,'%')
+			WHERE BC.CATE_CODE = BCC.COM_CATE
 			) AS TAB
   </insert>
   <select id="selectBaseCheckPlanComCateList" parameterType="map" resultType="java.util.Map">
-	select distinct bcd.plan_code as plan_code,bcc.code as cate_code,bcc.name as cate_name,bcc.seq 
+	select distinct bcd.plan_code as plan_code,
+					bcc.code as cate_code,
+					bcc.name as cate_name,
+					bcc.seq 
 	from 
 		base_check_detail bcd,
 		base_commodity bc,

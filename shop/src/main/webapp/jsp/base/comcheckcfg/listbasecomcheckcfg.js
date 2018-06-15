@@ -49,8 +49,9 @@ function addBaseComcheckCfg(){
 	  		 $('#comcatetree').tree("getSelected").target
 	  		);
 	var comCate = selectNode.data;
-	if(comCate.code.length!=2){
-		$.messager.alert('提示','商品检查设置只能设置到大类！','error');
+	debugger;
+	if("closed"==selectNode.state||('open'==selectNode.state&&selectNode.children.length>0)){
+		$.messager.alert('提示','商品检查设置只能设置到最小类！','error');
 		return;
 	}
 	var opts={
