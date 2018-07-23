@@ -165,7 +165,8 @@ public class BaseCommodityService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public int impExcelBaseCommodity(String filepath,boolean full) throws ServiceException{
+	@Transactional
+	public int impExcelBaseCommodity(String filepath,boolean full,String catecode) throws ServiceException{
 		List<List<Object>> results=null;
 		try {
 			results = ReadExcel.readExcel(new File(filepath));
@@ -189,7 +190,11 @@ public class BaseCommodityService {
 			}
 			//全量更新则删除 之前的全部数据
 			if(full){
+				if(StringUtils.isNull(catecode)) {
+					throw new ServiceException("全量更新必须选择商品小类");
+				}
 				BaseCommodityExample bce = new BaseCommodityExample();
+				bce.createCriteria().andCateCodeEqualTo(catecode);
 				basecommoditymapper.deleteByExample(bce);
 			}
 			Date date = CommonUtils.getCurrentDbDate();

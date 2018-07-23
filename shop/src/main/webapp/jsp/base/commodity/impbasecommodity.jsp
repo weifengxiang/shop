@@ -20,8 +20,8 @@ $(function() {
 				<tr>
 					<td style="text-align: right;">是否全量更新:</td>
 					<td colspan='3'>
-						<input type='radio' name='full' value='1' checked>是</input>
-						<input type='radio' name='full' value='0'>否</input>
+						<input type='radio' name='full' value='1' >是</input>
+						<input type='radio' name='full' value='0' checked>否</input>
 					</td>
 				</tr>
 				<tr>
@@ -31,6 +31,15 @@ $(function() {
 				</tr>
 			</table>
 		</form>
+		<div style="padding-top:0px;float: left;text-align: left">
+			<span style="color:red">
+				<p>说明：</p>
+				<ol>
+					<li>是否全量更新为‘是’时,导入时会将该小类下的所有商品全部删除，然后导入最新的Excel数据；</li>
+					<li>是否全量更新为‘否’时,导入时现有商品库不会进行删除，直接在数据库中增加最新的Excel数据；</li>
+				</ol>
+			</span>
+		</div>
 		<div style="padding-top:50px">
 			<a class="easyui-linkbutton" style='width:102px' iconCls='icon-excel' href='${basepath}template/BaseCommodity.xls'>商品模板</a>
 		</div>

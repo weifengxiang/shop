@@ -307,13 +307,14 @@ public class BaseCommodityController extends BaseController{
 						if (fileName.trim() != "") {
 							// 定义上传路径
 							boolean full = (boolean)paramMap.get("full");
+							String catecode = (String)paramMap.get("catecode");//商品小类编号
 							String path = ConfUtils.getValue("ATTACHMENT_DIR")+ File.separator + fileName;
 							File localFile = new File(path);
 							if (!localFile.getParentFile().exists()) {
 								localFile.getParentFile().mkdirs();
 							}
 							attachfile.transferTo(localFile);
-							count=basecommodityService.impExcelBaseCommodity(path,full);
+							count=basecommodityService.impExcelBaseCommodity(path,full,catecode);
 						}
 					}
 					// 记录上传该文件后的时间
