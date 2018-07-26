@@ -215,22 +215,25 @@ function impBaseCommodity(){
  * 查询按钮
  */
 function searchButton(){
+	var cateCode='';
 	if (!$('#comcatetree').tree("getSelected")) {
-		$.messager.alert('提示', '请选择商品门类', 'info');
-		return;
-	}
-	var selectNode = $('#comcatetree').tree("getData",
-	  		 $('#comcatetree').tree("getSelected").target
-	  		);
-	if (null == selectNode.data) {
-		$.messager.alert('提示', '请选择商品门类', 'info');
-		return;
+		//$.messager.alert('提示', '请选择商品门类', 'info');
+		//return;
+	}else{
+		var selectNode = $('#comcatetree').tree("getData",
+		  		 $('#comcatetree').tree("getSelected").target
+		  		);
+		if (null != selectNode.data) {
+			cateCode=selectNode.data.code;
+		}
 	}
 	$('#listbasecommoditydg').datagrid('options').url=SKY.urlCSRF(basepath+'base/BaseCommodity/getBaseCommodityByPage');
 	$('#listbasecommoditydg').datagrid('load', {
 		filter : function(){
 			var ft = new HashMap();
-			ft.put("cateCode@=",selectNode.data.code);
+			if(cateCode){
+				ft.put("cateCode@=",cateCode);
+			}
 			var code =$('#q_code').textbox("getValue");
 			if(code){
 				ft.put("code@like", code+"%");
