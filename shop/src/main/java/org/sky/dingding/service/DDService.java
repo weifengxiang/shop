@@ -39,7 +39,7 @@ public class DDService {
 	 * @param m
 	 * @return
 	 */
-	public List<TreeStru> getBaseCheckPlanCateTree(Map m){
+	public List<TreeStru> getBaseCheckPlanCateTree(Map m) throws ServiceException{
 		String planCode = (String)m.get("planCode");
 		String state = (String)m.get("state");
 		Map params = new HashMap();

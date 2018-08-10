@@ -1,5 +1,6 @@
 package org.sky.dingding.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -83,7 +84,13 @@ public class DDController extends BaseController {
 		if(!StringUtils.isNull(data)){
 			dataMap = JsonUtils.json2map(data);
 		}
-		return ddservice.getBaseCheckPlanCateTree(dataMap);
+		List<TreeStru> list = new ArrayList();
+		try {
+			list = ddservice.getBaseCheckPlanCateTree(dataMap);
+		}catch(ServiceException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	/**
 	 * 显示检查商品详情列表页面
