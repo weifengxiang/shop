@@ -33,7 +33,7 @@
 		<thead>
 			<tr>
 					<th data-options="field:'comName',width:90">商品名称</th>
-					<th data-options="field:'barCode',width:90">条码</th>
+					<th data-options="field:'note',width:90">说明</th>
 					<th data-options="field:'result',width:30,
 					formatter:function(value,row){
 							  	 return SKY.formatterEnum(value,row,CHECK_RESULT);

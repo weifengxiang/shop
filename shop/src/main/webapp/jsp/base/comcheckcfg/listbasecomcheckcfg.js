@@ -42,18 +42,22 @@ function initComCateTree() {
  **/
 function addBaseComcheckCfg(){
 	if(!$('#comcatetree').tree("getSelected")){
-		$.messager.alert('提示','商品检查设置只能设置到大类！','error');
+		$.messager.alert('提示','请选择商品大类！','error');
 		return;
 	}
 	var selectNode = $('#comcatetree').tree("getData",
 	  		 $('#comcatetree').tree("getSelected").target
 	  		);
 	var comCate = selectNode.data;
-	debugger;
-	if("closed"==selectNode.state||('open'==selectNode.state&&selectNode.children.length>0)){
-		$.messager.alert('提示','商品检查设置只能设置到最小类！','error');
+	if('root'!=comCate.parCode){
+		$.messager.alert('提示','商品检查设置只能设置到大类！','error');
 		return;
 	}
+	debugger;
+//	if("closed"==selectNode.state||('open'==selectNode.state&&selectNode.children.length>0)){
+//		$.messager.alert('提示','商品检查设置只能设置到最小类！','error');
+//		return;
+//	}
 	var opts={
 				id:'addBaseComcheckCfg',
 				title:'添加商品检查设置',

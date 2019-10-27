@@ -331,7 +331,8 @@
 			BCC.EMP_CODE AS EMP_CODE
 			FROM
 			BASE_COMMODITY BC, BASE_COMCHECK_CFG BCC
-			WHERE BC.CATE_CODE = BCC.COM_CATE
+			WHERE SUBSTR(BC.CATE_CODE,1,2) = BCC.COM_CATE
+				  AND LENGTH(BCC.COM_CATE)=2
 			) AS TAB
   </insert>
   <select id="selectBaseCheckPlanComCateList" parameterType="map" resultType="java.util.Map">

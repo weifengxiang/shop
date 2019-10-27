@@ -32,20 +32,20 @@ $(function() {
 				  <tr>
 					<th><label>单位:</label></th>
 					<td><input class="easyui-textbox" name="unit"
-						data-options="required:true"></input></td>
+						data-options=""></input></td>
 				 
 				 	<th><label>规格:</label></th>
 					<td><input class="easyui-textbox" name="spec"
-						data-options="required:true"></input></td>
+						data-options=""></input></td>
 				  </tr>
 				  <tr>
 					<th><label>计价方式:</label></th>
 					<td><input class="easyui-textbox" name="priceMethod"
-						data-options="required:true"></input></td>
+						data-options=""></input></td>
 				 
 					<th><label>条码:</label></th>
 					<td><input class="easyui-textbox" name="barCode"
-						data-options="required:true"></input></td>
+						data-options=""></input></td>
 				  </tr>
 				  <tr>
 					<th><label>类别:</label></th>
@@ -53,7 +53,7 @@ $(function() {
 						data-options="required:true,readonly:true"></input></td>
 				  </tr>
 				  <tr>
-					<th><label>备注:</label></th>
+					<th><label>说明:</label></th>
 					<td colspan='3'><input class="easyui-textbox" name="note"
 						style="width:400px;height: 100px"
 						data-options="multiline:true"></input></td>
