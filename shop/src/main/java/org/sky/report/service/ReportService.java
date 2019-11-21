@@ -111,8 +111,8 @@ public class ReportService {
 		}
 		filepath = ConfUtils.getValue("temp_dir")+File.separator+"oos"
 				   +File.separator+BspUtils.getLoginUser().getCode()+".xls";
-		String[] titles={"序号","小类名称","商品名称","条码","规格","检查结果"};
-		String[] fields={"IDX","CATENAME","NAME","BAR_CODE","SPEC","RESULT"};
+		String[] titles={"序号","小类名称","商品名称","条码","规格","备注","检查结果"};
+		String[] fields={"IDX","CATENAME","NAME","BAR_CODE","SPEC","NOTE","RESULT"};
 		BigExcel.createExcel(filepath,CommonUtils.getCurrentDate("yyyy-MM-dd")+"断货统计表", titles,fields,res);
 		return filepath;
 	}

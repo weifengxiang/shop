@@ -50,36 +50,42 @@ $(function() {
 		">
 	<thead>
 		<tr>
-				<th data-options="field:'CATENAME',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">小类名称</th>
-				<th data-options="field:'NAME',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">商品名称</th>
-				<th data-options="field:'BAR_CODE',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">条码</th>
-				<th data-options="field:'SPEC',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">规格</th>
-				<th data-options="field:'RESULT',width:180,
-				editor:{
-						type:'textbox',
-						options:{
-							required:true
-						}}">检查结果</th>
+			<th data-options="field:'CATENAME',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">小类名称</th>
+			<th data-options="field:'NAME',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">商品名称</th>
+			<th data-options="field:'BAR_CODE',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">条码</th>
+			<th data-options="field:'SPEC',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">规格</th>
+			<th data-options="field:'NOTE',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">备注</th>
+			<th data-options="field:'RESULT',width:180,
+			editor:{
+					type:'textbox',
+					options:{
+						required:true
+					}}">检查结果</th>
 		</tr>
 	</thead>
 </table>

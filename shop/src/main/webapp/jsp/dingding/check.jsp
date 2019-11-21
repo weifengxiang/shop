@@ -70,7 +70,10 @@ function initComCateTree() {
 						method : 'POST',
 						onClick : function(node) {
 							var data=node.data;
-							if(data){
+							if(node.children && node.children.length>0){
+								//展开下级
+								$('#comcatetree').tree('expand', node.target);
+							}else if(data){
 								window.location.href=basepath+"dd/DDController/initBaseCheckDetailListPage/"+planCode+"/"+data.cate_code+"/"+state;
 							}
 						},
